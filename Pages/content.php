@@ -40,15 +40,19 @@
             ];
         foreach ($temas as $tema):?>
                 <button type="submit">
-                    <div id=<?= $tema[""] ?>>
-                        <img src=<?= $p[0] ?>>
-                        <h2 class="id"><?= $p[1] ?></h2>
-                        <h4 class="desc"><?= $p[2] ?></h4>
-                        <h1 class="precio"><b><?= $p[3] ?>€</b></h1>
+                    <div id=<?= $tema["id"] ?>>
+                        <div id=<?= "puntuacion",$tema['id'] ?>>
+                            <h1><?= $tema["valoracion"] ?></h1>
+                        </div>
+                        <div>
+                            <h2><?= $tema["titulo"] ?></h2>
+                            <h4><?= $tema["texto"] ?></h4>
+                            <p><?= $tema["fecha"] ?></p>
+                            <a src="#"><?= $tema["autor"] ?></a>
+                        </div>
                     </div>
                 </button>
                 <?php
-                $x++;
         endforeach; ?>
 
 
