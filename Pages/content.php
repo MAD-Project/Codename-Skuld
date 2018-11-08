@@ -40,7 +40,7 @@
             ];
         foreach ($temas as $tema):?>
                 <button type="submit">
-                    <div id=<?= $k ?>>
+                    <div id=<?= $tema[""] ?>>
                         <img src=<?= $p[0] ?>>
                         <h2 class="id"><?= $p[1] ?></h2>
                         <h4 class="desc"><?= $p[2] ?></h4>
