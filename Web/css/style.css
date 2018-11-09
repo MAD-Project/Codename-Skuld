@@ -1,0 +1,135 @@
+/* 
+    @Author: MAD Project
+    --------------------------------------------------
+    -Todo está ordenado por orden de aparición y peso-
+    -         Orden: Elementos, Clases e IDs.        -
+    --------------------------------------------------
+*/
+
+/* Elementos */
+body {
+    margin: 0;
+    font-family: 'Roboto', Verdana, sans-serif;
+}
+
+nav {
+    align-self: center;
+}
+
+nav a {
+    color: white;
+    margin-right: 50px;
+    font-size: 130%;
+    text-decoration: none;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: #46494c;
+}
+
+/* Clases */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'main main sidebar'
+        'footer footer footer';
+    grid-gap: 10px;
+    grid-template-columns: 60% 20%;
+    background-color: white;
+}
+
+/* Ayuda visual de la separacion */
+.grid-container>div,
+.footer {
+    border: 1px solid black;
+}
+
+/* FIN de Ayuda visual de la separacion */
+
+.header {
+    grid-area: header;
+    background-color: #10a066;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 70px;
+    margin: 5px;
+}
+
+.search {
+    border-radius: 40px;
+    margin-right: 60px;
+    padding: 6px;
+    font-size: 110%;
+    border: none;
+    height: 20px;
+}
+
+.main {
+    grid-area: main;
+    /* Subpágina de Temas */
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    /* Fin de subpágina de Temas */
+}
+
+.temaBox {
+    /* Subpágina de Temas */
+    display: flex;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    padding: 10px;
+    width: 95%;
+    margin-left: 1.5%;
+    margin-bottom: 2%;
+    /* Fin de subpágina de Temas */
+}
+
+.temaBox>div {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.votos {
+    border-radius: 2px;
+    margin-bottom: 5px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.votarBTN {
+    border-radius: 5px;
+    border: none;
+    background-color: #dd6e42;
+    height: 20px;
+    width: 100%;
+    transition: .20s;
+}
+
+.votarBTN:active {
+    background-color: #c46c49;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+/* IDs */
