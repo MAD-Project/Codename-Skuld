@@ -1,8 +1,6 @@
 
 <?php
 
-session_start();
-
     include 'conexionDb.php';
 
     $usuarioExistente = false;
