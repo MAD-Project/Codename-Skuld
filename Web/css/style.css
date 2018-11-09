@@ -75,23 +75,28 @@ nav a:hover {
 .main {
     grid-area: main;
     /* Subpágina de Temas */
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
     overflow: auto;
     padding-top: 2%;
     padding-bottom: 2%;
     /* Fin de subpágina de Temas */
 }
-
-.temaBox {
-    /* Subpágina de Temas */
+#Temas{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.botonTema{
     background-color: #e8e8e8;
     border-radius: 5px;
     padding: 10px;
     width: 95%;
-    margin-left: 1.5%;
     margin-bottom: 2%;
+}
+.temaBox {
+    /* Subpágina de Temas */
+    display: flex;
     /* Fin de subpágina de Temas */
 }
 
