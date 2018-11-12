@@ -8,19 +8,13 @@
         <title>Codename Skuld</title>
         <link rel="stylesheet" href="./css/style.css" />
 
-        <!-- css para el login -->
-        <link rel="stylesheet" type="text/css" href="./css/login.css">
-        <!-- css de iconos -->
-        <link rel="stylesheet" href="./css/fonts.css">
-
-
         <!-- CSS externos -->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montez|Pathway+Gothic+One" rel="stylesheet">
 
         <?php session_start(); ?>
 
-        <?php include 'paginasPhp/login.php' ?>
+        <?php include 'controller/login.php' ?>
         <!-- login -->
 
     </head>
@@ -36,23 +30,17 @@
             <input class="search" type="text" placeholder="Buscar">
         </div>
         <div class="main">
-            <?php include 'paginasPhp/content.php' ?>
+            <?php include 'pages/contenidoDetalle.php' ?>
         </div>
         <div class="sidebar">
             <div class="login">
-                <article class="fondo">
-                    <h3>Inicio de Sesión</h3>
-                    <form id="login" name="flogin" method="post">
-                        <span class="icon-user"></span><input class="inp" type="email" id="emailLogin" name="emailLogin"
-                            required><br>
-                        <span class="icon-key"></span><input class="inp" type="password" id="passwordLogin" name="passwordLogin"
-                            required"><br>
-                        <input class="boton" type="submit" value="Login">
-                    </form>
-                </article>
-                <a href="paginas/paginaRegistro.php">
-                    <p>Crear una cuenta</p>
-                </a>
+                <h3>Inicio de Sesión</h3>
+                <form id="login" name="flogin" method="post">
+                    <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
+                    <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
+                    <input class="loginBTN" type="submit" value="Login">
+                </form>
+                <a href="pages/paginaRegistro.php">Crear una cuenta</a>
             </div>
 
         </div>
