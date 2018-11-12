@@ -5,6 +5,11 @@
     -------------------------------------------
 */
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     margin: 0;
     font-family: 'Roboto', Verdana, sans-serif;
@@ -35,6 +40,7 @@ nav a:hover {
         'footer footer footer';
     grid-gap: 10px;
     grid-template-columns: 60% 20%;
+    grid-template-rows: 10% 70% 15%;
     background-color: white;
 }
 
