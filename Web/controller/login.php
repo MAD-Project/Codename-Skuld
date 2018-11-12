@@ -40,5 +40,3 @@
 
         echo $_SESSION['nombreUsuario'];
     }
-
-?>
