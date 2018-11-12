@@ -14,7 +14,7 @@
 
         <?php session_start(); ?>
 
-        <?php include 'paginasPhp/login.php' ?>
+        <?php include 'controller/login.php' ?>
         <!-- login -->
 
     </head>
@@ -30,7 +30,7 @@
             <input class="search" type="text" placeholder="Buscar">
         </div>
         <div class="main">
-            <?php include 'paginasPhp/contenidoDetalle.php'?>
+            <?php include 'pages/contenidoDetalle.php' ?>
         </div>
         <div class="sidebar">
             <div class="login">
@@ -40,7 +40,7 @@
                     <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
                     <input class="loginBTN" type="submit" value="Login">
                 </form>
-                <a href="paginas/paginaRegistro.php">Crear una cuenta</a>
+                <a href="pages/paginaRegistro.php">Crear una cuenta</a>
             </div>
 
         </div>
