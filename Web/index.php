@@ -124,7 +124,6 @@
                         <input class="boton" type="submit" value="Login">
                     </form>
                 </article>
-                <a href="paginasPhp/paginaRegistro.php">
                     <p>Crear una cuenta</p>
                 </a>
             </div>
