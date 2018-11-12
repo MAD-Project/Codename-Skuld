@@ -95,8 +95,9 @@
                         </div>
                         <div>
                             <h2><?= $tema["titulo"] ?></h2>
-                            <h4><?= $tema["texto"] ?></h4>
                             <p><?= $tema["fecha"] ?></p>
+                            <h4><?= $tema["texto"] ?></h4>
+
                             <a src="#"><?= $tema["autor"] ?></a>
                         </div>
                     </div>
