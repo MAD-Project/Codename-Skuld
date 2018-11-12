@@ -5,7 +5,8 @@
     -------------------------------------------
 */
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
 }
@@ -40,17 +41,17 @@ nav a:hover {
         'footer footer footer';
     grid-gap: 10px;
     grid-template-columns: 60% 20%;
-    grid-template-rows: 10% 70% 15%;
+    grid-template-rows: 12% 78% 7%;
     background-color: white;
 }
 
-/* Ayuda visual de la separacion */
+/* Ayuda visual de la separacion 
 .grid-container>div,
 .footer {
     border: 1px solid black;
 }
 
-/* FIN de Ayuda visual de la separacion */
+  FIN de Ayuda visual de la separacion */
 
 .header {
     grid-area: header;
@@ -127,6 +128,7 @@ nav a:hover {
 .votarBTN:active {
     background-color: #c46c49;
 }
+
 /* Respuestas */
 .respBox {
     /* Subpágina de Temas */
@@ -173,14 +175,16 @@ nav a:hover {
 .login {
     display: flex;
     flex-direction: column;
+    width: 97%;
+    background-color: #46494c;
+    border-radius: 5px;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 30%;
-    background-color: rgba(0, 0, 0, 0.3);
+    margin-top: 9%;
 }
 
 .login h3 {
-    color: #fff;
+    color: white;
     text-align: center;
     font-size: 30px;
     margin-bottom: 20px;
@@ -188,19 +192,20 @@ nav a:hover {
 
 .inp {
     box-shadow: 0;
-    background-color: rgba(255, 255, 255, .1);
+    background-color: grey;
     width: 95%;
     height: 40px;
-    border: solid 2px rgba(255, 255, 255, .5);
-    font-size: 130%;
-    color: #fff;
+    border: solid 2px darkgrey;
+    font-size: 20px;
+
+    color: white;
     border-radius: 5px;
     text-align: center;
     transition: all 250ms ease;
 }
 
 .inp:first-of-type {
-    margin-bottom: -1px;
+    margin-bottom: -2px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -218,7 +223,7 @@ nav a:hover {
     height: 40px;
     width: 100%;
     transition: .20s;
-    font-size: 130%;
+    font-size: 20px;
 }
 
 .loginBTN:hover {
@@ -227,7 +232,9 @@ nav a:hover {
 
 .login a {
     margin-top: 10px;
-    font-size: 90%;
+    font-size: 14px;
+    color: white;
+    margin-bottom: 20px;
 }
 
 /* FIN Barra lateral */
@@ -236,4 +243,17 @@ nav a:hover {
     grid-area: footer;
 }
 
-/* IDs */
+
+/* Ocultar barra scroll en todos los navegadores */
+.main {
+    overflow: auto;
+    max-height: 100%;
+    margin-right: -100px;
+    padding-right: 100px;
+    height: 95%;
+}
+
+.hide-scroll {
+    overflow: hidden;
+    width: 137%;
+}
