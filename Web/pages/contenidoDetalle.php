@@ -1,4 +1,4 @@
-<form method="POST" action="content.php">
+<form class="contenido" method="POST" action="content.php">
         <?php
         $temas = [ "id"=> "122",
                 "titulo" => "Titulo 1",
@@ -7,19 +7,18 @@
                 "fecha"=> "08/11/2018",
                 "autor"=>"Mikel Ferreiro"];
         ?>
-
-    <div class="temaBox" id=<?= $temas["id"] ?>>
-        <div id=<?= "puntuacion",$temas['id'] ?>>
-            <h1 class="votos"><?= $temas["valoracion"] ?></h1>
-            <button class="votarBTN">votar</button>
+        <div class="temaBox" id=<?= $temas["id"] ?>>
+            <div id=<?= "puntuacion",$temas['id'] ?>>
+                <p class="votos"><?= $temas["valoracion"] ?></p>
+                <input type="button" value="Votar" class="votarBTN">
+            </div>
+            <div>
+                <h2><?= $temas["titulo"] ?></h2>
+                <h4><?= $temas["texto"] ?></h4>
+                <p><?= $temas["fecha"] ?></p>
+                <a src="#"><?= $temas["autor"] ?></a>
+            </div>
         </div>
-        <div>
-            <h2><?= $temas["titulo"] ?></h2>
-            <h4><?= $temas["texto"] ?></h4>
-            <p><?= $temas["fecha"] ?></p>
-            <a src="#"><?= $temas["autor"] ?></a>
-        </div>
-    </div>
         <?php
         $respuestas =[
             ["id"=> "2",
@@ -58,8 +57,8 @@
 <?php foreach ($respuestas as $resp):?>
         <div class="respBox" id=<?= $resp["id"] ?>>
             <div id=<?= "puntuacion",$resp['id'] ?>>
-                <h1  class="votos"><?= $resp["valoracion"] ?></h1>
-                <button class="votarBTN">votar</button>
+                <p  class="votos"><?= $resp["valoracion"] ?></p>
+                <button class="votarBTN">Votar</button>
             </div>
             <div>
                 <a src="#"><?= $resp["autor"] ?></a>

@@ -1,6 +1,5 @@
 
-<form method="POST" action="content.php">
-    <div id="Temas">
+<form class="contenido" method="POST" action="contenido.php">
         <?php
         $temas = [
             [   "id"=> "122",
@@ -106,7 +105,4 @@
         <?php endforeach; ?>
 
 
-    </div>
 </form>
-
-</body>
