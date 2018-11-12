@@ -29,16 +29,18 @@
             </nav>
             <input class="search" type="text" placeholder="Buscar">
         </div>
-        <div class="main">
-            <?php include 'pages/contenidoDetalle.php' ?>
+        <div class="hide-scroll">
+            <div class="main">
+                <?php include 'pages/contenidoDetalle.php' ?>
+            </div>
         </div>
         <div class="sidebar">
             <div class="login">
-                <h3>Inicio de Sesión</h3>
+                <h3>Inicio de sesión</h3>
                 <form id="login" name="flogin" method="post">
                     <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
                     <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
-                    <input class="loginBTN" type="submit" value="Login">
+                    <input class="loginBTN" type="submit" value="Iniciar sesion">
                 </form>
                 <a href="pages/paginaRegistro.php">Crear una cuenta</a>
             </div>
