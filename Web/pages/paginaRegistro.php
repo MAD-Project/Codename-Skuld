@@ -24,7 +24,7 @@
     <label for="apellido">Apellido</label>
     <input type="text" id="apellido" name="apellido" placeholder="Apellido" /><br><br>
 
-    <input type="submit" onclick="eviarDatos('registro.php','registro','post')" value="Registarse" />
+    <input type="submit" onclick="eviarDatos('../controller/registro.php','registro','post')" value="Registarse" />
 
 </form>
 
