@@ -1,0 +1,5 @@
+
++ Fecha a Tema/respuesta en BBDD;
++ Tabla archivos adjuntos (idArchivo, src, idTema, idRespuesta, idUsuario)
++ Pagina usuario o modal en la que se muestre informacion sobre un usuario (al hacer click en el autor de un tema/respuesta...)
++ Defaults a los campos (sobre todo numeros)
