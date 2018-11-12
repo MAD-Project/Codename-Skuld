@@ -1,0 +1,23 @@
+<?php
+
+function conexionDb(){
+
+    try {
+        $conexion = new PDO("mysql:host=localhost;dbname=skuldb;charset=utf8","root","OMUwtKd3BOYT");
+        return $conexion;
+    }
+    catch (PDOException $e) {
+        echo "Falló en la conexión: ".$e->getMessage();
+    }
+
+    return null;
+
+}
+
+function closeConexionDb($conexion){
+
+    $conexion = null;
+
+}
+
+?>
