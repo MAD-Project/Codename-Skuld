@@ -1,1 +1,2 @@
-añadir Fecha a Tema en BBDD;
+﻿+ Fecha a Tema/respuesta en BBDD; "AÑADIDO"
++ Tabla archivos adjuntos (idArchivo, src, idTema, idRespuesta, idUsuario) "AÑADIDO"
