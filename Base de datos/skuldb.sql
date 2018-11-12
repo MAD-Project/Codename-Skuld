@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2018 a las 09:49:31
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.10
+-- Servidor: localhost:3306
+-- Tiempo de generación: 12-11-2018 a las 02:53:48
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.1.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `skuldb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `archivosadjuntos`
+--
+
+CREATE TABLE `archivosadjuntos` (
+  `idArchivo` int(11) NOT NULL,
+  `src` int(11) NOT NULL,
+  `idTema` int(11) NOT NULL,
+  `idRespuesta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -45,7 +58,8 @@ CREATE TABLE `respuesta` (
   `idUsuario` int(11) NOT NULL,
   `idTema` int(11) NOT NULL,
   `texto` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `valoracion` int(11) NOT NULL
+  `valoracion` int(11) NOT NULL,
+  `fechaRespuesta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -60,7 +74,8 @@ CREATE TABLE `tema` (
   `titulo` varchar(35) COLLATE utf8_spanish_ci NOT NULL,
   `texto` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `valoracion` int(11) NOT NULL,
-  `mejorRespuesta` int(11) NOT NULL
+  `mejorRespuesta` int(11) NOT NULL,
+  `fechaTema` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -74,10 +89,17 @@ CREATE TABLE `usuario` (
   `nombreUsuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `correo` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `puntuacion` int(11) NOT NULL
+  `nombre` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `apellido` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `puntuacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `password`, `correo`, `nombre`, `apellido`, `puntuacion`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com', 'admin', 'admin', 999999);
 
 -- --------------------------------------------------------
 
@@ -94,6 +116,14 @@ CREATE TABLE `valoracion` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `archivosadjuntos`
+--
+ALTER TABLE `archivosadjuntos`
+  ADD PRIMARY KEY (`idArchivo`),
+  ADD KEY `fk_tema_archivo` (`idTema`),
+  ADD KEY `fk_respuesta_archivo` (`idRespuesta`);
 
 --
 -- Indices de la tabla `favorito`
@@ -145,6 +175,12 @@ ALTER TABLE `valoracion`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `archivosadjuntos`
+--
+ALTER TABLE `archivosadjuntos`
+  MODIFY `idArchivo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `favorito`
 --
 ALTER TABLE `favorito`
@@ -166,7 +202,7 @@ ALTER TABLE `tema`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
@@ -177,6 +213,13 @@ ALTER TABLE `valoracion`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `archivosadjuntos`
+--
+ALTER TABLE `archivosadjuntos`
+  ADD CONSTRAINT `fk_respuesta_archivo` FOREIGN KEY (`idRespuesta`) REFERENCES `respuesta` (`idRespuesta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_tema_archivo` FOREIGN KEY (`idTema`) REFERENCES `tema` (`idTema`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `favorito`
