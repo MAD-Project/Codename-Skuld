@@ -58,7 +58,7 @@
             else {
 
                 login();
-                echo "Correo o contraseña incorrecta";
+                echo "<p id='loginIcorrecto'>Correo o contraseña incorrecta</p>";
             }
 
         }
