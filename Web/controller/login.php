@@ -1,7 +1,7 @@
 
 <?php
 
-    include 'conexionDb.php';
+    include_once 'conexionDb.php';
 
     $usuarioExistente = false;
 
@@ -49,18 +49,18 @@
 
         $conexion = conexionDb();
 
-        $select = $conexion->prepare("SELECT nombreUsuario, password, correo from usuario WHERE correo = '$emailLogin'");
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
         $select->execute();
 
         while ($usuario = $select->fetchObject()){
 
-            if ($usuario->correo == $emailLogin && $usuario->password == $_POST['passwordLogin']){
+            if ($usuario->email == $emailLogin && $usuario->password == $_POST['passwordLogin']){
 
                 $_SESSION['login'] = true;
 
                 if ($_SESSION['login']){
 
-                    $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nombreUsuario;
+                    $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nickname;
                     logout();
                 }
                 else {
