@@ -31,7 +31,7 @@
         </div>
         <div class="hide-scroll">
             <div class="main">
-                <?php include 'pages/contenidoDetalle.php' ?>
+                <?php include 'pages/contenido.php' ?>
             </div>
         </div>
         <div class="sidebar">

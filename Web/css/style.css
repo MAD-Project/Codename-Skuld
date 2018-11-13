@@ -4,9 +4,10 @@
     -Todo está ordenado por orden de aparición-
     -------------------------------------------
 */
-
-html,
-body {
+*:focus {
+    outline: none;
+}
+html, body {
     height: 100%;
     width: 100%;
 }
@@ -80,14 +81,25 @@ nav a:hover {
 .main {
     grid-area: main;
     /* Subpágina de Temas */
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
     overflow: auto;
     padding-top: 2%;
     padding-bottom: 2%;
     /* Fin de subpágina de Temas */
 }
-
+.contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.botonTema{
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    padding: 10px;
+    width: 95%;
+    margin-bottom: 2%;
+}
 .temaBox {
     /* Subpágina de Temas */
     display: flex;
@@ -95,20 +107,33 @@ nav a:hover {
     border-radius: 5px;
     padding: 10px;
     width: 95%;
-    margin-left: 1.5%;
     margin-bottom: 2%;
     /* Fin de subpágina de Temas */
 }
-
-.temaBox>div {
-    margin: 0;
+.temaBox div:nth-child(1) {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-right: 10px;
+    margin-right: 2em;
 }
+.temaBox div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
+}
+.temaBox h4,.respBox h4{
+    text-align: justify;
+}
+.temaBox a,.respBox a{
+    color: #dd6e42;
+}
+.temaBox a:hover,.respBox a:hover, .votarBTN:hover{
+    cursor: pointer;
+}
 .votos {
     border-radius: 2px;
     margin-bottom: 5px;
@@ -142,29 +167,20 @@ nav a:hover {
     /* Fin de subpágina de Temas */
 }
 
-.respBox>div {
-    margin: 0;
+.respBox div:nth-child(1) {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-right: 10px;
+    margin-right: 2em;
 }
+.respBox div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-.votos {
-    border-radius: 2px;
-    margin-bottom: 5px;
-    padding: 20px;
-    border: 1px solid black;
-}
-
-.votarBTN {
-    border-radius: 5px;
-    border: none;
-    background-color: #dd6e42;
-    height: 20px;
-    width: 100%;
-    transition: .20s;
 }
 
 /* Barra lateral */
