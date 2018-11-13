@@ -20,5 +20,3 @@ function closeConexionDb($conexion){
     $conexion = null;
 
 }
-
-?>
