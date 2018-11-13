@@ -33,8 +33,8 @@
         </div>
         <div class="sidebar">
 
-            <?php include 'controller/login.php' ?>
             <!-- login -->
+            <?php include 'controller/login.php' ?>
 
         </div>
         <footer class="footer">
