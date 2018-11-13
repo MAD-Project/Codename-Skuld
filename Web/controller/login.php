@@ -3,6 +3,8 @@
 
     include_once 'conexionDb.php';
 
+    include 'logout.php';
+
     function login(){
         ?>
         <div class="login">
@@ -16,18 +18,6 @@
         </div>
         <?php
     }
-
-    function logout(){
-
-        echo $_SESSION['nombreUsuario'];
-
-        ?>
-            <form method="post">
-                <input class="logoutBTN" type="submit" value="Cerrar sesion">
-                <input type="hidden" name="cerrarSesion">
-            </form>
-        <?php
-}
 
     if (isset($_POST['cerrarSesion'])){
 
