@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Codename Skuld</title>
+        <title>Codename Skuld - Prototipo</title>
         <link rel="stylesheet" href="./css/style.css" />
 
         <!-- CSS externos -->
@@ -16,7 +16,7 @@
 
         <?php include 'controller/login.php' ?>
         <!-- login -->
-
+        <script src="javaScript/index.js"></script>
     </head>
 
     <body class="grid-container">
@@ -24,9 +24,7 @@
             <!-- Quitar fondo negro al fondo -->
             <img class="logo" src="media/Logo.jpeg">
             <!-- Borrar Nav, sin uso -->
-            <nav>
-                <a href="#">Codename Skuld - Prototipo</a>
-            </nav>
+            <a class="loginLink" onclick="mostrarLogin()">Login</a>
             <input class="search" type="text" placeholder="Buscar">
         </div>
         <div class="hide-scroll">
@@ -34,8 +32,8 @@
                 <?php include 'pages/contenido.php' ?>
             </div>
         </div>
-        <div class="sidebar">
-            <div class="login">
+        <div class="sidebar" id="sidebar">
+            <div class="login" id="login">
                 <h3>Inicio de sesión</h3>
                 <form id="login" name="flogin" method="post">
                     <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>

@@ -7,7 +7,9 @@
 *:focus {
     outline: none;
 }
-html, body {
+
+html,
+body {
     height: 100%;
     width: 100%;
 }
@@ -17,21 +19,8 @@ body {
     font-family: 'Roboto', Verdana, sans-serif;
 }
 
-nav {
-    align-self: center;
-}
-
-nav a {
-    color: white;
-    margin-right: 50px;
-    font-size: 130%;
-    text-decoration: none;
-    transition: .25s;
-}
-
-nav a:hover {
-    /* basura prototipo*/
-    color: #46494c;
+.loginLink {
+    display: none;
 }
 
 .grid-container {
@@ -80,60 +69,78 @@ nav a:hover {
 
 .main {
     grid-area: main;
-    /* Subpágina de Temas */
-    /*display: flex;
-    flex-direction: column;*/
-    overflow: auto;
     padding-top: 2%;
     padding-bottom: 2%;
-    /* Fin de subpágina de Temas */
+    /* Ocultar barra scroll en todos los navegadores */
+    overflow: auto;
+    max-height: 100%;
+    margin-right: -100px;
+    padding-right: 100px;
+    height: 95%;
 }
-.contenido{
+
+.hide-scroll {
+    overflow: hidden;
+    width: 137%;
+}
+
+.contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.botonTema{
+
+.botonTema {
     background-color: #e8e8e8;
     border-radius: 5px;
     padding: 10px;
     width: 95%;
     margin-bottom: 2%;
 }
+
+/* Subpágina de Temas */
 .temaBox {
-    /* Subpágina de Temas */
     display: flex;
-    background-color: #e8e8e8;
+    background-color: lightgrey;
     border-radius: 5px;
     padding: 10px;
     width: 95%;
     margin-bottom: 2%;
-    /* Fin de subpágina de Temas */
 }
+
 .temaBox div:nth-child(1) {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-right: 2em;
+    margin-right: 20px;
 }
+
 .temaBox div:nth-child(2) {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-right: 10px;
+}
 
-}
-.temaBox h4,.respBox h4{
-    text-align: justify;
-}
-.temaBox a,.respBox a{
-    color: #dd6e42;
-}
-.temaBox a:hover,.respBox a:hover, .votarBTN:hover{
+.temaBox div:nth-child(2):hover,
+.respBox:nth-child(2):hover,
+.votarBTN:hover {
     cursor: pointer;
 }
+
+.temaBox a {
+    margin-left: 90%;
+    color: #dd6e42;
+    text-decoration: none;
+}
+
+.temaBox p {
+    margin-right: .8%;
+}
+
 .votos {
     border-radius: 2px;
     margin-bottom: 5px;
@@ -154,17 +161,17 @@ nav a:hover {
     background-color: #c46c49;
 }
 
-/* Respuestas */
+/* FIN subpágina de Temas */
+
+/* Subpágina de respuestas */
 .respBox {
-    /* Subpágina de Temas */
     display: flex;
-    background-color: #e8e8e8;
+    background-color: lightgrey;
     border-radius: 5px;
     padding: 10px;
-    width: 95%;
-    margin-left: 1.5%;
+    width: 92.8%;
+    margin-left: 4%;
     margin-bottom: 2%;
-    /* Fin de subpágina de Temas */
 }
 
 .respBox div:nth-child(1) {
@@ -174,6 +181,7 @@ nav a:hover {
     text-align: center;
     margin-right: 2em;
 }
+
 .respBox div:nth-child(2) {
     display: flex;
     flex-direction: row;
@@ -182,6 +190,13 @@ nav a:hover {
     justify-content: space-between;
 
 }
+
+.respBox a {
+    color: #dd6e42;
+    text-decoration: none;
+}
+
+/* FIN subpágina de respuestas */
 
 /* Barra lateral */
 .sidebar {
@@ -213,11 +228,11 @@ nav a:hover {
     height: 40px;
     border: solid 2px darkgrey;
     font-size: 20px;
-
     color: white;
     border-radius: 5px;
     text-align: center;
     transition: all 250ms ease;
+    margin-left: 1%;
 }
 
 .inp:first-of-type {
@@ -259,17 +274,59 @@ nav a:hover {
     grid-area: footer;
 }
 
+/* Versión movil */
+@media (max-width: 1350px) {
+    .grid-container {
+        grid-template-columns: auto;
+        grid-template-rows: 20% 65% 2%;
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+    }
 
-/* Ocultar barra scroll en todos los navegadores */
-.main {
-    overflow: auto;
-    max-height: 100%;
-    margin-right: -100px;
-    padding-right: 100px;
-    height: 95%;
-}
+    .logo {
+        width: 400%;
+        height: 110%;
+    }
 
-.hide-scroll {
-    overflow: hidden;
-    width: 137%;
+    .loginLink {
+        margin-right: 40%;
+        display: block;
+        color: white;
+        font-size: 370%;
+        text-decoration: none;
+        transition: .25s;
+    }
+
+    .loginLink:hover {
+        /* basura prototipo*/
+        color: #46494c;
+    }
+
+    .hide-scroll {
+        width: 95%;
+        margin: 1.1%;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .login {
+        margin-left: 2%;
+        height: 0px;
+        overflow: hidden;
+        transition: 0.5s;
+    }
+
+    .abrirlogin {
+        height: 100%;
+        display: block;
+    }
 }
