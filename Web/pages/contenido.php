@@ -5,10 +5,9 @@
 
         foreach ($temas as $tema):?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
-        <div id=<?= "puntuacion",$tema['id'] ?>>
-            <p class="votos"><?= $tema["valoracion"] ?>
-            </p>
-            <input type="button" value="Votar" class="votarBTN">
+        <div >
+            <p  class="votos" id=<?="puntuacion",$tema['id'] ?>> <?= $tema["valoracion"] ?></p>
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')">
         </div>
         <div onclick="alert('link')">
             <h2><?= $tema["titulo"] ?>

@@ -20,3 +20,6 @@
         closeConexionDb($conexion);
         return $temas;
     }
+    function annadirValoracion ($nickname,$objetivo,$idObjetivo){
+
+    }
