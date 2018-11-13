@@ -61,7 +61,7 @@
                 <button class="votarBTN">Votar</button>
             </div>
             <div>
-                <a src="#"><?= $resp["autor"] ?></a>
+                <a src="#"><?= $resp["autor"],":" ?></a>
                 <p><?= $resp["fecha"] ?></p>
                 <h4><?= $resp["texto"] ?></h4>
             </div>
