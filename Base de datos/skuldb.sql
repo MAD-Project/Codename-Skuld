@@ -1,246 +1,74 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost:3306
--- Tiempo de generación: 12-11-2018 a las 02:53:48
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.1.23
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE TABLE USUARIOS (
+  id_usuario INT AUTO_INCREMENT,
+  nickname varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  password varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  email varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  nombre varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  apellidos varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (id_usuario)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+CREATE TABLE TEMAS(
+  id_tema INT AUTO_INCREMENT,
+  titulo varchar(35) COLLATE utf8_spanish_ci NOT NULL,
+  texto varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
+  fecha date NOT NULL,
+  id_usuario INT NOT NULL,
+  PRIMARY KEY (id_tema),
+  FOREIGN KEY (id_usuario)
+        REFERENCES USUARIOS(id_usuario)
+        ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+CREATE TABLE RESPUESTAS (
+  id_respuesta INT AUTO_INCREMENT,
+  texto varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
+  fecha date NOT NULL,
+  id_usuario INT NOT NULL,
+  id_tema INT NOT NULL,
+  PRIMARY KEY (id_respuesta),
+  FOREIGN KEY (id_usuario)
+        REFERENCES USUARIOS(id_usuario)
+        ON DELETE CASCADE,
+  FOREIGN KEY (id_tema)
+        REFERENCES TEMAS(id_tema)
+        ON DELETE CASCADE
 
---
--- Base de datos: `skuldb`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `archivosadjuntos`
---
-
-CREATE TABLE `archivosadjuntos` (
-  `idArchivo` int(11) NOT NULL,
-  `src` int(11) NOT NULL,
-  `idTema` int(11) NOT NULL,
-  `idRespuesta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- --------------------------------------------------------
+CREATE TABLE VALORACIONES (
+  id_valoracion INT AUTO_INCREMENT,
+  id_usuario INT,
+  id_usuario_valorado INT,
+  id_tema INT,
+  id_respuesta INT,
+  PRIMARY KEY (id_valoracion),
+  FOREIGN KEY (id_usuario)
+        REFERENCES USUARIOS(id_usuario)
+        ON DELETE CASCADE,
+  FOREIGN KEY (id_usuario_valorado)
+        REFERENCES USUARIOS(id_usuario)
+        ON DELETE CASCADE,
+  FOREIGN KEY (id_tema)
+        REFERENCES TEMAS(id_tema)
+        ON DELETE CASCADE,
+  FOREIGN KEY (id_respuesta)
+        REFERENCES RESPUESTAS(id_respuesta)
+        ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Estructura de tabla para la tabla `favorito`
---
 
-CREATE TABLE `favorito` (
-  `idFavorito` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idTema` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `respuesta`
---
-
-CREATE TABLE `respuesta` (
-  `idRespuesta` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idTema` int(11) NOT NULL,
-  `texto` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `valoracion` int(11) NOT NULL,
-  `fechaRespuesta` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tema`
---
-
-CREATE TABLE `tema` (
-  `idTema` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `titulo` varchar(35) COLLATE utf8_spanish_ci NOT NULL,
-  `texto` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `valoracion` int(11) NOT NULL,
-  `mejorRespuesta` int(11) NOT NULL,
-  `fechaTema` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
-  `nombreUsuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `correo` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `apellido` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `puntuacion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `password`, `correo`, `nombre`, `apellido`, `puntuacion`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', 'admin', 'admin', 999999);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `valoracion`
---
-
-CREATE TABLE `valoracion` (
-  `idValoracion` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idTema` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `archivosadjuntos`
---
-ALTER TABLE `archivosadjuntos`
-  ADD PRIMARY KEY (`idArchivo`),
-  ADD KEY `fk_tema_archivo` (`idTema`),
-  ADD KEY `fk_respuesta_archivo` (`idRespuesta`);
-
---
--- Indices de la tabla `favorito`
---
-ALTER TABLE `favorito`
-  ADD PRIMARY KEY (`idFavorito`),
-  ADD UNIQUE KEY `idFavorito` (`idFavorito`),
-  ADD KEY `idUsuario` (`idUsuario`);
-
---
--- Indices de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD PRIMARY KEY (`idRespuesta`),
-  ADD UNIQUE KEY `idRespuesta` (`idRespuesta`),
-  ADD KEY `idTema` (`idTema`);
-
---
--- Indices de la tabla `tema`
---
-ALTER TABLE `tema`
-  ADD PRIMARY KEY (`idTema`),
-  ADD UNIQUE KEY `idTema` (`idTema`),
-  ADD UNIQUE KEY `titulo` (`titulo`),
-  ADD KEY `idUsuario` (`idUsuario`),
-  ADD KEY `mejorRespuesta` (`mejorRespuesta`),
-  ADD KEY `valoracion` (`valoracion`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `nombreUsuario` (`nombreUsuario`),
-  ADD UNIQUE KEY `idUsuario` (`idUsuario`),
-  ADD UNIQUE KEY `correo` (`correo`);
-
---
--- Indices de la tabla `valoracion`
---
-ALTER TABLE `valoracion`
-  ADD PRIMARY KEY (`idValoracion`),
-  ADD UNIQUE KEY `idValoracion` (`idValoracion`),
-  ADD KEY `idTema` (`idTema`),
-  ADD KEY `idTema_2` (`idTema`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `archivosadjuntos`
---
-ALTER TABLE `archivosadjuntos`
-  MODIFY `idArchivo` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `favorito`
---
-ALTER TABLE `favorito`
-  MODIFY `idFavorito` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tema`
---
-ALTER TABLE `tema`
-  MODIFY `idTema` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `valoracion`
---
-ALTER TABLE `valoracion`
-  MODIFY `idValoracion` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `archivosadjuntos`
---
-ALTER TABLE `archivosadjuntos`
-  ADD CONSTRAINT `fk_respuesta_archivo` FOREIGN KEY (`idRespuesta`) REFERENCES `respuesta` (`idRespuesta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tema_archivo` FOREIGN KEY (`idTema`) REFERENCES `tema` (`idTema`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `favorito`
---
-ALTER TABLE `favorito`
-  ADD CONSTRAINT `fk_usuario_favorito` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD CONSTRAINT `fk_tema_respuesta` FOREIGN KEY (`idTema`) REFERENCES `tema` (`idTema`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `tema`
---
-ALTER TABLE `tema`
-  ADD CONSTRAINT `fk_usuario_tema` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_valoracion_tema` FOREIGN KEY (`idTema`) REFERENCES `valoracion` (`idTema`) ON DELETE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE ARCHIVOSADJUNTOS (
+  id_archivo INT AUTO_INCREMENT,
+  src VARCHAR(100),
+  id_tema INT,
+  id_respuesta INT,
+  PRIMARY KEY (id_archivo),
+  FOREIGN KEY (id_tema)
+        REFERENCES TEMAS(id_tema)
+        ON DELETE CASCADE,
+  FOREIGN KEY (id_respuesta)
+        REFERENCES RESPUESTAS(id_tema)
+        ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
