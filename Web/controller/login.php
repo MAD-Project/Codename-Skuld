@@ -3,9 +3,11 @@
 
     include_once 'conexionDb.php';
 
+    include 'logout.php';
+
     function login(){
         ?>
-        <div class="login">
+        <div class="login" id="login">
             <h3>Inicio de sesión</h3>
             <form id="login" name="flogin" method="post">
                 <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
@@ -16,18 +18,6 @@
         </div>
         <?php
     }
-
-    function logout(){
-
-        echo $_SESSION['nombreUsuario'];
-
-        ?>
-            <form method="post">
-                <input class="logoutBTN" type="submit" value="Cerrar sesion">
-                <input type="hidden" name="cerrarSesion">
-            </form>
-        <?php
-}
 
     if (isset($_POST['cerrarSesion'])){
 
@@ -68,7 +58,7 @@
             else {
 
                 login();
-                echo "Correo o contraseña incorrecta";
+                echo "<p id='loginIcorrecto'>Correo o contraseña incorrecta</p>";
             }
 
         }
