@@ -6,7 +6,7 @@ function logout(){
 
         <div class="logout" id="logout">
 
-            <p><?php echo $_SESSION['nombreUsuario']; ?></p>
+            <p><?php echo "Bienvenido ".$_SESSION['nombreUsuario']; ?></p>
 
             <a href="pages/crearTema.php"><p>Crear Tema</p></a>
 

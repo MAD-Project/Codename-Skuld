@@ -50,7 +50,7 @@
 
                 if ($_SESSION['login']){
 
-                    $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nickname;
+                    $_SESSION['nombreUsuario'] = $usuario->nickname;
                     logout();
                 }
 
