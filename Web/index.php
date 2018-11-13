@@ -34,8 +34,7 @@
                 <?php include 'pages/contenido.php' ?>
             </div>
         </div>
-        <div class="sidebar">
-
+        <div class="sidebar" id="sidebar">
             <!-- login -->
             <?php include 'controller/login.php' ?>
 

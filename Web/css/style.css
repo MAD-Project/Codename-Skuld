@@ -304,6 +304,16 @@ body {
         margin-left: 2%;
         width: 96%;
     }
+
+    .footer {
+        margin-bottom: -2.5%;
+    }
+
+    .logoFooter {
+        width: 20%;
+        height: 30%;
+        margin-bottom: -2%;
+    }
 }
 
 @media (min-width: 460px) and (max-width: 1350px) {
@@ -322,12 +332,23 @@ body {
         margin-left: 25%;
         width: 56%;
     }
+
+    .footer {
+        margin-bottom: -.5%;
+    }
+
+    .logoFooter {
+        order: -1;
+        width: 12.5%;
+        height: 35%;
+        margin-bottom: -1%;
+    }
 }
 
 @media (max-width: 1350px) {
     .grid-container {
         grid-template-columns: auto;
-        grid-template-rows: 10% 74% auto;
+        grid-template-rows: 10% 71.5% auto;
         grid-gap: 5px;
         grid-template-areas:
             "header"
@@ -375,14 +396,9 @@ body {
     .footer {
         flex-direction: column;
         align-items: center;
-        margin-bottom: -2.5%;
     }
 
     .logoFooter {
         order: -1;
-        width: 20%;
-        height: 30%;
-        margin: 0;
-        margin-bottom: -2%;
     }
 }

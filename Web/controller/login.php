@@ -7,7 +7,7 @@
 
     function login(){
         ?>
-        <div class="login">
+        <div class="login" id="login">
             <h3>Inicio de sesión</h3>
             <form id="login" name="flogin" method="post">
                 <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
