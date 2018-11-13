@@ -9,7 +9,7 @@ if (isset($_POST['nombreU'])){
 
     $conexion = conexionDb();
 
-    $select = $conexion->prepare("SELECT nombreUsuario,correo from usuario");
+    $select = $conexion->prepare("SELECT nickname,email from usuarios");
     $select->execute();
 
     while ($usuario = $select->fetchObject()){
@@ -31,7 +31,7 @@ if (isset($_POST['nombreU'])){
 
     if (!$usuarioExistente){
 
-        $insert = $conexion->prepare("INSERT INTO usuario(nombreUsuario,password,correo,nombre,apellido)
+        $insert = $conexion->prepare("INSERT INTO usuarios(nickname,password,email,nombre,apellidos)
                                   VALUES(:anombreU,:apassword,:acorreo,:anombre,:aapellido)");
 
         $insert->execute(array(
