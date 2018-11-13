@@ -15,9 +15,8 @@
 
         <?php session_start(); ?>
 
-        <?php include 'controller/login.php' ?>
-        <!-- login -->
         <script src="javaScript/index.js"></script>
+      
     </head>
 
     <body class="grid-container">
@@ -33,16 +32,10 @@
                 <?php include 'pages/contenido.php' ?>
             </div>
         </div>
-        <div class="sidebar" id="sidebar">
-            <div class="login" id="login">
-                <h3>Inicio de sesión</h3>
-                <form id="login" name="flogin" method="post">
-                    <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
-                    <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
-                    <input class="loginBTN" type="submit" value="Iniciar sesion">
-                </form>
-                <a href="pages/paginaRegistro.php">Crear una cuenta</a>
-            </div>
+        <div class="sidebar">
+
+            <!-- login -->
+            <?php include 'controller/login.php' ?>
 
         </div>
         <footer class="footer">

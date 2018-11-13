@@ -9,18 +9,18 @@ if (isset($_POST['nombreU'])){
 
     $conexion = conexionDb();
 
-    $select = $conexion->prepare("SELECT nombreUsuario,correo from usuario");
+    $select = $conexion->prepare("SELECT nickname,email from usuarios");
     $select->execute();
 
     while ($usuario = $select->fetchObject()){
 
-        if ($usuario->nombreUsuario == $_POST['nombreU']){
+        if ($usuario->nickname == $_POST['nombreU']){
 
             $mensajeUsuarioExistente = "nombreUsuario";
             $usuarioExistente = true;
 
         }
-        else if ($usuario->correo == $_POST['email']) {
+        else if ($usuario->email == $_POST['email']) {
 
             $mensajeUsuarioExistente = "email";
             $usuarioExistente = true;
@@ -31,7 +31,7 @@ if (isset($_POST['nombreU'])){
 
     if (!$usuarioExistente){
 
-        $insert = $conexion->prepare("INSERT INTO usuario(nombreUsuario,password,correo,nombre,apellido)
+        $insert = $conexion->prepare("INSERT INTO usuarios(nickname,password,email,nombre,apellidos)
                                   VALUES(:anombreU,:apassword,:acorreo,:anombre,:aapellido)");
 
         $insert->execute(array(

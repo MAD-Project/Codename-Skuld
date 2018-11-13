@@ -1,42 +1,85 @@
 
 <?php
 
-    include 'conexionDb.php';
+    include_once 'conexionDb.php';
 
-    $usuarioExistente = false;
+    include 'logout.php';
+
+    function login(){
+        ?>
+        <div class="login">
+            <h3>Inicio de sesión</h3>
+            <form id="login" name="flogin" method="post">
+                <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
+                <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
+                <input class="loginBTN" type="submit" value="Iniciar sesion">
+            </form>
+            <a href="pages/paginaRegistro.php">Crear una cuenta</a>
+        </div>
+        <?php
+    }
+
+    if (isset($_POST['cerrarSesion'])){
+
+        $_SESSION['login'] = false;
+
+        unset($_SESSION['nombreUsuario']);
+
+    }
 
     if (!isset($_SESSION['nombreUsuario'])){
 
-        if (isset($_POST['emailLogin'])){
+        $_SESSION['login'] = false;
 
-            $emailLogin = $_POST['emailLogin'];
+    }
 
-            $conexion = conexionDb();
+    if (isset($_POST['emailLogin']) && !$_SESSION['login']){
 
-            $select = $conexion->prepare("SELECT nombreUsuario, password, correo from usuario WHERE correo = '$emailLogin'");
-            $select->execute();
+        $emailLogin = $_POST['emailLogin'];
 
-            while ($usuario = $select->fetchObject()){
+        $conexion = conexionDb();
 
-                if ($usuario->correo == $emailLogin && $usuario->password == $_POST['passwordLogin']){
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
+        $select->execute();
 
-                    $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nombreUsuario;
-                    echo $_SESSION['nombreUsuario'];
+        while ($usuario = $select->fetchObject()){
 
-                }
-                else {
+            if ($usuario->email == $emailLogin && $usuario->password == $_POST['passwordLogin']){
 
-                    echo "Correo o contraseña incorrecta";
+                $_SESSION['login'] = true;
+
+                if ($_SESSION['login']){
+
+                    $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nickname;
+                    logout();
                 }
 
             }
+            else {
 
-            closeConexionDb($conexion);
+                login();
+                echo "Correo o contraseña incorrecta";
+            }
 
         }
+
+        closeConexionDb($conexion);
 
     }
     else {
 
-        echo $_SESSION['nombreUsuario'];
+        if (!$_SESSION['login']){
+
+            login();
+
+        }
+        else {
+
+            logout();
+
+        }
+
     }
+
+
+?>
