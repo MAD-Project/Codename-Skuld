@@ -3,8 +3,6 @@
 
     include_once 'conexionDb.php';
 
-    $usuarioExistente = false;
-
     function login(){
         ?>
         <div class="login">
@@ -14,19 +12,22 @@
                 <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
                 <input class="loginBTN" type="submit" value="Iniciar sesion">
             </form>
-            <a href="../pages/paginaRegistro.php">Crear una cuenta</a>
+            <a href="pages/paginaRegistro.php">Crear una cuenta</a>
         </div>
         <?php
     }
 
     function logout(){
+
         echo $_SESSION['nombreUsuario'];
-    ?>
-    <form method="post">
-        <input class="logoutBTN" type="submit" value="Cerrar sesion">
-        <input type="hidden" name="cerrarSesion">
-    </form>
-    <?php
+
+        ?>
+            <form method="post">
+                <input class="logoutBTN" type="submit" value="Cerrar sesion">
+                <input type="hidden" name="cerrarSesion">
+            </form>
+        <?php
+}
 
     if (isset($_POST['cerrarSesion'])){
 
@@ -35,7 +36,6 @@
         unset($_SESSION['nombreUsuario']);
 
     }
-}
 
     if (!isset($_SESSION['nombreUsuario'])){
 
@@ -63,10 +63,6 @@
                     $_SESSION['nombreUsuario'] = "Bienvenido ".$usuario->nickname;
                     logout();
                 }
-                else {
-
-                    login();
-                }
 
             }
             else {
@@ -84,7 +80,6 @@
 
         if (!$_SESSION['login']){
 
-            $_SESSION['nombreUsuario'] = "";
             login();
 
         }

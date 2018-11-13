@@ -14,13 +14,13 @@ if (isset($_POST['nombreU'])){
 
     while ($usuario = $select->fetchObject()){
 
-        if ($usuario->nombreUsuario == $_POST['nombreU']){
+        if ($usuario->nickname == $_POST['nombreU']){
 
             $mensajeUsuarioExistente = "nombreUsuario";
             $usuarioExistente = true;
 
         }
-        else if ($usuario->correo == $_POST['email']) {
+        else if ($usuario->email == $_POST['email']) {
 
             $mensajeUsuarioExistente = "email";
             $usuarioExistente = true;
