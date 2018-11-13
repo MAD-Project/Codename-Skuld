@@ -3,7 +3,7 @@
 function conexionDb(){
 
     try {
-        $conexion = new PDO("mysql:host=localhost;dbname=skuldb;charset=utf8","root","OMUwtKd3BOYT");
+        $conexion = new PDO("mysql:host=localhost;dbname=skuldb;charset=utf8","root","");
         return $conexion;
     }
     catch (PDOException $e) {
