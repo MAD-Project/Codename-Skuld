@@ -16,7 +16,9 @@
         <?php session_start(); ?>
 
         <script src="javaScript/index.js"></script>
-      
+        <script type="text/javascript" src="javaScript/jquery.js"></script>
+
+        <script type="text/javascript" src="javaScript/ajaxBBDD.js"></script>
     </head>
 
     <body class="grid-container">
