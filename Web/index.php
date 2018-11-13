@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Codename Skuld</title>
+        <title>Codename Skuld - Prototipo</title>
         <link rel="stylesheet" href="./css/style.css" />
 
         <!-- CSS externos -->
@@ -14,6 +14,8 @@
 
         <?php session_start(); ?>
 
+        <script src="javaScript/index.js"></script>
+      
     </head>
 
     <body class="grid-container">
@@ -21,9 +23,7 @@
             <!-- Quitar fondo negro al fondo -->
             <img class="logo" src="media/Logo.jpeg">
             <!-- Borrar Nav, sin uso -->
-            <nav>
-                <a href="#">Codename Skuld - Prototipo</a>
-            </nav>
+            <a class="loginLink" onclick="mostrarLogin()">Login</a>
             <input class="search" type="text" placeholder="Buscar">
         </div>
         <div class="hide-scroll">
