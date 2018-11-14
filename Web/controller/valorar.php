@@ -1,12 +1,12 @@
 <?php
 include_once 'consultasBD.php';
+session_start();
 
-if(isset($_POST['nickname'])){
-    if(isset($_POST['tema']) && !empty($_POST['idTema']) ) {
-        echo $_POST['tema'];
-        echo "aaaaaaaaa";
-        annadirValoracion($_POST['nickname'],"tema",$_POST['tema']);
+if(isset($_SESSION['nombreUsuario'])){
+
+    if(isset($_POST['puntos']) && !empty($_POST['puntos'])) {
+        annadirValoracion($_SESSION['nombreUsuario'],"id_tema",$_POST['puntos']);
     }else{
-        echo "eeeeee";
+        echo "NOOOOOOO";
     }
 }
