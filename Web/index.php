@@ -24,7 +24,7 @@
     <body class="grid-container">
         <div class="header">
             <!-- Quitar fondo negro al fondo -->
-            <a class="logo" href="index.php"><img class="logoImg" src="media/logo_empresa.png"></a>
+            <a class="logo" href="http://www.skuld.tk/"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
             <a class="loginLink" onclick="mostrarLogin()">Login</a>
             <input class="search" type="text" placeholder="Buscar">
