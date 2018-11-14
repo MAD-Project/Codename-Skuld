@@ -6,6 +6,8 @@
 
     <script type="text/javascript" src="../javaScript/jquery.js"></script>
 
+    <?php include '../controller/temas.php' ?>
+
 </head>
 <body>
 

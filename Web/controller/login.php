@@ -42,25 +42,33 @@
         $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
         $select->execute();
 
-        while ($usuario = $select->fetchObject()){
+        if ($select->rowCount() == 0){
 
-            if ($usuario->email == $emailLogin && $usuario->password == $_POST['passwordLogin']){
+            login();
+            echo "<p id='correoIcorrecto'>Correo incorrecto</p>";
+        }
+        else {
 
-                $_SESSION['login'] = true;
+            while ($usuario = $select->fetchObject()){
 
-                if ($_SESSION['login']){
+                if ($usuario->email == $emailLogin && $usuario->password == $_POST['passwordLogin']){
 
-                    $_SESSION['nombreUsuario'] = $usuario->nickname;
-                    logout();
+                    $_SESSION['login'] = true;
+
+                    if ($_SESSION['login']){
+
+                        $_SESSION['nombreUsuario'] = $usuario->nickname;
+                        logout();
+                    }
+
+                }
+                else {
+
+                    login();
+                    echo "<p id='passwordIcorrecto'>Contraseña incorrecta</p>";
                 }
 
             }
-            else {
-
-                login();
-                echo "<p id='loginIcorrecto'>Correo o contraseña incorrecta</p>";
-            }
-
         }
 
         closeConexionDb($conexion);
