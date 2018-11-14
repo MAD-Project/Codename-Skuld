@@ -283,14 +283,14 @@ body {
     justify-content: flex-end;
     align-items: baseline;
     font-size: 80%;
-    margin-bottom: -10%;
+    margin-top: 7%;
 }
 
 .logoFooter {
     margin-left: 1.5%;
-    margin-right: 2%;
-    width: 30%;
-    height: 55%;
+    margin-right: 3%;
+    width: 23%;
+    height: 65%;
 }
 
 /* Versión movil */
