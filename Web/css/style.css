@@ -129,6 +129,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-right: 10px;
+    min-width: 95%;
 }
 .temaBox div:nth-child(2) h4{
     word-break: break-all;
