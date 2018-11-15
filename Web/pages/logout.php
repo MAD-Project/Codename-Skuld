@@ -8,7 +8,7 @@ function logout(){
 
             <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?></h3>
 
-            <a href="crearTema.php">Crear Tema</a>
+            <a href="pages/crearTema.php"><p>Crear Tema</p></a>
 
             <form method="post">
                 <input class="logoutBTN" type="submit" value="Cerrar sesion">
