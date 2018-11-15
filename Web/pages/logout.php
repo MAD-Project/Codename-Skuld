@@ -4,7 +4,7 @@ function logout(){
 
     ?>
 
-        <div class="logout" id="logout">
+        <div class="logout" id="box">
 
             <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?></h3>
 
