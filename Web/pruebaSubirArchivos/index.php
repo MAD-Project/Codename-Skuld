@@ -1,11 +1,14 @@
 <?php
 
-include 'conexionDb.php';
+include_once 'conexionDb.php';
+include_once '../controller/selectsUtiles.php';
 
 $conexion = conexionDb();
 
 if (isset($_POST['submit'])) {   
     if(is_uploaded_file($_FILES['fichero']['tmp_name'])) {
+
+
 
         $carpeta = '/archivos/'.$idUsuario;
         if (!file_exists($carpeta)) {
@@ -33,8 +36,8 @@ if (isset($_POST['submit'])) {
 
             $insert->execute(array(
                 "isrc" => $upload,
-                "iidTema" => 1,
-                "iidRespuesta" => 1
+                "iidTema" => 0,
+                "iidRespuesta" => 0
             ));
 
        echo "El archivo se ha subido con éxito ".$upload,"<br>";
@@ -46,7 +49,8 @@ if (isset($_POST['submit'])) {
 
 <body> 
 <form method="post" enctype="multipart/form-data">
-    Seleccione archivo: <input name="fichero" type="file" size="150" maxlength="150">
+    <label for="fichero">Seleccione archivo:</label>
+    <input id="fichero" name="fichero" type="file" size="150" maxlength="150">
     <br><br> 
   <input name="submit" type="submit" value="SUBIR ARCHIVO">   
 </form>
