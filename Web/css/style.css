@@ -267,7 +267,6 @@ body {
 }
 
 .loginBTN,
-.logout a,
 .logoutBTN {
     border-radius: 5px;
     border: none;
@@ -277,7 +276,6 @@ body {
     width: 96.5%;
     transition: .20s;
     font-size: 20px;
-    text-align: center;
 }
 
 .loginBTN:hover {
@@ -285,13 +283,16 @@ body {
 }
 
 .logout a {
+    border-radius: 5px;
+    text-align: center;
     background-color: grey;
     text-decoration: none;
     color: white;
     width: 60%;
-    padding-bottom: 10%;
+    padding: 5%;
     margin-bottom: 10%;
     border: 1px solid lightgrey;
+    font-size: 20px;
 }
 
 .logout a:hover {
@@ -325,77 +326,10 @@ body {
     margin-left: 1.5%;
     margin-right: 3%;
     width: 23%;
-    height: 65%;
+    height: 67%;
 }
 
 /* Versión movil */
-@media (max-width: 459px) {
-    .logo {
-        width: 25%;
-        height: 80%;
-    }
-
-    .link {
-        margin-right: 20%;
-        font-size: 140%;
-    }
-
-    .login,
-    .logout {
-        margin-top: 25%;
-        margin-left: 2%;
-        width: 96%;
-    }
-
-    .logout a {
-        padding-bottom: 6%;
-    }
-
-    .footer {
-        margin-bottom: -2.5%;
-    }
-
-    .logoFooter {
-        width: 20%;
-        height: 33%;
-        margin-bottom: -2%;
-    }
-}
-
-@media (min-width: 460px) and (max-width: 1350px) {
-    .logo {
-        width: 16%;
-        height: 90%;
-    }
-
-    .link {
-        font-size: 190%;
-        margin-right: 6%;
-    }
-
-    .login,
-    .logout {
-        margin-top: 15%;
-        margin-left: 25%;
-        width: 56%;
-    }
-
-    .logout a {
-        padding-bottom: 4%;
-    }
-
-    .footer {
-        margin-bottom: -.5%;
-    }
-
-    .logoFooter {
-        order: -1;
-        width: 12.5%;
-        height: 35%;
-        margin-bottom: -1%;
-    }
-}
-
 @media (max-width: 1350px) {
     .grid-container {
         grid-template-columns: auto;
@@ -474,5 +408,71 @@ body {
 
     .logoFooter {
         order: -1;
+    }
+}
+
+@media (max-width: 459px) {
+    .logo {
+        width: 25%;
+        height: 80%;
+    }
+
+    .link {
+        margin-right: 20%;
+        font-size: 140%;
+    }
+
+    .login,
+    .logout {
+        margin-top: 25%;
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .logout a {
+        padding: 6%;
+    }
+
+    .footer {
+        margin-bottom: -2.5%;
+    }
+
+    .logoFooter {
+        width: 21.5%;
+        height: 36%;
+        margin-bottom: -2%;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 1350px) {
+    .logo {
+        width: 16%;
+        height: 90%;
+    }
+
+    .link {
+        font-size: 190%;
+        margin-right: 6%;
+    }
+
+    .login,
+    .logout {
+        margin-top: 15%;
+        margin-left: 25%;
+        width: 56%;
+    }
+
+    .logout a {
+        padding: 4%;
+    }
+
+    .footer {
+        margin-bottom: -.5%;
+    }
+
+    .logoFooter {
+        width: 10.5%;
+        height: 50%;
+        margin-bottom: -1%;
     }
 }
