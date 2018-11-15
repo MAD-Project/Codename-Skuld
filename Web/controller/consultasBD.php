@@ -1,10 +1,14 @@
 <?php
     include_once 'conexionDb.php';
-
+if(isset($_POST['inicioRowTemas'])){
+    cargarTemas();
+}
     function cargarTemas(){
         $conexion = conexionDb();
-
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario;");
+        $inicioRowTemas= $_POST['inicioRowTemas']??0;
+//falta order by date
+        //cambiar el limit por where y :valor
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario LIMIT $inicioRowTemas,5;");
         $select->execute();
 
         $temas = array();
@@ -18,29 +22,39 @@
            array_push($temas,$tema);
         }
         closeConexionDb($conexion);
-        return $temas;
+        if($inicioRowTemas===0){
+            return $temas;
+        }else{
+            die(json_encode($temas));
+        }
+
     }
     function annadirValoracion ($nickname,$objetivo,$idObjetivo){
         $conexion = conexionDb();
 
-        $insert = $conexion->prepare("INSERT INTO VALORACIONES(id_usuario,:objetivo) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickanme = :nickname),:idObjetivo)");
+        if($objetivo ==="id_tema" || $objetivo==="id_respuesta"){
+            if($objetivo ==="id_tema"){
+            $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_tema) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
+            }else{
+                $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_respuesta) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
+            }
+        }
+//falta try catch y roll back;
 
         $insert->execute(array(
-            "objetivo" => $objetivo,
             "nickname" => $nickname,
             "idObjetivo" => $idObjetivo
         ));
 
-        //$val=obtenerValoracion($objetivo, $idObjetivo, $conexion);
+        $val=obtenerValoracion($objetivo, $idObjetivo, $conexion);
         closeConexionDb($conexion);
-        return ;
+        return $val;
     }
 
     function obtenerValoracion ($objetivo, $idObjetivo, $conexion){
-        $select = $conexion->prepare("SELECT count(id_valoracion) FROM VALORACIONES WHERE :objetivo=:idObjetivo");
+        $select = $conexion->prepare("SELECT count(id_valoracion) as val FROM VALORACIONES WHERE $objetivo = :idObjetivo");
         $select->execute(array(
-            "objetivo" => $$objetivo,
             "idObjetivo" => $idObjetivo));
-        return $select;
+        return $select->fetch()["val"];
     }
-        //pasar objetivo, idobjetivo
+
