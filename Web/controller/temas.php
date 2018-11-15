@@ -6,7 +6,7 @@
 
     $fecha = date('Y-m-d');
 
-    if (isset($_POST['titulo'])){
+    if (isset($_POST['tituloTema'])){
 
         $conexion = conexionDb();
 
