@@ -21,5 +21,26 @@
         return $temas;
     }
     function annadirValoracion ($nickname,$objetivo,$idObjetivo){
+        $conexion = conexionDb();
 
+        $insert = $conexion->prepare("INSERT INTO VALORACIONES(id_usuario,:objetivo) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickanme = :nickname),:idObjetivo)");
+
+        $insert->execute(array(
+            "objetivo" => $objetivo,
+            "nickname" => $nickname,
+            "idObjetivo" => $idObjetivo
+        ));
+
+        //$val=obtenerValoracion($objetivo, $idObjetivo, $conexion);
+        closeConexionDb($conexion);
+        return ;
     }
+
+    function obtenerValoracion ($objetivo, $idObjetivo, $conexion){
+        $select = $conexion->prepare("SELECT count(id_valoracion) FROM VALORACIONES WHERE :objetivo=:idObjetivo");
+        $select->execute(array(
+            "objetivo" => $objetivo,
+            "idObjetivo" => $idObjetivo));
+        return $select;
+    }
+

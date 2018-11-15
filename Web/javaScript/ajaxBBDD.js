@@ -1,11 +1,11 @@
 function votarPuntuacion(idTema) {
     event.preventDefault();
-    alert("heeey");
     $.ajax({
             url: "controller/valorar.php",
             method: "POST",
-            data: {tema: $('#puntuacion'+idTema).text()},
+            data: {puntos: $('#puntuacion'+idTema).text()},
             success: function (data) {
+                alert("Has votado!");
                 alert(data);
             },
             error: function (data) {

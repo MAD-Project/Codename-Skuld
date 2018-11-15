@@ -24,7 +24,7 @@
     <body class="grid-container">
         <div class="header">
             <!-- Quitar fondo negro al fondo -->
-            <img class="logo" src="media/logo_empresa.png">
+            <a class="logo" href="http://www.skuld.tk/"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
             <a class="loginLink" onclick="mostrarLogin()">Login</a>
             <input class="search" type="text" placeholder="Buscar">
@@ -34,8 +34,7 @@
                 <?php include 'pages/contenido.php' ?>
             </div>
         </div>
-        <div class="sidebar">
-
+        <div class="sidebar" id="sidebar">
             <!-- login -->
             <?php include 'controller/login.php' ?>
 

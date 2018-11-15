@@ -32,7 +32,7 @@ body {
         'main main footer';
     grid-gap: 10px;
     grid-template-columns: 60% 20%;
-    grid-template-rows: 12% 78% auto;
+    grid-template-rows: 11% 79% auto;
     background-color: white;
 }
 
@@ -57,6 +57,11 @@ body {
     width: 150px;
     height: 70px;
     margin: 5px;
+}
+
+.logoImg {
+    width: 100%;
+    height: 100%;
 }
 
 .search {
@@ -124,6 +129,11 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-right: 10px;
+    min-width: 95%;
+}
+.temaBox div:nth-child(2) h4{
+    word-break: break-all;
+    min-width: 100%;
 }
 
 .temaBox div:nth-child(2):hover,
@@ -253,7 +263,8 @@ body {
     border: none;
     background-color: #dd6e42;
     height: 40px;
-    width: 100%;
+    margin-left: 1.6%;
+    width: 96.5%;
     transition: .20s;
     font-size: 20px;
 }
@@ -277,26 +288,26 @@ body {
     justify-content: flex-end;
     align-items: baseline;
     font-size: 80%;
-    margin-bottom: -10%;
+    margin-top: 7%;
 }
 
 .logoFooter {
     margin-left: 1.5%;
-    margin-right: 2%;
-    width: 30%;
-    height: 55%;
+    margin-right: 3%;
+    width: 23%;
+    height: 65%;
 }
 
 /* Versión movil */
 @media (max-width: 459px) {
     .logo {
-        width: 30%;
+        width: 25%;
         height: 80%;
     }
 
     .loginLink {
         margin-right: 20%;
-        font-size: 180%;
+        font-size: 140%;
     }
 
     .login {
@@ -304,16 +315,26 @@ body {
         margin-left: 2%;
         width: 96%;
     }
+
+    .footer {
+        margin-bottom: -2.5%;
+    }
+
+    .logoFooter {
+        width: 20%;
+        height: 30%;
+        margin-bottom: -2%;
+    }
 }
 
 @media (min-width: 460px) and (max-width: 1350px) {
     .logo {
-        width: 20%;
+        width: 16%;
         height: 90%;
     }
 
     .loginLink {
-        font-size: 200%;
+        font-size: 190%;
         margin-right: 6%;
     }
 
@@ -322,12 +343,23 @@ body {
         margin-left: 25%;
         width: 56%;
     }
+
+    .footer {
+        margin-bottom: -.5%;
+    }
+
+    .logoFooter {
+        order: -1;
+        width: 12.5%;
+        height: 35%;
+        margin-bottom: -1%;
+    }
 }
 
 @media (max-width: 1350px) {
     .grid-container {
         grid-template-columns: auto;
-        grid-template-rows: 10% 74% auto;
+        grid-template-rows: 8% 72% auto;
         grid-gap: 5px;
         grid-template-areas:
             "header"
@@ -347,9 +379,13 @@ body {
         color: #46494c;
     }
 
+    .loginBTN {
+        width: 45%;
+    }
+
     .hide-scroll {
         width: 95%;
-        margin: 1.1%;
+        margin: 2.5%;
     }
 
     .search {
@@ -375,14 +411,9 @@ body {
     .footer {
         flex-direction: column;
         align-items: center;
-        margin-bottom: -2.5%;
     }
 
     .logoFooter {
         order: -1;
-        width: 20%;
-        height: 30%;
-        margin: 0;
-        margin-bottom: -2%;
     }
 }
