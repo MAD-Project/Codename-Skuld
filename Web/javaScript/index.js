@@ -10,4 +10,14 @@ function comprobarLogin() {
     }
 }
 
+function recargarPágina() {
+    window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+}
+
+function ocultarElementosSidebar(idOcultar, idMostrar) {
+    document.getElementById(idOcultar).style.display = "none";
+    document.getElementById(idMostrar).style.display = "flex";
+}
+
 comprobarLogin();
+ocultarElementosSidebar('registro','box');

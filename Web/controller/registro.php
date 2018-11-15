@@ -5,32 +5,23 @@ include 'conexionDb.php';
 $usuarioExistente = false;
 $mensajeUsuarioExistente = "";
 
-if (isset($_POST['nombreU'])){
-
+if (isset($_POST['nombreU'])) {
     $conexion = conexionDb();
 
     $select = $conexion->prepare("SELECT nickname,email from usuarios");
     $select->execute();
 
-    while ($usuario = $select->fetchObject()){
-
-        if ($usuario->nickname == $_POST['nombreU']){
-
+    while ($usuario = $select->fetchObject()) {
+        if ($usuario->nickname == $_POST['nombreU']) {
             $mensajeUsuarioExistente = "nombreUsuario";
             $usuarioExistente = true;
-
-        }
-        else if ($usuario->email == $_POST['email']) {
-
+        } elseif ($usuario->email == $_POST['email']) {
             $mensajeUsuarioExistente = "email";
             $usuarioExistente = true;
-
         }
-
     }
 
-    if (!$usuarioExistente){
-
+    if (!$usuarioExistente) {
         $insert = $conexion->prepare("INSERT INTO usuarios(nickname,password,email,nombre,apellidos)
                                   VALUES(:anombreU,:apassword,:acorreo,:anombre,:aapellido)");
 
@@ -41,15 +32,9 @@ if (isset($_POST['nombreU'])){
             "anombre" => $_POST['nombre'],
             "aapellido" => $_POST['apellido']
         ));
-
-    }
-    else {
-
+    } else {
         die($mensajeUsuarioExistente);
     }
 
     closeConexionDb($conexion);
-
 }
-
-?>

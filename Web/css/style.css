@@ -57,6 +57,7 @@ body {
     width: 150px;
     height: 70px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .logoImg {
@@ -87,7 +88,6 @@ body {
     overflow: hidden;
     width: 137%;
     height: 110%;
-
 }
 
 .contenido {
@@ -120,16 +120,20 @@ body {
     align-items: center;
     text-align: center;
     margin-right: 20px;
+    margin-left: 1.7%;
 }
 
 .temaBox div:nth-child(2) {
     display: flex;
-    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-right: 10px;
-    min-width: 95%
+    width: 90%;
+}
+
+.temaBox div:nth-child(2) h2 {
+    margin-right: auto;
 }
 
 .temaBox div:nth-child(2) h4 {
@@ -145,13 +149,8 @@ body {
 }
 
 .temaBox a {
-    margin-left: 90%;
     color: #dd6e42;
     text-decoration: none;
-}
-
-.temaBox p {
-    margin-right: .8%;
 }
 
 .votos {
@@ -182,9 +181,9 @@ body {
     background-color: lightgrey;
     border-radius: 5px;
     padding: 10px;
-    width: 92.8%;
-    margin-left: 4%;
+    width: 91.6%;
     margin-bottom: 2%;
+    margin-left: 5%;
 }
 
 .respBox div:nth-child(1) {
@@ -192,21 +191,30 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-right: 2em;
+    margin-right: 20px;
+    margin-left: 1.2%;
 }
 
 .respBox div:nth-child(2) {
     display: flex;
-    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-right: 10px;
+    width: 90.3%;
 
 }
 
 .respBox a {
     color: #dd6e42;
     text-decoration: none;
+    margin-right: auto;
+}
+
+.temaBox div:nth-child(2) h4 {
+    word-break: break-all;
+    flex: 100%;
+    margin-top: -1%;
 }
 
 /* FIN subpágina de respuestas */
@@ -217,8 +225,8 @@ body {
 }
 
 .login,
+.registro,
 .logout {
-    display: flex;
     flex-direction: column;
     width: 97%;
     background-color: #46494c;
@@ -266,8 +274,33 @@ body {
     margin-bottom: 20px;
 }
 
+.registro {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    color: white;
+}
+
+.inputRegistro {
+    box-shadow: 0;
+    background-color: grey;
+    width: 75%;
+    height: 40px;
+    border: solid 2px darkgrey;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 250ms ease;
+    margin-bottom: 5px;
+}
+
+#password {
+    margin-bottom: 30px;
+}
+
 .loginBTN,
-.logoutBTN {
+.logoutBTN,
+.registroBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -276,6 +309,10 @@ body {
     width: 96.5%;
     transition: .20s;
     font-size: 20px;
+}
+
+.registroBTN {
+    width: 50%;
 }
 
 .loginBTN:hover {
@@ -309,6 +346,11 @@ body {
     font-size: 14px;
     color: white;
     margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.login a:hover {
+    cursor: pointer;
 }
 
 /* FIN Barra lateral */
@@ -390,7 +432,7 @@ body {
     }
 
     /* Para que el formulario tenga más tamaño */
-    #login {
+    #loginForm {
         width: 60%;
     }
 

@@ -10,12 +10,12 @@
         ?>
         <div class="login" id="box">
             <h3>Inicio de sesión</h3>
-            <form id="login" name="flogin" method="post">
+            <form id="loginForm" name="flogin" method="post">
                 <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
                 <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
                 <input class="loginBTN" type="submit" value="Iniciar sesion">
             </form>
-            <a href="pages/paginaRegistro.php">Crear una cuenta</a>
+            <a onclick="ocultarElementosSidebar('box','registro')">Crear una cuenta</a>
         </div>
         <?php
     }

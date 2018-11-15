@@ -24,7 +24,7 @@
     <body class="grid-container">
         <div class="header">
             <!-- Quitar fondo negro al fondo -->
-            <a class="logo" href="http://www.skuld.tk/"><img class="logoImg" src="media/logo_empresa.png"></a>
+            <a class="logo" onclick="recargarPágina()"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
             <a class="link" onclick="mostrarCaja()" id="link">Login</a>
             <input class="search" type="text" placeholder="Buscar">
@@ -36,8 +36,8 @@
         </div>
         <div class="sidebar" id="sidebar">
             <!-- login -->
-            <?php include 'pages/login.php' ?>
-
+            <?php include 'pages/login.php'?>
+            <?php include 'pages/paginaRegistro.php'?>
         </div>
         <footer class="footer">
             <p>Under MIT license.</p>
