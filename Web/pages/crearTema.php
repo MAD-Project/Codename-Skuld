@@ -14,7 +14,7 @@
 <form id="tema" name="ftema" method="post">
 
     <label for="titulo">Título *</label>
-    <input type="text" id="titulo" name="titulo" class="require" placeholder="Título" autofocus /><br><br>
+    <input type="text" id="tituloTema" name="tituloTema" class="require" placeholder="Título" autofocus /><br><br>
     <label for="texto">Texto *</label>
     <textarea id="texto" name="texto" class="" placeholder="texto" ></textarea><br><br>
 

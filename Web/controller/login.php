@@ -59,6 +59,7 @@
 
                         $_SESSION['nombreUsuario'] = $usuario->nickname;
                         logout();
+                        echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
                     }
 
                 }
@@ -84,6 +85,7 @@
         else {
 
             logout();
+            echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
 
         }
 
