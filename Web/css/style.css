@@ -290,6 +290,8 @@ body {
     color: white;
     width: 60%;
     padding: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     margin-bottom: 10%;
     border: 1px solid lightgrey;
     font-size: 20px;
