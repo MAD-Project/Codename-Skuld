@@ -130,6 +130,10 @@ body {
     justify-content: space-between;
     margin-right: 10px;
 }
+.temaBox div:nth-child(2) h4{
+    word-break: break-all;
+    min-width: 100%;
+}
 
 .temaBox div:nth-child(2):hover,
 .respBox:nth-child(2):hover,

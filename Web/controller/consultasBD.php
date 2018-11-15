@@ -39,8 +39,8 @@
     function obtenerValoracion ($objetivo, $idObjetivo, $conexion){
         $select = $conexion->prepare("SELECT count(id_valoracion) FROM VALORACIONES WHERE :objetivo=:idObjetivo");
         $select->execute(array(
-            "objetivo" => $$objetivo,
+            "objetivo" => $objetivo,
             "idObjetivo" => $idObjetivo));
         return $select;
     }
-        //pasar objetivo, idobjetivo
+
