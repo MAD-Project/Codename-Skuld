@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registro</title>
 
     <script type="text/javascript" src="../javaScript/jquery.js"></script>
 
