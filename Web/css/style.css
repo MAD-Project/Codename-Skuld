@@ -20,7 +20,7 @@ body {
     font-family: 'Roboto', Verdana, sans-serif;
 }
 
-.loginLink {
+.link {
     display: none;
 }
 
@@ -335,15 +335,20 @@ body {
         height: 80%;
     }
 
-    .loginLink {
+    .link {
         margin-right: 20%;
         font-size: 140%;
     }
 
-    .login {
+    .login,
+    .logout {
         margin-top: 25%;
         margin-left: 2%;
         width: 96%;
+    }
+
+    .logout a {
+        padding-bottom: 6%;
     }
 
     .footer {
@@ -352,7 +357,7 @@ body {
 
     .logoFooter {
         width: 20%;
-        height: 30%;
+        height: 33%;
         margin-bottom: -2%;
     }
 }
@@ -363,15 +368,20 @@ body {
         height: 90%;
     }
 
-    .loginLink {
+    .link {
         font-size: 190%;
         margin-right: 6%;
     }
 
-    .login {
+    .login,
+    .logout {
         margin-top: 15%;
         margin-left: 25%;
         width: 56%;
+    }
+
+    .logout a {
+        padding-bottom: 4%;
     }
 
     .footer {
@@ -398,14 +408,14 @@ body {
             "footer";
     }
 
-    .loginLink {
+    .link {
         display: block;
         color: white;
         text-decoration: none;
         transition: .25s;
     }
 
-    .loginLink:hover {
+    .link:hover {
         color: #46494c;
     }
 
@@ -414,7 +424,7 @@ body {
     }
 
     .loginBTN {
-        width: 45%;
+        width: 80%;
     }
 
     .hide-scroll {
@@ -430,15 +440,30 @@ body {
         display: none;
     }
 
-    .login {
+    .login,
+    .logout {
         height: 0px;
         overflow: hidden;
         transition: 0.5s;
     }
 
+    .logout a {
+        margin-bottom: 7%;
+    }
+
+    .logoutBTN {
+        margin-bottom: 15%;
+    }
+
+    /* Para que el formulario tenga más tamaño */
+    #login {
+        width: 60%;
+    }
+
     .abrirlogin {
-        height: 80%;
-        display: block;
+        height: 85%;
+        flex-shrink: 0;
+        display: flex;
         text-align: center;
     }
 

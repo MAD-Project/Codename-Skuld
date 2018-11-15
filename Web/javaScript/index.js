@@ -1,17 +1,13 @@
-function mostrarBox(box) {
-    document.getElementById(box).classList.add("abrirlogin");
+function mostrarCaja() {
+    document.getElementById('box').classList.add("abrirlogin");
     document.getElementById("sidebar").classList.add("abrirlogin");
     document.getElementById("main").style.display = "none";
 }
 
-function verLogin() {
-
-    if ($('#verLogin').val() != 1){
-        alert("no estas logqueado");
-    }
-    else {
-        alert("estas logueado");
+function comprobarLogin() {
+    if ($('#verLogin').val() == 1) {
+        document.getElementById("link").innerHTML = "Mi perfil";
     }
 }
 
-verLogin();
+comprobarLogin();
