@@ -26,8 +26,7 @@
             <!-- Quitar fondo negro al fondo -->
             <a class="logo" href="http://www.skuld.tk/"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
-            <a class="loginLink" onclick="mostrarBox('login')">Login</a>
-            <a class="perfilLink" onclick="mostrarBox('logout')">Mi perfil</a>
+            <a class="link" onclick="mostrarCaja()" id="link">Login</a>
             <input class="search" type="text" placeholder="Buscar">
         </div>
         <div class="hide-scroll" id="main">
@@ -47,5 +46,6 @@
     </body>
 
     <script src="javaScript/index.js"></script>
+
 
 </html>
