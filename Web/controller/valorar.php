@@ -4,8 +4,8 @@ session_start();
 
 if(isset($_SESSION['nombreUsuario'])){
 
-    if(isset($_POST['puntos']) && !empty($_POST['puntos'])) {
-        annadirValoracion($_SESSION['nombreUsuario'],"id_tema",$_POST['puntos']);
+    if(isset($_POST['idTema']) && !empty($_POST['idTema'])) {
+        die(annadirValoracion($_SESSION['nombreUsuario'],"id_tema",$_POST['idTema']));
     }else{
         echo "NOOOOOOO";
     }

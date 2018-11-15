@@ -7,14 +7,20 @@
     <div class="temaBox" id=<?= $tema["id"] ?>>
         <div >
             <p  class="votos" id=<?="puntuacion",$tema['id'] ?>> <?= $tema["valoracion"] ?></p>
-            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')">
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id=<?="votar",$tema['id'] ?>>
         </div>
         <div onclick="alert('link')">
-            <h2><?= $tema["titulo"] ?>
+            <h2>
+                <?= $tema["titulo"] ?>
             </h2>
-            <p><?= $tema["fecha"] ?>
+
+            <p>
+                <?= $tema["fecha"] ?>
             </p>
-            <h4><?= $tema["texto"] ?>
+
+            <h4>
+                <?= $tema["texto"] ?>
+
             </h4>
             <a href="   #"><?= $tema["autor"] ?></a>
         </div>
@@ -22,6 +28,6 @@
 
 
     <?php endforeach; ?>
-
+        <button  style="margin-bottom:2em;" onclick="cargarMasTemas()"  value="5"> cargar más </button>
 
 </form>
