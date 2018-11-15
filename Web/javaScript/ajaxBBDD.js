@@ -23,8 +23,7 @@ function cargarMasTemas() {
         method: "POST",
         data: {inicioRowTemas: $(".temaBox").length},
         success: function (data) {
-            alert("funciono!");
-            alert(JSON.parse(data)[1]["id"]);
+            estructuraTema(JSON.parse(data));
         },
         error: function (data) {
             alert("Error"+data);
@@ -35,5 +34,18 @@ function cargarMasTemas() {
 }
 
 function estructuraTema(data) {
-    document.createElement("div")
+    data.forEach(function (e) {
+        $(".temaBox:last").after('<div class="temaBox" id=' + e["id"] + '>' +
+            '<div>' +
+                '<p class="votos" id="' + e['id'] + '">' + e['valoracion'] + '</p>' +
+                '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(' + e['id'] + ')" id="votar' + e['id'] + '">' +
+            '</div>' +
+                '<div onclick="alert(\'link\')">' +
+                '<h2>' + e['titulo'] + '</h2>' +
+                '<p>' + e['fecha'] + '</p>' +
+                '<h4>' + e['texto'] + '</h4>' +
+                '<a href="#">' + e["autor"] + '</a>' +
+            '</div> </div>'
+        );
+    });
 }
