@@ -1,7 +1,8 @@
 
 <?php
 
-    include_once 'conexionDb.php';
+
+    include_once 'controller/conexionDb.php';
 
     include 'logout.php';
 

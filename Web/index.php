@@ -36,7 +36,7 @@
         </div>
         <div class="sidebar" id="sidebar">
             <!-- login -->
-            <?php include 'controller/login.php' ?>
+            <?php include 'pages/login.php' ?>
 
         </div>
         <footer class="footer">
