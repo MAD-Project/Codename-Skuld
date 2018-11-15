@@ -16,12 +16,11 @@
         <form class="registro" id="registro" name="fregistro" method="post" action="javascript:void(0)">
 
             <label for="nombre">Nombre</label>
-            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="Nombre" /><br><br>
+            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="Nombre" autofocus /><br><br>
             <label for="apellido">Apellido</label>
             <input class="inputRegistro" type="text" id="apellido" name="apellido" placeholder="Apellido" /><br><br>
             <label for="nombreU">Nombre Usuario *</label>
-            <input class="inputRegistro" type="text" id="nombreU" name="nombreU" class="require" placeholder="Nombre de usuario"
-                autofocus /><br><br>
+            <input class="inputRegistro" type="text" id="nombreU" name="nombreU" class="require" placeholder="Nombre de usuario" /><br><br>
             <label for="email">Correo electrónico *</label>
             <input class="inputRegistro" type="email" id="email" name="email" class="require" placeholder="ejemplo@gmail.com" /><br><br>
             <label for="password">Password *</label>
