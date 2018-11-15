@@ -15,10 +15,10 @@
 
         <?php session_start(); ?>
 
-        <script src="javaScript/index.js"></script>
         <script type="text/javascript" src="javaScript/jquery.js"></script>
 
         <script type="text/javascript" src="javaScript/ajaxBBDD.js"></script>
+
     </head>
 
     <body class="grid-container">
@@ -44,5 +44,7 @@
             <img class="logoFooter" src="media/logo_mad.jpeg">
         </footer>
     </body>
+
+    <script src="javaScript/index.js"></script>
 
 </html>
