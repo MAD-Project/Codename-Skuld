@@ -20,7 +20,7 @@ body {
     font-family: 'Roboto', Verdana, sans-serif;
 }
 
-.loginLink {
+.link {
     display: none;
 }
 
@@ -131,9 +131,11 @@ body {
     margin-right: 10px;
     min-width: 95%
 }
-.temaBox div:nth-child(2) h4{
+
+.temaBox div:nth-child(2) h4 {
     word-break: break-all;
-    min-width: 100%;
+    flex: 100%;
+    margin-top: -1%;
 }
 
 .temaBox div:nth-child(2):hover,
@@ -214,7 +216,8 @@ body {
     grid-area: sidebar;
 }
 
-.login {
+.login,
+.logout {
     display: flex;
     flex-direction: column;
     width: 97%;
@@ -225,11 +228,16 @@ body {
     margin-top: 4%;
 }
 
-.login h3 {
+.login h3,
+.logout h3 {
     color: white;
     text-align: center;
     font-size: 30px;
     margin-bottom: 20px;
+}
+
+.logout h3 {
+    font-size: 20px;
 }
 
 .inp {
@@ -258,7 +266,8 @@ body {
     margin-bottom: 20px;
 }
 
-.loginBTN {
+.loginBTN,
+.logoutBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -271,6 +280,28 @@ body {
 
 .loginBTN:hover {
     background-color: #df6738;
+}
+
+.logout a {
+    border-radius: 5px;
+    text-align: center;
+    background-color: grey;
+    text-decoration: none;
+    color: white;
+    width: 60%;
+    padding: 5%;
+    margin-bottom: 10%;
+    border: 1px solid lightgrey;
+    font-size: 20px;
+}
+
+.logout a:hover {
+    background-color: darkgrey;
+}
+
+.logoutBTN {
+    font-size: 100%;
+    margin-bottom: 20%;
 }
 
 .login a {
@@ -295,67 +326,10 @@ body {
     margin-left: 1.5%;
     margin-right: 3%;
     width: 23%;
-    height: 65%;
+    height: 67%;
 }
 
 /* Versión movil */
-@media (max-width: 459px) {
-    .logo {
-        width: 25%;
-        height: 80%;
-    }
-
-    .loginLink {
-        margin-right: 20%;
-        font-size: 140%;
-    }
-
-    .login {
-        margin-top: 25%;
-        margin-left: 2%;
-        width: 96%;
-    }
-
-    .footer {
-        margin-bottom: -2.5%;
-    }
-
-    .logoFooter {
-        width: 20%;
-        height: 30%;
-        margin-bottom: -2%;
-    }
-}
-
-@media (min-width: 460px) and (max-width: 1350px) {
-    .logo {
-        width: 16%;
-        height: 90%;
-    }
-
-    .loginLink {
-        font-size: 190%;
-        margin-right: 6%;
-    }
-
-    .login {
-        margin-top: 15%;
-        margin-left: 25%;
-        width: 56%;
-    }
-
-    .footer {
-        margin-bottom: -.5%;
-    }
-
-    .logoFooter {
-        order: -1;
-        width: 12.5%;
-        height: 35%;
-        margin-bottom: -1%;
-    }
-}
-
 @media (max-width: 1350px) {
     .grid-container {
         grid-template-columns: auto;
@@ -368,19 +342,23 @@ body {
             "footer";
     }
 
-    .loginLink {
+    .link {
         display: block;
         color: white;
         text-decoration: none;
         transition: .25s;
     }
 
-    .loginLink:hover {
+    .link:hover {
         color: #46494c;
     }
 
+    .temaBox div:nth-child(2) {
+        min-width: 75%;
+    }
+
     .loginBTN {
-        width: 45%;
+        width: 80%;
     }
 
     .hide-scroll {
@@ -396,15 +374,30 @@ body {
         display: none;
     }
 
-    .login {
+    .login,
+    .logout {
         height: 0px;
         overflow: hidden;
         transition: 0.5s;
     }
 
+    .logout a {
+        margin-bottom: 7%;
+    }
+
+    .logoutBTN {
+        margin-bottom: 15%;
+    }
+
+    /* Para que el formulario tenga más tamaño */
+    #login {
+        width: 60%;
+    }
+
     .abrirlogin {
-        height: 80%;
-        display: block;
+        height: 85%;
+        flex-shrink: 0;
+        display: flex;
         text-align: center;
     }
 
@@ -415,5 +408,71 @@ body {
 
     .logoFooter {
         order: -1;
+    }
+}
+
+@media (max-width: 459px) {
+    .logo {
+        width: 25%;
+        height: 80%;
+    }
+
+    .link {
+        margin-right: 20%;
+        font-size: 140%;
+    }
+
+    .login,
+    .logout {
+        margin-top: 25%;
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .logout a {
+        padding: 6%;
+    }
+
+    .footer {
+        margin-bottom: -2.5%;
+    }
+
+    .logoFooter {
+        width: 21.5%;
+        height: 36%;
+        margin-bottom: -2%;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 1350px) {
+    .logo {
+        width: 16%;
+        height: 90%;
+    }
+
+    .link {
+        font-size: 190%;
+        margin-right: 6%;
+    }
+
+    .login,
+    .logout {
+        margin-top: 15%;
+        margin-left: 25%;
+        width: 56%;
+    }
+
+    .logout a {
+        padding: 4%;
+    }
+
+    .footer {
+        margin-bottom: -.5%;
+    }
+
+    .logoFooter {
+        width: 10.5%;
+        height: 50%;
+        margin-bottom: -1%;
     }
 }

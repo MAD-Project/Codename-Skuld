@@ -1,13 +1,14 @@
 
 <?php
 
-    include_once 'conexionDb.php';
+
+    include_once 'controller/conexionDb.php';
 
     include 'logout.php';
 
     function login(){
         ?>
-        <div class="login" id="login">
+        <div class="login" id="box">
             <h3>Inicio de sesión</h3>
             <form id="login" name="flogin" method="post">
                 <input class="inp" type="email" id="emailLogin" name="emailLogin" required placeholder="Email"><br>
@@ -59,6 +60,7 @@
 
                         $_SESSION['nombreUsuario'] = $usuario->nickname;
                         logout();
+                        echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
                     }
 
                 }
@@ -84,6 +86,7 @@
         else {
 
             logout();
+            echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
 
         }
 

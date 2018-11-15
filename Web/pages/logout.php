@@ -4,11 +4,11 @@ function logout(){
 
     ?>
 
-        <div class="logout" id="logout">
+        <div class="logout" id="box">
 
-            <p><?php echo "Bienvenido ".$_SESSION['nombreUsuario']; ?></p>
+            <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?></h3>
 
-            <a href="pages/crearTema.php"><p>Crear Tema</p></a>
+            <a href="pages/crearTema.php">Crear Tema</a>
 
             <form method="post">
                 <input class="logoutBTN" type="submit" value="Cerrar sesion">
