@@ -1,7 +1,6 @@
 
 <?php
 
-
     include_once 'controller/conexionDb.php';
 
     include 'logout.php';
@@ -18,6 +17,43 @@
             <a onclick="ocultarElementosSidebar('box','registro')">Crear una cuenta</a>
         </div>
         <?php
+    }
+
+    function valdiarLogin($conexion,$emailLogin,$password){
+
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
+        $select->execute();
+
+        if ($select->rowCount() == 0){
+
+            login();
+            echo "<p id='correoIcorrecto'>Correo incorrecto</p>";
+        }
+        else {
+
+            while ($usuario = $select->fetchObject()){
+
+                if ($usuario->email == $emailLogin && $usuario->password == $password){
+
+                    $_SESSION['login'] = true;
+
+                    if ($_SESSION['login']){
+
+                        $_SESSION['nombreUsuario'] = $usuario->nickname;
+                        logout();
+                        echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
+                    }
+
+                }
+                else {
+
+                    login();
+                    echo "<p id='passwordIcorrecto'>Contraseña incorrecta</p>";
+                }
+
+            }
+        }
+
     }
 
     if (isset($_POST['cerrarSesion'])){
@@ -38,40 +74,11 @@
 
         $emailLogin = $_POST['emailLogin'];
 
+        $password = $_POST['passwordLogin'];
+
         $conexion = conexionDb();
 
-        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
-        $select->execute();
-
-        if ($select->rowCount() == 0){
-
-            login();
-            echo "<p id='correoIcorrecto'>Correo incorrecto</p>";
-        }
-        else {
-
-            while ($usuario = $select->fetchObject()){
-
-                if ($usuario->email == $emailLogin && $usuario->password == $_POST['passwordLogin']){
-
-                    $_SESSION['login'] = true;
-
-                    if ($_SESSION['login']){
-
-                        $_SESSION['nombreUsuario'] = $usuario->nickname;
-                        logout();
-                        echo "<input id='verLogin' type='hidden' value='".$_SESSION['login']."'>";
-                    }
-
-                }
-                else {
-
-                    login();
-                    echo "<p id='passwordIcorrecto'>Contraseña incorrecta</p>";
-                }
-
-            }
-        }
+        valdiarLogin($conexion,$emailLogin,$password);
 
         closeConexionDb($conexion);
 
