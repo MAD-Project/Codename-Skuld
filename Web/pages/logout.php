@@ -1,23 +1,22 @@
 <?php
 
-function logout(){
-
+function logout()
+{
     ?>
 
-        <div class="logout" id="box">
+<div class="logout" id="box">
 
-            <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?></h3>
+    <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?>
+    </h3>
 
-            <a href="pages/crearTema.php">Crear Tema</a>
+    <a href="pages/crearTema.php">Crear Tema</a>
 
-            <form method="post">
-                <input class="logoutBTN" type="submit" value="Cerrar sesion">
-                <input type="hidden" name="cerrarSesion">
-            </form>
+    <form method="post">
+        <input class="logoutBTN" type="submit" value="Cerrar sesion">
+        <input type="hidden" name="cerrarSesion">
+    </form>
 
-        </div>
+</div>
 
-    <?php
+<?php
 }
-
-?>

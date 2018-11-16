@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
 
-    <script type="text/javascript" src="../javaScript/jquery.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro</title>
 
-    <script type="text/javascript" src="../javaScript/validarResgistroUsuario.js"></script>
+        <script type="text/javascript" src="../javaScript/jquery.js"></script>
 
-</head>
-<body>
+        <script type="text/javascript" src="../javaScript/validarResgistroUsuario.js"></script>
 
-<form id="registro" name="fregistro" method="post" action="javascript:void(0)">
+    </head>
 
-    <label for="nombreU">Nombre Usuario *</label>
-    <input type="text" id="nombreU" name="nombreU" class="require" placeholder="Nombre de usuario" autofocus /><br><br>
-    <label for="password">Password *</label>
-    <input type="password" id="password" name="password" class="require" placeholder="Contraseña" /><br><br>
-    <label for="email">Correo electrónico *</label>
-    <input type="email" id="email" name="email" class="require" placeholder="ejemplo@gmail.com" /><br><br>
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Nombre" /><br><br>
-    <label for="apellido">Apellido</label>
-    <input type="text" id="apellido" name="apellido" placeholder="Apellido" /><br><br>
+    <body>
 
-    <input type="submit" onclick="eviarDatos('../controller/registro.php','registro','post')" value="Registarse" />
+        <form class="registro" id="registro" name="fregistro" method="post" action="javascript:void(0)">
 
-</form>
+            <label for="nombre">Nombre</label>
+            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="Nombre" autofocus />
+            <label for="apellido">Apellido</label>
+            <input class="inputRegistro" type="text" id="apellido" name="apellido" placeholder="Apellido" />
+            <label for="nombreU">Nombre Usuario *</label>
+            <input class="inputRegistro" type="text" id="nombreU" name="nombreU" class="require" placeholder="Nombre de usuario" />
+            <label for="email">Correo electrónico *</label>
+            <input class="inputRegistro" type="email" id="email" name="email" class="require" placeholder="ejemplo@gmail.com" />
+            <label for="password">Password *</label>
+            <input class="inputRegistro" type="password" id="password" name="password" class="require" placeholder="Contraseña" />
 
-    <a href="../index.php"><p>Volver</p></a>
 
-    <p id="resultado"></p>
+            <input class="registroBTN" type="submit" onclick="eviarDatos('../controller/registro.php','registro','post')"
+                value="Registarse" />
 
-</body>
+        </form>
+
+        <p id="resultado"></p>
+
+    </body>
+
 </html>
