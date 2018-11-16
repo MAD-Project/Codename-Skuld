@@ -56,6 +56,9 @@ function eviarDatos(url,idFormulario,method) {
 
                     document.getElementById(idFormulario).reset();
                     $("#resultado").html("Usuario registrado con exito");
+
+                    recargarPágina();
+
                 }
             },
             error: function (data) {
