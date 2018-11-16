@@ -1,14 +1,15 @@
 <?php
     include_once 'conexionDb.php';
-if(isset($_POST['inicioRowTemas'])){
-    cargarTemas();
-}
+
+isset($_POST['inicioRowTemas'])?cargarTemas():'';
+
     function cargarTemas(){
         $conexion = conexionDb();
         $inicioRowTemas= $_POST['inicioRowTemas']??0;
-//falta order by date
+        //falta order by date
         //cambiar el limit por where y :valor
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario LIMIT $inicioRowTemas,5;");
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema ASC  LIMIT ? ,10 ;");
+        $select ->bindParam(1,$inicioRowTemas,PDO::PARAM_INT);
         $select->execute();
 
         $temas = array();

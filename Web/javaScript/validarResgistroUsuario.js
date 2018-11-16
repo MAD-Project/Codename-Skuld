@@ -3,7 +3,7 @@ function validarFormulario(idFormulario) {
 
     let exprePassword = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
     let expreEmail = new RegExp("^[A-z0-9]{3,}@[A-z0-9]{2,}.[A-z0-9]{2,4}$");
-
+    debugger;
     if ($(idFormulario+" input.require").val() == ""){
 
         alert("Algunos de los campos son obligatorios");

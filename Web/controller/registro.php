@@ -1,6 +1,8 @@
 <?php
 
-include 'conexionDb.php';
+include_once 'conexionDb.php';
+
+include_once '../pages/logout.php';
 
 $usuarioExistente = false;
 $mensajeUsuarioExistente = "";
@@ -32,6 +34,11 @@ if (isset($_POST['nombreU'])) {
             "anombre" => $_POST['nombre'],
             "aapellido" => $_POST['apellido']
         ));
+
+        $_SESSION['nombreUsuario'] = $_POST['nombreU'];
+
+        logout();
+
     } else {
         die($mensajeUsuarioExistente);
     }
