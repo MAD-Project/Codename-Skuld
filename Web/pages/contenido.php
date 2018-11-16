@@ -28,6 +28,6 @@
 
 
     <?php endforeach; ?>
-        <button  style="margin-bottom:2em;" onclick="cargarMasTemas()"  value="5"> cargar más </button>
+        <button  style="margin-bottom:2em;" onclick="cargarMasTemas()"> cargar más </button>
 
 </form>
