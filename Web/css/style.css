@@ -291,7 +291,7 @@ body {
     border-radius: 5px;
     text-align: center;
     transition: all 250ms ease;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 #password {
