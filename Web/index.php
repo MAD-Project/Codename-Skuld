@@ -19,6 +19,8 @@
 
         <script type="text/javascript" src="javaScript/ajaxBBDD.js"></script>
 
+        <script type="text/javascript" src="javaScript/validarResgistroUsuario.js"></script>
+
     </head>
 
     <body class="grid-container">
