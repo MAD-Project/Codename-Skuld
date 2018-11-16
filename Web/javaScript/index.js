@@ -1,3 +1,7 @@
+window.onresize = function (event) {
+    recargarPágina();
+};
+
 function mostrarCaja() {
     document.getElementById('box').classList.add("abrirlogin");
     document.getElementById("sidebar").classList.add("abrirlogin");
@@ -19,10 +23,6 @@ function comprobarLogin() {
         document.getElementById("link").innerHTML = "Mi perfil";
     }
 }
-
-window.onresize = function(event) {
-    recargarPágina();
-};
 /*FIN jQuery */
 
 comprobarLogin();

@@ -276,7 +276,6 @@ body {
 
 .registro {
     padding-top: 10%;
-    padding-bottom: 10%;
     color: white;
 }
 
@@ -341,15 +340,17 @@ body {
     margin-bottom: 20%;
 }
 
-.login a {
+.login a,
+.registro a {
     margin-top: 10px;
     font-size: 14px;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 10%;
     text-decoration: underline;
 }
 
-.login a:hover {
+.login a:hover,
+.registro a:hover {
     cursor: pointer;
 }
 
@@ -372,7 +373,7 @@ body {
 }
 
 /* Versión movil */
-@media (max-width: 1350px) {
+@media (max-width: 1030px) {
     .grid-container {
         grid-template-columns: auto;
         grid-template-rows: 8% 72% auto;
@@ -408,10 +409,6 @@ body {
         margin: 2.5%;
     }
 
-    .search {
-        display: none;
-    }
-
     .sidebar {
         display: none;
     }
@@ -421,6 +418,15 @@ body {
         height: 0px;
         overflow: hidden;
         transition: 0.5s;
+    }
+
+    .login h3 {
+        margin-top: 0;
+    }
+
+    .login a,
+    .registro a {
+        margin-bottom: 0%;
     }
 
     .logout a {
@@ -459,16 +465,28 @@ body {
         height: 80%;
     }
 
+    .search {
+        display: none;
+    }
+
     .link {
         margin-right: 20%;
         font-size: 140%;
     }
 
     .login,
+    .registro,
     .logout {
         margin-top: 25%;
         margin-left: 2%;
         width: 96%;
+    }
+
+    .registro {
+        margin-top: 15%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
     }
 
     .logout a {
@@ -486,22 +504,30 @@ body {
     }
 }
 
-@media (min-width: 460px) and (max-width: 1350px) {
+@media (min-width: 460px) and (max-width: 1030px) {
     .logo {
         width: 16%;
         height: 90%;
     }
 
     .link {
+        margin-left: 10%;
         font-size: 190%;
-        margin-right: 6%;
     }
 
     .login,
+    .registro,
     .logout {
         margin-top: 15%;
-        margin-left: 25%;
+        margin-left: 22%;
         width: 56%;
+    }
+
+    .registro {
+        margin-top: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
     }
 
     .logout a {
@@ -516,5 +542,6 @@ body {
         width: 10.5%;
         height: 50%;
         margin-bottom: -1%;
+        margin-left: 2.7%;
     }
 }
