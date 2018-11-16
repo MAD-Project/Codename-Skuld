@@ -29,7 +29,11 @@
             <a class="logo" onclick="recargarPágina()"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
             <a class="link" onclick="mostrarCaja()" id="link">Login</a>
-            <input class="search" type="text" placeholder="Buscar">
+
+            <form id="buscador" name="buscador" method="post" action="controller/busquedas.php">
+                <input class="search" id="search" name="search" type="search" placeholder="Buscar aquí..." autofocus >
+            </form>
+
         </div>
         <div class="hide-scroll" id="main">
             <div class="main">
