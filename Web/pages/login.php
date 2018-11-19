@@ -34,7 +34,7 @@
 
             while ($usuario = $select->fetchObject()){
 
-                if ($usuario->email == $emailLogin && $usuario->password == $password){
+                if ($usuario->email == $emailLogin && $usuario->password == password_verify($password, $usuario->password)){
 
                     $_SESSION['login'] = true;
 
