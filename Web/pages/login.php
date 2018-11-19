@@ -14,7 +14,7 @@
                 <input class="inp" type="password" id="passwordLogin" name="passwordLogin" required" placeholder="*****"><br>
                 <input class="loginBTN" type="submit" value="Iniciar sesion">
             </form>
-            <a onclick="ocultarElementosSidebar('box','registro')">Crear una cuenta</a>
+            <a onclick="ocultarElementosSidebar('box','registro','topTemas')">Crear una cuenta</a>
         </div>
         <?php
     }
