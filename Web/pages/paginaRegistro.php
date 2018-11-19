@@ -25,7 +25,7 @@
 
             <input class="registroBTN" type="submit" onclick="eviarDatos('../Web/controller/registro.php','registro','post')"
                 value="Registarse" />
-            <a onclick="ocultarElementosSidebar('registro','box')">Volver</a>
+            <a onclick="ocultarElementosSidebar('registro','box',null,'topTemas')">Volver</a>
 
         </form>
         <p id="resultado"></p>
