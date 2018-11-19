@@ -5,8 +5,8 @@
 
         foreach ($temas as $tema):?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
-        <div >
-            <p  class="votos" id=<?="puntuacion",$tema['id'] ?>> <?= $tema["valoracion"] ?></p>
+        <div>
+            <p class="votos" id=<?="puntuacion",$tema['id'] ?>> <?= $tema["valoracion"] ?></p>
             <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id=<?="votar",$tema['id'] ?>>
         </div>
         <div onclick="alert('link')">
@@ -22,12 +22,12 @@
                 <?= $tema["texto"] ?>
 
             </h4>
-            <a href="   #"><?= $tema["autor"] ?></a>
+            <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
 
 
     <?php endforeach; ?>
-        <button  style="margin-bottom:2em;" onclick="cargarMasTemas()"  value="5"> cargar más </button>
+    <button id="btnCargarMas" style="margin-bottom:2em;" onclick="cargarMasTemas()">Cargar más</button>
 
 </form>

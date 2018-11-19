@@ -3,16 +3,18 @@
     session_start();
 
     include_once 'conexionDb.php';
+    include_once 'selectsUtiles.php';
 
     $fecha = date('Y-m-d');
 
-    if (isset($_POST['titulo'])){
+    if (isset($_POST['tituloTema'])){
 
         $conexion = conexionDb();
 
         $nombreUsuario = $_SESSION['nombreUsuario'];
 
-        $select = $conexion->prepare("SELECT id_usuario from usuarios WHERE nickname = '$nombreUsuario'");
+        $select = idUsuario_nickname($conexion,$nombreUsuario);
+
         $select->execute();
 
         $usuario = $select->fetchObject();
@@ -23,11 +25,13 @@
                                   VALUES(:atitulo,:atexto,:afecha,:aid_usuario)");
 
         $insert->execute(array(
-            "atitulo" => $_POST['titulo'],
+            "atitulo" => $_POST['tituloTema'],
             "atexto" => $_POST['texto'],
             "afecha" => $fecha,
             "aid_usuario" => $idUsuario
         ));
+
+        include_once 'subirArchivo.php';
 
         closeConexionDb($conexion);
 

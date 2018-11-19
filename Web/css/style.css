@@ -20,7 +20,7 @@ body {
     font-family: 'Roboto', Verdana, sans-serif;
 }
 
-.loginLink {
+.link {
     display: none;
 }
 
@@ -57,6 +57,7 @@ body {
     width: 150px;
     height: 70px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .logoImg {
@@ -87,7 +88,6 @@ body {
     overflow: hidden;
     width: 137%;
     height: 110%;
-
 }
 
 .contenido {
@@ -120,20 +120,26 @@ body {
     align-items: center;
     text-align: center;
     margin-right: 20px;
+    margin-left: 1.7%;
 }
 
 .temaBox div:nth-child(2) {
     display: flex;
-    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-right: 10px;
-    min-width: 95%
+    width: 90%;
 }
-.temaBox div:nth-child(2) h4{
+
+.temaBox div:nth-child(2) h2 {
+    margin-right: auto;
+}
+
+.temaBox div:nth-child(2) h4 {
     word-break: break-all;
-    min-width: 100%;
+    flex: 100%;
+    margin-top: -1%;
 }
 
 .temaBox div:nth-child(2):hover,
@@ -143,13 +149,8 @@ body {
 }
 
 .temaBox a {
-    margin-left: 90%;
     color: #dd6e42;
     text-decoration: none;
-}
-
-.temaBox p {
-    margin-right: .8%;
 }
 
 .votos {
@@ -180,9 +181,9 @@ body {
     background-color: lightgrey;
     border-radius: 5px;
     padding: 10px;
-    width: 92.8%;
-    margin-left: 4%;
+    width: 91.6%;
     margin-bottom: 2%;
+    margin-left: 5%;
 }
 
 .respBox div:nth-child(1) {
@@ -190,21 +191,30 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-right: 2em;
+    margin-right: 20px;
+    margin-left: 1.2%;
 }
 
 .respBox div:nth-child(2) {
     display: flex;
-    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-right: 10px;
+    width: 90.3%;
 
 }
 
 .respBox a {
     color: #dd6e42;
     text-decoration: none;
+    margin-right: auto;
+}
+
+.temaBox div:nth-child(2) h4 {
+    word-break: break-all;
+    flex: 100%;
+    margin-top: -1%;
 }
 
 /* FIN subpágina de respuestas */
@@ -214,8 +224,9 @@ body {
     grid-area: sidebar;
 }
 
-.login {
-    display: flex;
+.login,
+.registro,
+.logout {
     flex-direction: column;
     width: 97%;
     background-color: #46494c;
@@ -225,11 +236,16 @@ body {
     margin-top: 4%;
 }
 
-.login h3 {
+.login h3,
+.logout h3 {
     color: white;
     text-align: center;
     font-size: 30px;
     margin-bottom: 20px;
+}
+
+.logout h3 {
+    font-size: 20px;
 }
 
 .inp {
@@ -258,7 +274,32 @@ body {
     margin-bottom: 20px;
 }
 
-.loginBTN {
+.registro {
+    padding-top: 10%;
+    color: white;
+}
+
+.inputRegistro {
+    box-shadow: 0;
+    background-color: grey;
+    width: 75%;
+    height: 40px;
+    border: solid 2px darkgrey;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 250ms ease;
+    margin-bottom: 10px;
+}
+
+#password {
+    margin-bottom: 30px;
+}
+
+.loginBTN,
+.logoutBTN,
+.registroBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -269,15 +310,48 @@ body {
     font-size: 20px;
 }
 
+.registroBTN {
+    width: 50%;
+}
+
 .loginBTN:hover {
     background-color: #df6738;
 }
 
-.login a {
+.logout a {
+    border-radius: 5px;
+    text-align: center;
+    background-color: grey;
+    text-decoration: none;
+    color: white;
+    width: 60%;
+    padding: 5%;
+    margin-bottom: 10%;
+    border: 1px solid lightgrey;
+    font-size: 20px;
+}
+
+.logout a:hover {
+    background-color: darkgrey;
+}
+
+.logoutBTN {
+    font-size: 100%;
+    margin-bottom: 20%;
+}
+
+.login a,
+.registro a {
     margin-top: 10px;
     font-size: 14px;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 10%;
+    text-decoration: underline;
+}
+
+.login a:hover,
+.registro a:hover {
+    cursor: pointer;
 }
 
 /* FIN Barra lateral */
@@ -295,68 +369,11 @@ body {
     margin-left: 1.5%;
     margin-right: 3%;
     width: 23%;
-    height: 65%;
+    height: 67%;
 }
 
 /* Versión movil */
-@media (max-width: 459px) {
-    .logo {
-        width: 25%;
-        height: 80%;
-    }
-
-    .loginLink {
-        margin-right: 20%;
-        font-size: 140%;
-    }
-
-    .login {
-        margin-top: 25%;
-        margin-left: 2%;
-        width: 96%;
-    }
-
-    .footer {
-        margin-bottom: -2.5%;
-    }
-
-    .logoFooter {
-        width: 20%;
-        height: 30%;
-        margin-bottom: -2%;
-    }
-}
-
-@media (min-width: 460px) and (max-width: 1350px) {
-    .logo {
-        width: 16%;
-        height: 90%;
-    }
-
-    .loginLink {
-        font-size: 190%;
-        margin-right: 6%;
-    }
-
-    .login {
-        margin-top: 15%;
-        margin-left: 25%;
-        width: 56%;
-    }
-
-    .footer {
-        margin-bottom: -.5%;
-    }
-
-    .logoFooter {
-        order: -1;
-        width: 12.5%;
-        height: 35%;
-        margin-bottom: -1%;
-    }
-}
-
-@media (max-width: 1350px) {
+@media (max-width: 1030px) {
     .grid-container {
         grid-template-columns: auto;
         grid-template-rows: 8% 72% auto;
@@ -368,19 +385,23 @@ body {
             "footer";
     }
 
-    .loginLink {
+    .link {
         display: block;
         color: white;
         text-decoration: none;
         transition: .25s;
     }
 
-    .loginLink:hover {
+    .link:hover {
         color: #46494c;
     }
 
+    .temaBox div:nth-child(2) {
+        min-width: 75%;
+    }
+
     .loginBTN {
-        width: 45%;
+        width: 80%;
     }
 
     .hide-scroll {
@@ -388,23 +409,43 @@ body {
         margin: 2.5%;
     }
 
-    .search {
-        display: none;
-    }
-
     .sidebar {
         display: none;
     }
 
-    .login {
+    .login,
+    .logout {
         height: 0px;
         overflow: hidden;
         transition: 0.5s;
     }
 
+    .login h3 {
+        margin-top: 0;
+    }
+
+    .login a,
+    .registro a {
+        margin-bottom: 0%;
+    }
+
+    .logout a {
+        margin-bottom: 7%;
+    }
+
+    .logoutBTN {
+        margin-bottom: 15%;
+    }
+
+    /* Para que el formulario tenga más tamaño */
+    #loginForm {
+        width: 60%;
+    }
+
     .abrirlogin {
-        height: 80%;
-        display: block;
+        height: 85%;
+        flex-shrink: 0;
+        display: flex;
         text-align: center;
     }
 
@@ -415,5 +456,92 @@ body {
 
     .logoFooter {
         order: -1;
+    }
+}
+
+@media (max-width: 459px) {
+    .logo {
+        width: 25%;
+        height: 80%;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .link {
+        margin-right: 20%;
+        font-size: 140%;
+    }
+
+    .login,
+    .registro,
+    .logout {
+        margin-top: 25%;
+        margin-left: 2%;
+        width: 96%;
+    }
+
+    .registro {
+        margin-top: 15%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
+    }
+
+    .logout a {
+        padding: 6%;
+    }
+
+    .footer {
+        margin-bottom: -2.5%;
+    }
+
+    .logoFooter {
+        width: 21.5%;
+        height: 36%;
+        margin-bottom: -2%;
+    }
+}
+
+@media (min-width: 460px) and (max-width: 1030px) {
+    .logo {
+        width: 16%;
+        height: 90%;
+    }
+
+    .link {
+        margin-left: 10%;
+        font-size: 190%;
+    }
+
+    .login,
+    .registro,
+    .logout {
+        margin-top: 15%;
+        margin-left: 22%;
+        width: 56%;
+    }
+
+    .registro {
+        margin-top: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
+    }
+
+    .logout a {
+        padding: 4%;
+    }
+
+    .footer {
+        margin-bottom: -.5%;
+    }
+
+    .logoFooter {
+        width: 10.5%;
+        height: 50%;
+        margin-bottom: -1%;
+        margin-left: 2.7%;
     }
 }
