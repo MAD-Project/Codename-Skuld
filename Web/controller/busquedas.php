@@ -2,54 +2,48 @@
 
 include_once 'conexionDb.php';
 
-$texto = '';
+function verDatosBusqueda(){
 
-$registros = '';
+    $texto = array();
 
-    if($_POST['search']){
+    $busqueda = trim($_POST['search']);
 
-        $busqueda = trim($_POST['search']);
+    if (empty($busqueda)){
 
-            if (empty($busqueda)){
+        $texto = array();
 
-                $texto = 'Búsqueda sin resultados';
+    }
+    else {
 
+        $conexion = conexionDb();
+
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.titulo LIKE '%" .$busqueda. "%' ORDER BY fecha DESC, id_tema ASC;");
+        $select->execute();
+
+
+        if ($select->rowCount() > 0){
+
+            while ($fila = $select->fetchObject()){
+                $tema["id"]=$fila -> id_tema;
+                $tema["titulo"]=$fila -> titulo;
+                $tema["texto"]=$fila -> texto;
+                $tema["fecha"]=$fila -> fecha;
+                $tema["autor"]=$fila -> nickname;
+                $tema["valoracion"]=$fila -> val;
+                array_push($texto,$tema);
             }
-            else {
 
-                $conexion = conexionDb();
+        }
+        else{
 
-                $select = $conexion->prepare("SELECT * from temas where titulo LIKE '%" .$busqueda. "%'");
-                $select->execute();
+            $texto = array();
+        }
 
+        closeConexionDb($conexion);
+    }
 
-                    if ($select->rowCount() > 0){
+    return $texto;
 
-                        $registros = '<p>HEMOS ENCONTRADO ' . $select->rowCount() . ' registros </p>';
-
-                        while ($usuario = $select->fetchObject()){
-
-                            $texto .= $usuario->titulo . '<br />';
-                        }
-
-                    }
-                    else{
-
-                        $texto = "NO HAY RESULTADOS EN LA BBDD";
-                    }
-
-                closeConexionDb($conexion);
-            }
 }
+
 ?>
-
-<div id="busquedas">
-
-    <?php
-
-        echo $registros;
-        echo $texto;
-
-    ?>
-
-</div>
