@@ -21,7 +21,8 @@
 
     function valdiarLogin($conexion,$emailLogin,$password){
 
-        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = ?");
+        $select->bindParam( 1 ,$emailLogin);
         $select->execute();
 
         if ($select->rowCount() == 0){
@@ -33,7 +34,7 @@
 
             while ($usuario = $select->fetchObject()){
 
-                if ($usuario->email == $emailLogin && $usuario->password == $password){
+                if ($usuario->email == $emailLogin && $usuario->password == password_verify($password, $usuario->password)){
 
                     $_SESSION['login'] = true;
 

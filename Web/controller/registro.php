@@ -27,24 +27,26 @@ if (isset($_POST['nombreU'])) {
 
         $emailLogin = $_POST['email'];
         $password = $_POST['password'];
+        $passHash = password_hash($password, PASSWORD_BCRYPT);
 
         $insert = $conexion->prepare("INSERT INTO usuarios(nickname,password,email,nombre,apellidos)
                                   VALUES(:anombreU,:apassword,:acorreo,:anombre,:aapellido)");
 
         $insert->execute(array(
             "anombreU" => $_POST['nombreU'],
-            "apassword" => $password,
+            "apassword" => $passHash,
             "acorreo" => $emailLogin,
             "anombre" => $_POST['nombre'],
             "aapellido" => $_POST['apellido']
         ));
 
-        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = ?");
+        $select->bindParam( 1 ,$emailLogin);
         $select->execute();
 
         while ($usuario = $select->fetchObject()){
 
-            if ($usuario->email == $emailLogin && $usuario->password == $password){
+            if ($usuario->email == $emailLogin && $usuario->password == password_verify($password, $passHash)){
 
                 $_SESSION['login'] = true;
 
