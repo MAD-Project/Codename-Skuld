@@ -39,6 +39,7 @@
             <!-- login -->
             <?php include 'pages/login.php'?>
             <?php include 'pages/paginaRegistro.php'?>
+            <?php include 'pages/topTemas.php'?>
         </div>
         <div class="hide-scroll" id="main">
             <div class="main">
