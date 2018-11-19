@@ -1,7 +1,3 @@
-window.onresize = function (event) {
-    recargarPágina();
-};
-
 function mostrarCaja() {
     document.getElementById('box').classList.add("abrirlogin");
     document.getElementById("sidebar").classList.add("abrirlogin");
