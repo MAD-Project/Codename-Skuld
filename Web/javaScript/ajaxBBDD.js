@@ -23,7 +23,12 @@ function cargarMasTemas() {
         method: "POST",
         data: {inicioRowTemas: $(".temaBox").length},
         success: function (data) {
-            estructuraTema(JSON.parse(data));
+            if(JSON.parse(data).length===0){
+                alert("Has alcanzado el final... ¿enhorabuena?");
+            }else{
+                estructuraTema(JSON.parse(data));
+            }
+
         },
         error: function (data) {
             alert("Error"+data);

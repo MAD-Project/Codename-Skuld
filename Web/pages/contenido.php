@@ -20,7 +20,6 @@
 
             <h4>
                 <?= $tema["texto"] ?>
-
             </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
