@@ -6,8 +6,12 @@ function votarPuntuacion(idTema) {
             data: {idTema: idTema},
             success: function (data) {
                 alert("Has votado!");
-                $("#puntuacion"+idTema).html(data);
-                $("#votar"+idTema).prop('disabled', true);
+                if(data==-1){
+                    alert("Ha ocurrido un error");
+                }else {
+                    $("#puntuacion" + idTema).html(data);
+                    $("#votar" + idTema).prop('disabled', true);
+                }
             },
             error: function (data) {
                 alert("Error"+data);

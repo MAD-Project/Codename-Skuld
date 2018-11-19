@@ -2,7 +2,7 @@
 CREATE TABLE USUARIOS (
   id_usuario INT AUTO_INCREMENT,
   nickname varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  password varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  password varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   email varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   nombre varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   apellidos varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -39,15 +39,11 @@ CREATE TABLE RESPUESTAS (
 
 CREATE TABLE VALORACIONES (
   id_valoracion INT AUTO_INCREMENT,
-  id_usuario INT,
-  id_usuario_valorado INT,
+  id_usuario INT NOT NULL,
   id_tema INT,
   id_respuesta INT,
   PRIMARY KEY (id_valoracion),
   FOREIGN KEY (id_usuario)
-        REFERENCES USUARIOS(id_usuario)
-        ON DELETE CASCADE,
-  FOREIGN KEY (id_usuario_valorado)
         REFERENCES USUARIOS(id_usuario)
         ON DELETE CASCADE,
   FOREIGN KEY (id_tema)

@@ -35,15 +35,15 @@
             </form>
 
         </div>
-        <div class="hide-scroll" id="main">
-            <div class="main">
-                <?php include 'pages/contenido.php' ?>
-            </div>
-        </div>
         <div class="sidebar" id="sidebar">
             <!-- login -->
             <?php include 'pages/login.php'?>
             <?php include 'pages/paginaRegistro.php'?>
+        </div>
+        <div class="hide-scroll" id="main">
+            <div class="main">
+                <?php include 'pages/contenido.php' ?>
+            </div>
         </div>
         <footer class="footer">
             <p>Under MIT license.</p>
