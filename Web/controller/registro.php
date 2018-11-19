@@ -39,7 +39,8 @@ if (isset($_POST['nombreU'])) {
             "aapellido" => $_POST['apellido']
         ));
 
-        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = '$emailLogin'");
+        $select = $conexion->prepare("SELECT nickname, password, email from usuarios WHERE email = ?");
+        $select->bindParam( 1 ,$emailLogin);
         $select->execute();
 
         while ($usuario = $select->fetchObject()){
