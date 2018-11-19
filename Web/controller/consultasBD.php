@@ -42,13 +42,16 @@ isset($_POST['inicioRowTemas'])?cargarTemas():'';
                 $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_respuesta) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
             }
         }
-        //falta try catch y roll back;
+        try {
 
-        $insert->execute(array(
-            "nickname" => $nickname,
-            "idObjetivo" => $idObjetivo
-        ));
-
+            $insert->execute(array(
+                "nickname" => $nickname,
+                "idObjetivo" => $idObjetivo
+            ));
+        }catch (PDOException $e) {
+            $insert->rollBack();
+            return  -1;
+        }
         $val=obtenerValoracion($objetivo, $idObjetivo, $conexion);
         closeConexionDb($conexion);
         return $val;
