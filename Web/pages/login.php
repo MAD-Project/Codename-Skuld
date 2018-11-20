@@ -71,7 +71,7 @@
 
     }
 
-    if (isset($_POST['emailLogin']) && !$_SESSION['login']){
+    if (isset($_POST['emailLogin'],$_POST['passwordLogin']) && !$_SESSION['login']){
 
         $emailLogin = $_POST['emailLogin'];
 
