@@ -1,4 +1,10 @@
 <!-- @Author: MAD Project -->
+<?php
+    session_start();
+    if (!isset($_SESSION["contenidoMain"])) {
+        $_SESSION["contenidoMain"] = 0;
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,13 +18,10 @@
         <!-- CSS externos -->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montez|Pathway+Gothic+One" rel="stylesheet">
-
-        <?php session_start(); ?>
-
         <script type="text/javascript" src="javaScript/jquery.js"></script>
 
         <script type="text/javascript" src="javaScript/ajaxBBDD.js"></script>
-
+        <script src="javaScript/index.js"></script>
         <script type="text/javascript" src="javaScript/validarResgistroUsuario.js"></script>
 
     </head>
@@ -31,7 +34,7 @@
             <a class="link" onclick="mostrarCaja()" id="link">Login</a>
 
             <form id="buscador" name="buscador" method="post">
-                <input class="search" id="search" name="search" type="search" placeholder="Buscar aquí..." autofocus >
+                <input class="search" id="search" name="search" type="search" placeholder="Buscar aquí..." autofocus>
             </form>
 
         </div>
@@ -43,7 +46,24 @@
         </div>
         <div class="hide-scroll" id="main">
             <div class="main">
-                <?php require_once 'pages/contenido.php' ?>
+                <?php
+                    if ($_SESSION["contenidoMain"] == 0) {
+                        ?>
+                <div>
+                    <?php include 'pages/contenido.php' ?>
+                </div>
+                <?php
+                    }
+                ?>
+                <?php
+                    if ($_SESSION["contenidoMain"] == 1) {
+                        ?>
+                <div>
+                    <?php include 'pages/contenidoDetalle.php' ?>
+                </div>
+                <?php
+                    }
+                ?>
             </div>
         </div>
         <footer class="footer">
@@ -51,8 +71,6 @@
             <img class="logoFooter" src="media/logo_mad.jpeg">
         </footer>
     </body>
-
-    <script src="javaScript/index.js"></script>
 
 
 </html>
