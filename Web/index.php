@@ -51,15 +51,16 @@
                 <div>
                     <?php require_once 'pages/contenido.php' ?>
                 </div>
+              
                 <?php
                     }
                 ?>
                 <?php
                     if ($_SESSION["contenidoMain"] == 1) {
                         ?>
-                <div>
-                    <?php require_once 'pages/contenidoDetalle.php' ?>
-                </div>
+
+                    <?php include 'pages/contenidoDetalle.php' ?>
+           
                 <?php
                     }
                 ?>
