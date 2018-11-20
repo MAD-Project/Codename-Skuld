@@ -23,7 +23,7 @@
             <input type="password" id="password" name="password" class="require inputRegistro" />
 
 
-            <input class="registroBTN" type="submit" onclick="eviarDatos('../Web/controller/registro.php','registro','post')"
+            <input class="registroBTN" type="submit" onclick="eviarDatos('controller/registro.php','registro','post')"
                 value="Registarse" />
             <a onclick="ocultarElementosSidebar('registro','box',null,'topTemas')">Volver</a>
 

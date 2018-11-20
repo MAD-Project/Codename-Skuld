@@ -1,26 +1,23 @@
 <form class="contenido" method="POST" action="content.php">
     <?php
-        $temas = [ "id"=> "122",
-                "titulo" => "Titulo 1",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 92,
-                "fecha"=> "08/11/2018",
-                "autor"=>"Mikel Ferreiro"];
-        ?>
-    <div class="temaBox" id=<?= $temas["id"] ?>>
-        <div id=<?= "puntuacion",$temas['id'] ?>>
-            <p class="votos"><?= $temas["valoracion"] ?>
+        include_once 'controller/consultasBD.php';
+
+        $tema = detalleTema($_SESSION["idTema"]);
+    ?>
+    <div class="temaBox" id=<?= $tema["id"] ?>>
+        <div id=<?= "puntuacion",$tema['id'] ?>>
+            <p class="votos"><?= $tema["valoracion"] ?>
             </p>
             <input type="button" value="Votar" class="votarBTN">
         </div>
         <div>
-            <h2><?= $temas["titulo"] ?>
+            <h2><?= $tema["titulo"] ?>
             </h2>
-            <p><?= $temas["fecha"] ?>
+            <p><?= $tema["fecha"] ?>
             </p>
-            <h4><?= $temas["texto"] ?>
+            <h4><?= $tema["texto"] ?>
             </h4>
-            <a href="#"><?= $temas["autor"] ?></a>
+            <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
     <?php
@@ -73,7 +70,9 @@
                 </h4>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php endforeach; 
+            $_SESSION["contenidoMain"] = 0;
+        ?>
     </div>
 
 

@@ -10,7 +10,7 @@ isset($_POST['inicioRowTemas'])?cargarTemas():'';
         $inicioRowTemas = (int)$inicioRowTemas;
         //falta order by date
         $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema ASC  LIMIT ? ,5 ;");
-        $select ->bindParam(1,$inicioRowTemas ,PDO::PARAM_INT);
+        $select ->bindParam(1, $inicioRowTemas, PDO::PARAM_INT);
         $select->execute();
 
         $temas = array();
@@ -34,21 +34,19 @@ isset($_POST['inicioRowTemas'])?cargarTemas():'';
     {
         $conexion = conexionDb();
       
-        if($objetivo ==="id_tema" || $objetivo === "id_respuesta"){
-            if($objetivo ==="id_tema"){
-            $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_tema) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
-            }else{
-
+        if ($objetivo ==="id_tema" || $objetivo === "id_respuesta") {
+            if ($objetivo ==="id_tema") {
+                $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_tema) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
+            } else {
                 $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_respuesta) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
             }
         }
         try {
-
             $insert->execute(array(
                 "nickname" => $nickname,
                 "idObjetivo" => $idObjetivo
             ));
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             $insert->rollBack();
             return  -1;
         }
@@ -71,13 +69,35 @@ isset($_POST['inicioRowTemas'])?cargarTemas():'';
         $topTemas = array();
         $id = 0;
 
-        $select = $conexion->prepare("SELECT DISTINCT T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY titulo ORDER BY VALORACIONES DESC LIMIT 5");
-        $select->execute();
+        $select = $conexion -> prepare("SELECT DISTINCT T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY titulo ORDER BY VALORACIONES DESC LIMIT 5");
+        $select -> execute();
 
-        while ($fila = $select->fetchObject()) {
+        while ($fila = $select -> fetchObject()) {
             $topTemas[$id]=$fila -> TITULO;
             $id++;
         }
 
         return $topTemas;
+    }
+
+    function detalleTema($idTema)
+    {
+        $conexion = conexionDb();
+        $tema = array();
+
+
+        $select = $conexion -> prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+        $select->execute(array(
+                "idTema" => $idTema));
+        
+        while ($fila = $select->fetchObject()) {
+            $tema["id"]=$fila -> id_tema;
+            $tema["titulo"]=$fila -> titulo;
+            $tema["texto"]=$fila -> texto;
+            $tema["fecha"]=$fila -> fecha;
+            $tema["autor"]=$fila -> nickname;
+            $tema["valoracion"]=$fila -> val;
+        }
+
+        return $tema;
     }

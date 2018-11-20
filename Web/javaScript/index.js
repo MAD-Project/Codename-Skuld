@@ -20,12 +20,24 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
 }
 
 /* jQuery */
+function abrirDetalle(idTema) {
+    $.post("../controller/detalle.php", {
+            idTema: idTema,
+            contenidoMain: 1
+        })
+        .done(function (data) {
+            recargarPágina();
+        });
+}
+
 function comprobarLogin() {
     if ($('#verLogin').val() == 1) {
         document.getElementById("link").innerHTML = "Mi perfil";
     }
 }
-/*FIN jQuery */
 
-comprobarLogin();
-ocultarElementosSidebar('registro', 'box', null, 'topTemas');
+$(function () {
+    comprobarLogin();
+    ocultarElementosSidebar('registro', 'box', null, 'topTemas');
+});
+/*FIN jQuery */
