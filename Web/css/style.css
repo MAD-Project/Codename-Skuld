@@ -121,7 +121,7 @@ body {
 }
 
 .responderBox {
-    margin-left: 16.5%;
+    margin-left: 16.6%;
 }
 
 .temaBox div:nth-child(1),
@@ -166,7 +166,8 @@ body {
 
 .temaBox div:nth-child(2):hover,
 .respBox:nth-child(2):hover,
-.votarBTN:hover {
+.votarBTN:hover,
+.responderBTN:hover {
     cursor: pointer;
 }
 
@@ -183,7 +184,8 @@ body {
     border: 1px solid black;
 }
 
-.votarBTN {
+.votarBTN,
+.responderBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -192,11 +194,32 @@ body {
     transition: .20s;
 }
 
-.votarBTN:active {
+.votarBTN:active,
+.responderBTN:active {
     background-color: #c46c49;
 }
 
+.formResponder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.respuestaArea {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    font-family: 'Roboto', Verdana, sans-serif;
+    width: 98.5%;
+    resize: none;
+}
+
+.responderBTN {
+    width: 30%;
+    margin-top: 1.5%;
+    font-size: 100%;
+}
 
 /* FIN subpágina de Temas y respuestas */
 

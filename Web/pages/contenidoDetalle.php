@@ -25,22 +25,22 @@
     <?php
         $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
-        <?php foreach ($respuestas as $resp):?>
-        <div class="respBox" id=<?= $resp["id"] ?>>
-            <div id=<?= "puntuacion",$resp['id'] ?>>
-                <p class="votos"><?= $resp["valoracion"] ?>
-                </p>
-                <button class="votarBTN">Votar</button>
-            </div>
-            <div>
-                <a src="#"><?= $resp["autor"],":" ?></a>
-                <p><?= $resp["fecha"] ?>
-                </p>
-                <h4><?= $resp["texto"] ?>
-                </h4>
-            </div>
+    <?php foreach ($respuestas as $resp):?>
+    <div class="respBox" id=<?= $resp["id"] ?>>
+        <div id=<?= "puntuacion",$resp['id'] ?>>
+            <p class="votos"><?= $resp["valoracion"] ?>
+            </p>
+            <button class="votarBTN">Votar</button>
         </div>
-        <?php endforeach;
+        <div>
+            <a src="#"><?= $resp["autor"],":" ?></a>
+            <p><?= $resp["fecha"] ?>
+            </p>
+            <h4><?= $resp["texto"] ?>
+            </h4>
+        </div>
+    </div>
+    <?php endforeach;
             $_SESSION["contenidoMain"] = 0;
         ?>
 
@@ -49,22 +49,18 @@
 
 <?php
 
-    if ($_SESSION['login']){
-
+    if ($_SESSION['login']) {
         ?>
 
-            <div class="responderBox" id="responderTemaDiv">
+<div class="responderBox" id="responderTemaDiv">
 
-                <form method="post" id="respuesta" action="javascript:void(0)">
-                    <textarea id="textareaRespuesta" name="textareaRespuesta" class="" placeholder="texto" ></textarea><br><br>
-                    <input type="submit"  value="Crear Respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
-                </form>
+    <form class="formResponder" method="post" id="respuesta" action="javascript:void(0)">
+        <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
+            rows="4"></textarea><br><br>
+        <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
+    </form>
 
-            </div>
+</div>
 
-        <?php
-
+<?php
     }
-
-?>
-
