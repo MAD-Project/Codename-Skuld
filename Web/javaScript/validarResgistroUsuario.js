@@ -5,19 +5,28 @@ function validarFormulario(idFormulario) {
 
     if ($(idFormulario + " input.require").val() == "") {
 
-        alert("Algunos de los campos son obligatorios");
+        $('#nombreU').css('background','red');
+        $('#email').css('background','red');
+        $('#password').css('background','red');
         return false;
-    } else if ($(idFormulario + " input[type='password'].require").length &&
-        !exprePassword.test($(idFormulario + " input[type='password'].require").val())) {
+    }
+    else if ($(idFormulario+" input[type='email'].require").length
+        && !expreEmail.test($(idFormulario+" input[type='email'].require").val())){
 
-        alert("La contraseña no es válida");
+        $('#password').css('background','red');
         return false;
-    } else if ($(idFormulario + " input[type='email'].require").length &&
-        !expreEmail.test($(idFormulario + " input[type='email'].require").val())) {
+    }
+    else if ($(idFormulario+" input[type='password'].require").length
+        && !exprePassword.test($(idFormulario+" input[type='password'].require").val())){
 
-        alert("El email no es válido");
+
+        $('#email').css('background','red');
         return false;
-    } else {
+    }
+    else {
+        $('#nombreU').css('background','#faffbd');
+        $('#email').css('background','#faffbd');
+        $('#password').css('background','#faffbd');
         return true;
     }
 
@@ -25,7 +34,7 @@ function validarFormulario(idFormulario) {
 
 function eviarDatos(url, idFormulario, method) {
 
-    let selectorjQformulario = "#" + idFormulario;
+    let selectorjQformulario = "#"+idFormulario;
     let valido = validarFormulario(selectorjQformulario);
 
     if (valido) {
@@ -38,7 +47,8 @@ function eviarDatos(url, idFormulario, method) {
             method: method,
             data: datos,
             success: function (data) {
-                if (data === "nombreUsuario") {
+
+                if (data === "nombreUsuario"){
 
                     $("#resultado").html("Este nombre de usuario ya existe");
                 } else if (data === "email") {
