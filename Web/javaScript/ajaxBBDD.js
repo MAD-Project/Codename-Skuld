@@ -73,7 +73,7 @@ function respuestas(url, idFormulario, method) {
         method: method,
         data: datos,
         success: function (data) {
-            recargarPágina();
+            recargarPagina();
         },
         error: function (data) {
 

@@ -78,7 +78,7 @@ body {
     padding-top: 1%;
     /* Ocultar barra scroll en todos los navegadores */
     overflow: auto;
-    max-height: 100%;
+    max-height: 97%;
     margin-right: -100px;
     padding-right: 100px;
 }
@@ -105,7 +105,8 @@ body {
 
 /* Subpágina de Temas y respuestas */
 .temaBox,
-.respBox {
+.respBox,
+.responderBox {
     display: flex;
     background-color: lightgrey;
     border-radius: 5px;
@@ -114,9 +115,13 @@ body {
     margin-bottom: 2%;
 }
 
-.respBox {
-    width: 195%;
-    margin-left: -50%;
+.respBox,
+.responderBox {
+    width: 65%;
+}
+
+.responderBox {
+    margin-left: 16.5%;
 }
 
 .temaBox div:nth-child(1),

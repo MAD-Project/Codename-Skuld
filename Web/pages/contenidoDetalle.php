@@ -25,7 +25,6 @@
     <?php
         $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
-    <div id="respuestas">
         <?php foreach ($respuestas as $resp):?>
         <div class="respBox" id=<?= $resp["id"] ?>>
             <div id=<?= "puntuacion",$resp['id'] ?>>
@@ -44,7 +43,6 @@
         <?php endforeach;
             $_SESSION["contenidoMain"] = 0;
         ?>
-    </div>
 
 
 </form>
@@ -55,7 +53,7 @@
 
         ?>
 
-            <div id="responderTemaDiv">
+            <div class="responderBox" id="responderTemaDiv">
 
                 <form method="post" id="respuesta" action="javascript:void(0)">
                     <textarea id="textareaRespuesta" name="textareaRespuesta" class="" placeholder="texto" ></textarea><br><br>

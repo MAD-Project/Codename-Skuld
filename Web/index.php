@@ -49,18 +49,14 @@
                 <?php
                     if ($_SESSION["contenidoMain"] == 0) {
                         ?>
-                <div>
                     <?php include 'pages/contenido.php' ?>
-                </div>
                 <?php
                     }
                 ?>
                 <?php
                     if ($_SESSION["contenidoMain"] == 1) {
                         ?>
-                <div>
                     <?php include 'pages/contenidoDetalle.php' ?>
-                </div>
                 <?php
                     }
                 ?>
