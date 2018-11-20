@@ -29,7 +29,7 @@
     <body class="grid-container">
         <div class="header">
             <!-- Quitar fondo negro al fondo -->
-            <a class="logo" onclick="recargarPágina()"><img class="logoImg" src="media/logo_empresa.png"></a>
+            <a class="logo" onclick="recargarPagina()"><img class="logoImg" src="media/logo_empresa.png"></a>
             <!-- Borrar Nav, sin uso -->
             <a class="link" onclick="mostrarCaja()" id="link">Login</a>
 
