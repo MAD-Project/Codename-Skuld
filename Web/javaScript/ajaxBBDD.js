@@ -5,7 +5,6 @@ function votarPuntuacion(idTema) {
             method: "POST",
             data: {idTema: idTema},
             success: function (data) {
-                alert("Has votado!");
                 if(data==-1){
                     alert("Ha ocurrido un error");
                 }else {
@@ -20,7 +19,7 @@ function votarPuntuacion(idTema) {
         });
 }
 
-function cargarMasTemas() {
+function cargarMasTemas(temas) {
     event.preventDefault();
     $.ajax({
         url: "controller/consultasBD.php",
@@ -30,7 +29,7 @@ function cargarMasTemas() {
             if(JSON.parse(data).length===0){
                 alert("Has alcanzado el final... ¿enhorabuena?");
             }else{
-                estructuraTema(JSON.parse(data));
+                estructuraTema(JSON.parse(data),temas);
             }
 
         },
@@ -42,12 +41,12 @@ function cargarMasTemas() {
 
 }
 
-function estructuraTema(data) {
+function estructuraTema(data,temas) {
     data.forEach(function (e) {
         $(".temaBox:last").after('<div class="temaBox" id=' + e["id"] + '>' +
             '<div>' +
-                '<p class="votos" id="' + e['id'] + '">' + e['valoracion'] + '</p>' +
-                '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(' + e['id'] + ')" id="votar' + e['id'] + '">' +
+                '<p class="votos" id="puntuacion' + e['id'] + '">' + e['valoracion'] + '</p>' +
+                '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(\'' + e['id'] + '\')" id="votar' + e['id'] + '">' +
             '</div>' +
                 '<div onclick="alert(\'link\')">' +
                 '<h2>' + e['titulo'] + '</h2>' +
@@ -56,6 +55,9 @@ function estructuraTema(data) {
                 '<a href="#">' + e["autor"] + '</a>' +
             '</div> </div>'
         );
+        if(temas === "" || temas.indexOf(e['id']) !== -1){
+         $("#votar" + e["id"]).prop('disabled', true);
+        }
     });
 }
 
@@ -81,20 +83,3 @@ function respuestas(url, idFormulario, method) {
     });
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
