@@ -39,12 +39,10 @@ function annadirValoracion($nickname, $objetivo, $idObjetivo)
         if ($objetivo === "id_tema") {
             $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_tema) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
         } else {
-
             $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_respuesta) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
         }
     }
     try {
-
         $insert->execute(array(
             "nickname" => $nickname,
             "idObjetivo" => $idObjetivo
@@ -72,13 +70,17 @@ function cargarTopTemas()
 {
     $conexion = conexionDb();
     $topTemas = array();
+    $topTema = array();
     $id = 0;
 
-    $select = $conexion->prepare("SELECT DISTINCT T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY titulo ORDER BY VALORACIONES DESC LIMIT 5");
+    $select = $conexion->prepare("SELECT DISTINCT T.id_tema AS ID, T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY titulo ORDER BY VALORACIONES DESC LIMIT 5");
     $select->execute();
 
     while ($fila = $select->fetchObject()) {
-        $topTemas[$id] = $fila->TITULO;
+        $topTema["id"] = $fila -> ID;
+        $topTema["titulo"] = $fila -> TITULO;
+        $topTema["valoracion"] = $fila -> VALORACIONES;
+        array_push($topTemas, $topTema);
         $id++;
     }
 
@@ -99,24 +101,46 @@ function temasVotadosUsuario()
     return $temasVotados;
 }
 
-    function detalleTema($idTema)
-    {
-        $conexion = conexionDb();
-        $tema = array();
+function detalleTema($idTema)
+{
+    $conexion = conexionDb();
+    $tema = array();
 
 
-        $select = $conexion -> prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
-        $select->execute(array(
-                "idTema" => $idTema));
-        
-        while ($fila = $select->fetchObject()) {
-            $tema["id"]=$fila -> id_tema;
-            $tema["titulo"]=$fila -> titulo;
-            $tema["texto"]=$fila -> texto;
-            $tema["fecha"]=$fila -> fecha;
-            $tema["autor"]=$fila -> nickname;
-            $tema["valoracion"]=$fila -> val;
-        }
-
-        return $tema;
+    $select = $conexion -> prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+    $select->execute(array(
+            "idTema" => $idTema));
+    
+    while ($fila = $select->fetchObject()) {
+        $tema["id"]=$fila -> id_tema;
+        $tema["titulo"]=$fila -> titulo;
+        $tema["texto"]=$fila -> texto;
+        $tema["fecha"]=$fila -> fecha;
+        $tema["autor"]=$fila -> nickname;
+        $tema["valoracion"]=$fila -> val;
     }
+
+    return $tema;
+}
+
+function respuestasTema($idTema)
+{
+    $conexion = conexionDb();
+    $respuestas = array();
+
+
+    $select = $conexion -> prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario AND r.id_tema = :idTema ORDER BY r.fecha DESC, r.id_respuesta DESC");
+    $select->execute(array(
+            "idTema" => $idTema));
+
+    while ($fila = $select->fetchObject()) {
+        $respuesta["id"] = $fila->id_respuesta;
+        $respuesta["texto"] = $fila->texto;
+        $respuesta["valoracion"] = $fila->val;
+        $respuesta["fecha"] = $fila->fecha;
+        $respuesta["autor"] = $fila->nickname;
+        array_push($respuestas, $respuesta);
+    }
+
+    return $respuestas;
+}
