@@ -71,7 +71,6 @@ body {
     padding: 6px;
     font-size: 110%;
     border: none;
-    height: 20px;
 }
 
 .main {
@@ -226,7 +225,8 @@ body {
 
 .login,
 .registro,
-.logout {
+.logout,
+.topTemas {
     flex-direction: column;
     width: 97%;
     background-color: #46494c;
@@ -352,6 +352,23 @@ body {
 .login a:hover,
 .registro a:hover {
     cursor: pointer;
+}
+
+.topTemas {
+    align-items: flex-start;
+    padding: 5px;
+    width: 93%;
+    color: white;
+}
+
+.topTemas h3 {
+    text-decoration: underline;
+}
+
+
+.topTemas p {
+    padding-left: 5px; 
+    margin-top: 1%;
 }
 
 /* FIN Barra lateral */
@@ -532,6 +549,10 @@ body {
 
     .logout a {
         padding: 4%;
+    }
+
+    .topTemas {
+        display: none;
     }
 
     .footer {

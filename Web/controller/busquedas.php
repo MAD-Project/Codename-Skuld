@@ -6,7 +6,7 @@ function verDatosBusqueda(){
 
     $texto = array();
 
-    $busqueda = "%".trim($_POST['search'])."%";
+    $busqueda = isset($_POST['search'])? "%".trim($_POST['search'])."%":"%";
 
     if (empty($busqueda)){
 
