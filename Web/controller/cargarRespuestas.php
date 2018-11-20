@@ -8,7 +8,7 @@
 
         $conexion = conexionDb();
 
-        $select = $conexion->prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,u.id_usuario as id_usuario,u.nickname as nickname,id_tema,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario and id_tema = ? ORDER BY fecha DESC, id_tema ASC;");
+        $select = $conexion->prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,u.id_usuario as id_usuario,u.nickname as nickname,id_tema,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario and id_tema = ? ORDER BY fecha DESC, id_respuesta DESC;");
         $select ->bindParam(1, $_SESSION['idTema']);
         $select->execute();
 
