@@ -21,7 +21,7 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
 
 /* jQuery */
 function abrirDetalle(idTema) {
-    $.post("../controller/detalle.php", {
+    $.post("controller/detalle.php", {
             idTema: idTema,
             contenidoMain: 1
         })
