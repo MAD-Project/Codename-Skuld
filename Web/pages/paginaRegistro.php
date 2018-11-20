@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
 
-    <script type="text/javascript" src="../javaScript/jquery.js"></script>
+    <head>
 
-    <script type="text/javascript" src="../javaScript/validarResgistroUsuario.js"></script>
+        <meta charset="UTF-8">
+        <title>Registro</title>
 
-</head>
-<body>
+    </head>
 
-<form id="registro" name="fregistro" method="post" action="javascript:void(0)">
+    <body>
+        <form class="registro" id="registro" name="fregistro" method="post" action="javascript:void(0)">
 
-    <label for="nombreU">Nombre Usuario *</label>
-    <input type="text" id="nombreU" name="nombreU" class="require" placeholder="Nombre de usuario" autofocus /><br><br>
-    <label for="password">Password *</label>
-    <input type="password" id="password" name="password" class="require" placeholder="Contraseña" /><br><br>
-    <label for="email">Correo electrónico *</label>
-    <input type="email" id="email" name="email" class="require" placeholder="ejemplo@gmail.com" /><br><br>
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Nombre" /><br><br>
-    <label for="apellido">Apellido</label>
-    <input type="text" id="apellido" name="apellido" placeholder="Apellido" /><br><br>
+            <label for="nombre">Nombre</label>
+            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="nombre" autofocus />
+            <label for="apellido">Apellido</label>
+            <input class="inputRegistro" type="text" id="apellido" name="apellido" placeholder="apellido" />
+            <label for="nombreU">Nombre Usuario *</label>
+            <input type="text" id="nombreU" name="nombreU" class="require inputRegistro" placeholder="nombreUsuario" />
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" class="require inputRegistro" placeholder="ejemplo@gmail.com" />
+            <label for="password">Contraseña *</label>
+            <input type="password" id="password" name="password" class="require inputRegistro" placeholder="password" />
 
-    <input type="submit" onclick="eviarDatos('../controller/registro.php','registro','post')" value="Registarse" />
 
-</form>
+            <input class="registroBTN" type="submit" onclick="eviarDatos('controller/registro.php','registro','post')"
+                value="Registarse" />
+            <a onclick="ocultarElementosSidebar('registro','box',null,'topTemas')">Volver</a>
 
-    <a href="../index.php"><p>Volver</p></a>
+        </form>
+        <p id="resultado"></p>
 
-    <p id="resultado"></p>
+    </body>
 
-</body>
 </html>

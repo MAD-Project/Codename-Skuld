@@ -57,6 +57,7 @@ body {
     width: 150px;
     height: 70px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .logoImg {
@@ -70,7 +71,6 @@ body {
     padding: 6px;
     font-size: 110%;
     border: none;
-    height: 20px;
 }
 
 .main {
@@ -87,7 +87,6 @@ body {
     overflow: hidden;
     width: 137%;
     height: 110%;
-
 }
 
 .contenido {
@@ -104,38 +103,60 @@ body {
     margin-bottom: 2%;
 }
 
-/* Subpágina de Temas */
-.temaBox {
+/* Subpágina de Temas y respuestas */
+.temaBox,
+.respBox {
     display: flex;
     background-color: lightgrey;
     border-radius: 5px;
     padding: 10px;
-    width: 95%;
+    width: 94%;
     margin-bottom: 2%;
 }
 
-.temaBox div:nth-child(1) {
+.respBox {
+    width: 195%;
+    margin-left: -50%;
+}
+
+.temaBox div:nth-child(1),
+.respBox div:nth-child(1) {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     margin-right: 20px;
+    margin-left: 1.7%;
 }
 
-.temaBox div:nth-child(2) {
+.temaBox div:nth-child(2),
+.respBox div:nth-child(2) {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-right: 10px;
-    min-width: 95%
+    width: 90%;
 }
 
-.temaBox div:nth-child(2) h4 {
+.respBox div:nth-child(2) {
+    justify-content: space-between;
+}
+
+.temaBox div:nth-child(2) h2 {
+    margin-right: auto;
+}
+
+.temaBox div:nth-child(2) h4,
+.respBox div:nth-child(2) h4 {
     word-break: break-all;
     flex: 100%;
     margin-top: -1%;
+    margin-left: .3%;
+}
+
+.respBox div:nth-child(2) h4 {
+    margin-top: 0;
 }
 
 .temaBox div:nth-child(2):hover,
@@ -144,14 +165,10 @@ body {
     cursor: pointer;
 }
 
-.temaBox a {
-    margin-left: 90%;
+.temaBox a,
+.respBox a {
     color: #dd6e42;
     text-decoration: none;
-}
-
-.temaBox p {
-    margin-right: .8%;
 }
 
 .votos {
@@ -174,42 +191,10 @@ body {
     background-color: #c46c49;
 }
 
-/* FIN subpágina de Temas */
 
-/* Subpágina de respuestas */
-.respBox {
-    display: flex;
-    background-color: lightgrey;
-    border-radius: 5px;
-    padding: 10px;
-    width: 92.8%;
-    margin-left: 4%;
-    margin-bottom: 2%;
-}
 
-.respBox div:nth-child(1) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-right: 2em;
-}
+/* FIN subpágina de Temas y respuestas */
 
-.respBox div:nth-child(2) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-}
-
-.respBox a {
-    color: #dd6e42;
-    text-decoration: none;
-}
-
-/* FIN subpágina de respuestas */
 
 /* Barra lateral */
 .sidebar {
@@ -217,8 +202,9 @@ body {
 }
 
 .login,
-.logout {
-    display: flex;
+.registro,
+.logout,
+.topTemas {
     flex-direction: column;
     width: 97%;
     background-color: #46494c;
@@ -266,8 +252,31 @@ body {
     margin-bottom: 20px;
 }
 
+.registro {
+    padding-top: 10%;
+    color: white;
+}
+
+.inputRegistro {
+    box-shadow: 0;
+    background-color: grey;
+    width: 75%;
+    height: 40px;
+    border: solid 2px darkgrey;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 250ms ease;
+    margin-bottom: 10px;
+}
+
+#password {
+    margin-bottom: 30px;
+}
+
 .loginBTN,
-.logoutBTN {
+.logoutBTN,
+.registroBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -276,6 +285,10 @@ body {
     width: 96.5%;
     transition: .20s;
     font-size: 20px;
+}
+
+.registroBTN {
+    width: 50%;
 }
 
 .loginBTN:hover {
@@ -304,11 +317,36 @@ body {
     margin-bottom: 20%;
 }
 
-.login a {
+.login a,
+.registro a {
     margin-top: 10px;
     font-size: 14px;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 10%;
+    text-decoration: underline;
+}
+
+.login a:hover,
+.registro a:hover {
+    cursor: pointer;
+}
+
+.topTemas {
+    align-items: flex-start;
+    padding: 5px;
+    width: 93%;
+    color: white;
+}
+
+.topTemas h3 {
+    text-decoration: underline;
+}
+
+
+.topTemas p {
+    padding-left: 5px;
+    margin-top: 1%;
+    cursor: pointer;
 }
 
 /* FIN Barra lateral */
@@ -330,7 +368,7 @@ body {
 }
 
 /* Versión movil */
-@media (max-width: 1350px) {
+@media (max-width: 1030px) {
     .grid-container {
         grid-template-columns: auto;
         grid-template-rows: 8% 72% auto;
@@ -366,10 +404,6 @@ body {
         margin: 2.5%;
     }
 
-    .search {
-        display: none;
-    }
-
     .sidebar {
         display: none;
     }
@@ -381,6 +415,15 @@ body {
         transition: 0.5s;
     }
 
+    .login h3 {
+        margin-top: 0;
+    }
+
+    .login a,
+    .registro a {
+        margin-bottom: 0%;
+    }
+
     .logout a {
         margin-bottom: 7%;
     }
@@ -390,7 +433,7 @@ body {
     }
 
     /* Para que el formulario tenga más tamaño */
-    #login {
+    #loginForm {
         width: 60%;
     }
 
@@ -417,16 +460,28 @@ body {
         height: 80%;
     }
 
+    .search {
+        display: none;
+    }
+
     .link {
         margin-right: 20%;
         font-size: 140%;
     }
 
     .login,
+    .registro,
     .logout {
         margin-top: 25%;
         margin-left: 2%;
         width: 96%;
+    }
+
+    .registro {
+        margin-top: 15%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
     }
 
     .logout a {
@@ -444,26 +499,38 @@ body {
     }
 }
 
-@media (min-width: 460px) and (max-width: 1350px) {
+@media (min-width: 460px) and (max-width: 1030px) {
     .logo {
         width: 16%;
         height: 90%;
     }
 
     .link {
+        margin-left: 10%;
         font-size: 190%;
-        margin-right: 6%;
     }
 
     .login,
+    .registro,
     .logout {
         margin-top: 15%;
-        margin-left: 25%;
+        margin-left: 22%;
         width: 56%;
+    }
+
+    .registro {
+        margin-top: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 100%;
     }
 
     .logout a {
         padding: 4%;
+    }
+
+    .topTemas {
+        display: none;
     }
 
     .footer {
@@ -474,5 +541,6 @@ body {
         width: 10.5%;
         height: 50%;
         margin-bottom: -1%;
+        margin-left: 2.7%;
     }
 }
