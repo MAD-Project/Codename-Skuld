@@ -6,22 +6,27 @@ function validarFormulario(idFormulario) {
 
     if ($(idFormulario+" input.require").val() == ""){
 
-        alert("Algunos de los campos son obligatorios");
-        return false;
-    }
-    else if ($(idFormulario+" input[type='password'].require").length
-        && !exprePassword.test($(idFormulario+" input[type='password'].require").val())){
-
-        alert("La contraseña no es válida");
+        $('#nombreU').css('background','red');
+        $('#email').css('background','red');
+        $('#password').css('background','red');
         return false;
     }
     else if ($(idFormulario+" input[type='email'].require").length
         && !expreEmail.test($(idFormulario+" input[type='email'].require").val())){
 
-        alert("El email no es válido");
+        $('#password').css('background','red');
+        return false;
+    }
+    else if ($(idFormulario+" input[type='password'].require").length
+        && !exprePassword.test($(idFormulario+" input[type='password'].require").val())){
+
+        $('#email').css('background','red');
         return false;
     }
     else {
+        $('#nombreU').css('background','#faffbd');
+        $('#email').css('background','#faffbd');
+        $('#password').css('background','#faffbd');
         return true;
     }
 
@@ -29,7 +34,6 @@ function validarFormulario(idFormulario) {
 
 function eviarDatos(url,idFormulario,method) {
 
-    event.preventDefault();
     let selectorjQformulario = "#"+idFormulario;
     let valido = validarFormulario(selectorjQformulario);
 
@@ -43,7 +47,7 @@ function eviarDatos(url,idFormulario,method) {
             method: method,
             data: datos,
             success: function (data) {
-debugger;
+
                 if (data === "nombreUsuario"){
 
                     $("#resultado").html("Este nombre de usuario ya existe");
