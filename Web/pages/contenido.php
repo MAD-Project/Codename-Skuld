@@ -40,6 +40,6 @@
 
 
     <?php endforeach;?>
-    <button id="btnCargarMas" style="margin-bottom:2em;" onclick="cargarMasTemas('<?=implode(",",$temasVotados);?>')">Cargar más</button>
+    <button id="btnCargarMas" style="margin-bottom:2em;" onclick="cargarMasTemas('<?= isset($temasVotados)?implode(",",$temasVotados):"";?>')">Cargar más</button>
 
 </form>

@@ -8,7 +8,6 @@ function votarPuntuacion(idTema) {
                 if(data==-1){
                     alert("Ha ocurrido un error");
                 }else {
-                    alert("Has votado!");
                     $("#puntuacion" + idTema).html(data);
                     $("#votar" + idTema).prop('disabled', true);
                 }
@@ -56,7 +55,8 @@ function estructuraTema(data,temas) {
                 '<a href="#">' + e["autor"] + '</a>' +
             '</div> </div>'
         );
-        temas.indexOf(e['id']) != -1 ? $("#votar" + e["id"]).prop('disabled', true) : "";
-
+        if(temas === "" || temas.indexOf(e['id']) !== -1){
+         $("#votar" + e["id"]).prop('disabled', true);
+        }
     });
 }
