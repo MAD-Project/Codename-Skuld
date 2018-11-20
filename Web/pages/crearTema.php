@@ -15,8 +15,7 @@
 
     <label for="tituloTema">Título *</label>
     <input type="text" id="tituloTema" name="tituloTema" class="require" placeholder="Título" autofocus /><br><br>
-    <label for="texto">Texto *</label>
-    <textarea id="texto" name="texto" class="" placeholder="texto" ></textarea><br><br>
+    <textarea id="textareaTema" name="textareaTema" class="" placeholder="texto" ></textarea><br><br>
 
     <label for="fichero">Seleccione archivo:</label>
     <input id="fichero" name="fichero" type="file" size="150" maxlength="150"><br><br>

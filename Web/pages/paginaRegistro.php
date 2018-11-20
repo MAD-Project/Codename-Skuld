@@ -12,18 +12,18 @@
         <form class="registro" id="registro" name="fregistro" method="post" action="javascript:void(0)">
 
             <label for="nombre">Nombre</label>
-            <input class="inputRegistro" type="text" id="nombre" name="nombre" autofocus />
+            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="nombre" autofocus />
             <label for="apellido">Apellido</label>
-            <input class="inputRegistro" type="text" id="apellido" name="apellido" />
+            <input class="inputRegistro" type="text" id="apellido" name="apellido" placeholder="apellido" />
             <label for="nombreU">Nombre Usuario *</label>
-            <input type="text" id="nombreU" name="nombreU" class="require inputRegistro" />
+            <input type="text" id="nombreU" name="nombreU" class="require inputRegistro" placeholder="nombreUsuario" />
             <label for="email">Correo electrónico *</label>
             <input type="email" id="email" name="email" class="require inputRegistro" placeholder="ejemplo@gmail.com" />
             <label for="password">Contraseña *</label>
-            <input type="password" id="password" name="password" class="require inputRegistro" />
+            <input type="password" id="password" name="password" class="require inputRegistro" placeholder="password" />
 
 
-            <input class="registroBTN" type="submit" onclick="eviarDatos('../Web/controller/registro.php','registro','post')"
+            <input class="registroBTN" type="submit" onclick="eviarDatos('controller/registro.php','registro','post')"
                 value="Registarse" />
             <a onclick="ocultarElementosSidebar('registro','box',null,'topTemas')">Volver</a>
 
