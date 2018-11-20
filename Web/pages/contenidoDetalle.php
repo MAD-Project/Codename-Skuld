@@ -2,6 +2,8 @@
     <?php
         include_once 'controller/consultasBD.php';
 
+        include_once 'controller/cargarRespuestas.php';
+
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
@@ -46,3 +48,25 @@
 
 
 </form>
+
+<?php
+
+    if ($_SESSION['login']){
+
+        ?>
+
+            <div id="responderTemaDiv">
+
+                <form method="post" id="respuesta" action="javascript:void(0)">
+                    <textarea id="textareaRespuesta" name="textareaRespuesta" class="" placeholder="texto" ></textarea><br><br>
+                    <input type="submit"  value="Crear Respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
+                </form>
+
+            </div>
+
+        <?php
+
+    }
+
+?>
+
