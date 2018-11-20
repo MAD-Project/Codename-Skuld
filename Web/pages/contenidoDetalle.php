@@ -23,7 +23,7 @@
         </div>
     </div>
     <?php
-        $respuestas = cargarRespuestas();
+        $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
     <div id="respuestas">
         <?php foreach ($respuestas as $resp):?>
@@ -41,7 +41,7 @@
                 </h4>
             </div>
         </div>
-        <?php endforeach; 
+        <?php endforeach;
             $_SESSION["contenidoMain"] = 0;
         ?>
     </div>

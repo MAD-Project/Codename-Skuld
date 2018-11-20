@@ -6,8 +6,8 @@
 <div class="topTemas" id="topTemas">
     <h3>Temas más valorados</h3>
     <?php
-        foreach ($topTemas as $key) {
-            echo "<p>",$key,"</p>";
+        foreach ($topTemas as $key => $value) {
+            echo "<p onclick='abrirDetalle(",$value["id"],")'>",$value["titulo"],"</p>";
         }
     ?>
 </div>
