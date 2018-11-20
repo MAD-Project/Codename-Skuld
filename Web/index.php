@@ -43,7 +43,7 @@
         </div>
         <div class="hide-scroll" id="main">
             <div class="main">
-                <?php include 'pages/contenido.php' ?>
+                <?php require_once 'pages/contenido.php' ?>
             </div>
         </div>
         <footer class="footer">
