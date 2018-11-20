@@ -1,7 +1,7 @@
 <?php
 
-    include_once 'controller/conexionDb.php';
-    include_once 'controller/selectsUtiles.php';
+    include_once '../controller/conexionDb.php';
+    include_once '../controller/selectsUtiles.php';
 
     function responderTema(){
 
