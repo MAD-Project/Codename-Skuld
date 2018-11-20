@@ -2,6 +2,8 @@
     <?php
         include_once 'controller/consultasBD.php';
 
+        include_once 'controller/cargarRespuestas.php';
+
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
@@ -21,38 +23,7 @@
         </div>
     </div>
     <?php
-        $respuestas =[
-            ["id"=> "2",
-            "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "valoracion" => 47,
-            "fecha"=> "12/11/2018",
-            "autor"=>"Mikel"],
-
-            ["id"=> "3",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "4",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "5",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "6",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"]
-
-        ];
+        $respuestas = cargarRespuestas();
         ?>
     <div id="respuestas">
         <?php foreach ($respuestas as $resp):?>
@@ -77,3 +48,25 @@
 
 
 </form>
+
+<?php
+
+    if ($_SESSION['login']){
+
+        ?>
+
+            <div id="responderTemaDiv">
+
+                <form method="post" id="respuesta" action="javascript:void(0)">
+                    <textarea id="textareaRespuesta" name="textareaRespuesta" class="" placeholder="texto" ></textarea><br><br>
+                    <input type="submit"  value="Crear Respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
+                </form>
+
+            </div>
+
+        <?php
+
+    }
+
+?>
+
