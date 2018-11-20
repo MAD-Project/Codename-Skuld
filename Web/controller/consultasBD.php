@@ -98,3 +98,25 @@ function temasVotadosUsuario()
     closeConexionDb($conexion);
     return $temasVotados;
 }
+
+    function detalleTema($idTema)
+    {
+        $conexion = conexionDb();
+        $tema = array();
+
+
+        $select = $conexion -> prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+        $select->execute(array(
+                "idTema" => $idTema));
+        
+        while ($fila = $select->fetchObject()) {
+            $tema["id"]=$fila -> id_tema;
+            $tema["titulo"]=$fila -> titulo;
+            $tema["texto"]=$fila -> texto;
+            $tema["fecha"]=$fila -> fecha;
+            $tema["autor"]=$fila -> nickname;
+            $tema["valoracion"]=$fila -> val;
+        }
+
+        return $tema;
+    }

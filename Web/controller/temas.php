@@ -26,7 +26,7 @@
 
         $insert->execute(array(
             "atitulo" => $_POST['tituloTema'],
-            "atexto" => $_POST['texto'],
+            "atexto" => $_POST['textareaTema'],
             "afecha" => $fecha,
             "aid_usuario" => $idUsuario
         ));

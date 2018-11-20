@@ -1,5 +1,5 @@
-<form id="contenido" class="contenido" method="POST" action="contenido.php">
-        <?php
+<form class="contenido" method="POST" action="contenido.php">
+    <?php
         include_once 'controller/consultasBD.php';
         include_once 'controller/busquedas.php';
 
@@ -9,8 +9,7 @@
 
         if (isset($_POST['search'])){
             $temas = verDatosBusqueda();
-        }
-        else{
+        } else {
             $temas = cargarTemas();
         }
 
@@ -23,7 +22,7 @@
                    <!-- si temasVotados no se ha iniciado, el usuario no esta logueado, ergo no puede votar. Y si el id del tema se encuentra en el array quiere decir que ya ha votado ese tema-->
 
         </div>
-        <div onclick="alert('link')">
+        <div onclick="abrirDetalle(<?= $tema['id'] ?>)">
             <h2>
                 <?= $tema["titulo"] ?>
             </h2>
