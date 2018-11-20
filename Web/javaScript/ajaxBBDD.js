@@ -60,3 +60,26 @@ function estructuraTema(data,temas) {
         }
     });
 }
+
+function respuestas(url, idFormulario, method) {
+
+    let selectorjQformulario = "#"+idFormulario;
+    let valido = validarFormulario(selectorjQformulario);
+    let datos = $(selectorjQformulario).serialize();
+
+    $.ajax({
+
+        url: url,
+        method: method,
+        data: datos,
+        success: function (data) {
+            recargarPágina();
+        },
+        error: function (data) {
+
+            alert("Error" + data);
+        }
+
+    });
+
+}
