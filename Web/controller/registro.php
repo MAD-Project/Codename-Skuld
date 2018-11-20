@@ -3,6 +3,7 @@
 session_start();
 
 include_once 'conexionDb.php';
+include_once '../pages/logout.php';
 
 $usuarioExistente = false;
 $mensajeUsuarioExistente = "";

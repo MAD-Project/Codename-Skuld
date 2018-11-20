@@ -43,7 +43,7 @@ function eviarDatos(url,idFormulario,method) {
             method: method,
             data: datos,
             success: function (data) {
-
+debugger;
                 if (data === "nombreUsuario"){
 
                     $("#resultado").html("Este nombre de usuario ya existe");
