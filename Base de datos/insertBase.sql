@@ -1,4 +1,4 @@
-INSERT INTO USUARIOS (nickname,password,email,nombre,apellidos) VALUES ("Mikel","123","mikel@gmail.com","Mikel","Ferreiro Guridi");
+INSERT INTO USUARIOS (nickname,password,email,nombre,apellidos) VALUES ("Mikel","12345Abcde","mikel@gmail.com","Mikel","Ferreiro Guridi");
 INSERT INTO USUARIOS (nickname,password,email,nombre,apellidos) VALUES ("Dani","123","dani@gmail.com","Danieh","Barra");
 INSERT INTO USUARIOS (nickname,password,email,nombre,apellidos) VALUES ("Alex","123","alex@gmail.com","Aleee","Ruiz");
 
