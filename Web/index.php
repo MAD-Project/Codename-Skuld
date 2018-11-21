@@ -44,26 +44,10 @@
             <?php require_once 'pages/topTemas.php'?>
         </div>
         <div class="hide-scroll" id="main">
-            <div class="main">
-                <?php
-                    if ($_SESSION["contenidoMain"] == 0) {
-                        ?>
+            <div class="main" id="mainContenido">
                 <div>
                     <?php require_once 'pages/contenido.php' ?>
                 </div>
-              
-                <?php
-                    }
-                ?>
-                <?php
-                    if ($_SESSION["contenidoMain"] == 1) {
-                        ?>
-
-                    <?php include 'pages/contenidoDetalle.php' ?>
-           
-                <?php
-                    }
-                ?>
             </div>
         </div>
         <footer class="footer">
