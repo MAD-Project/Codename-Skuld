@@ -1,9 +1,15 @@
 <form class="contenido" method="POST" action="content.php">
     <?php
-        include_once 'controller/consultasBD.php';
+        include_once '../controller/consultasBD.php';
 
-        include_once 'controller/cargarRespuestas.php';
+        include_once '../controller/cargarRespuestas.php';
 
+        session_start();
+        
+        if ($_POST["idTema"] != null) {
+            $_SESSION["idTema"] = $_POST["idTema"];
+        }
+        
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
@@ -40,9 +46,7 @@
             </h4>
         </div>
     </div>
-    <?php endforeach;
-            $_SESSION["contenidoMain"] = 0;
-        ?>
+    <?php endforeach; ?>
 
 
 </form>
@@ -53,8 +57,8 @@
         ?>
 
 <div class="responderBox" id="responderTemaDiv">
-
     <form class="formResponder" method="post" id="respuesta" action="javascript:void(0)">
+    <p>Mensaje enviado</p>
         <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
             rows="4" required></textarea><br><br>
         <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
