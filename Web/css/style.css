@@ -65,7 +65,7 @@ body {
     height: 100%;
 }
 
-#buscador{
+#buscador {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -78,7 +78,8 @@ body {
     font-size: 110%;
     border: none;
 }
-.etiqueta{
+
+.etiqueta {
     margin-right: 1em;
     border: 1px solid #46494c;
     background-color: #46494c;
@@ -213,6 +214,16 @@ body {
     background-color: #c46c49;
 }
 
+#mensajeEnviadoRespuesta {
+    border: 1px solid green;
+    background-color: lightgreen;
+    width: 25%;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 1%;
+    font-size: 110%;
+}
+
 .formResponder {
     width: 100%;
     display: flex;
@@ -232,7 +243,7 @@ body {
 .responderBTN {
     width: 30%;
     margin-top: 1.5%;
-    font-size: 100%;
+    font-size: 110%;
 }
 
 /* FIN subpágina de Temas y respuestas */
