@@ -23,6 +23,7 @@
         <script type="text/javascript" src="javaScript/ajaxBBDD.js"></script>
         <script src="javaScript/index.js"></script>
         <script type="text/javascript" src="javaScript/validarResgistroUsuario.js"></script>
+        <script src="javaScript/buscador.js"></script>
 
     </head>
 
@@ -33,16 +34,14 @@
             <!-- Borrar Nav, sin uso -->
             <a class="link" onclick="mostrarCaja()" id="link">Login</a>
 
-            <form id="buscador" name="buscador" method="post">
-                <input class="search" id="search" name="search" type="search" placeholder="Buscar aquí..." autofocus>
-            </form>
+            <?php require_once 'pages/buscador.php'?>
 
         </div>
         <div class="sidebar" id="sidebar">
             <!-- login -->
-            <?php include 'pages/login.php'?>
-            <?php include 'pages/paginaRegistro.php'?>
-            <?php include 'pages/topTemas.php'?>
+            <?php require_once 'pages/login.php'?>
+            <?php require_once 'pages/paginaRegistro.php'?>
+            <?php require_once 'pages/topTemas.php'?>
         </div>
         <div class="hide-scroll" id="main">
             <div class="main">
@@ -50,17 +49,18 @@
                     if ($_SESSION["contenidoMain"] == 0) {
                         ?>
                 <div>
-                    <?php include 'pages/contenido.php' ?>
+                    <?php require_once 'pages/contenido.php' ?>
                 </div>
+              
                 <?php
                     }
                 ?>
                 <?php
                     if ($_SESSION["contenidoMain"] == 1) {
                         ?>
-                <div>
+
                     <?php include 'pages/contenidoDetalle.php' ?>
-                </div>
+           
                 <?php
                     }
                 ?>

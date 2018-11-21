@@ -65,6 +65,12 @@ body {
     height: 100%;
 }
 
+#buscador{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .search {
     border-radius: 40px;
     margin-right: 60px;
@@ -72,13 +78,21 @@ body {
     font-size: 110%;
     border: none;
 }
+.etiqueta{
+    margin-right: 1em;
+    border: 1px solid #46494c;
+    background-color: #46494c;
+    border-radius: 5px;
+    color: #dd6e42;
+    padding: 0.5em;
+}
 
 .main {
     grid-area: main;
     padding-top: 1%;
     /* Ocultar barra scroll en todos los navegadores */
     overflow: auto;
-    max-height: 100%;
+    max-height: 97%;
     margin-right: -100px;
     padding-right: 100px;
 }
@@ -105,7 +119,8 @@ body {
 
 /* Subpágina de Temas y respuestas */
 .temaBox,
-.respBox {
+.respBox,
+.responderBox {
     display: flex;
     background-color: lightgrey;
     border-radius: 5px;
@@ -114,9 +129,13 @@ body {
     margin-bottom: 2%;
 }
 
-.respBox {
-    width: 195%;
-    margin-left: -50%;
+.respBox,
+.responderBox {
+    width: 65%;
+}
+
+.responderBox {
+    margin-left: 16.6%;
 }
 
 .temaBox div:nth-child(1),
@@ -161,7 +180,8 @@ body {
 
 .temaBox div:nth-child(2):hover,
 .respBox:nth-child(2):hover,
-.votarBTN:hover {
+.votarBTN:hover,
+.responderBTN:hover {
     cursor: pointer;
 }
 
@@ -178,7 +198,8 @@ body {
     border: 1px solid black;
 }
 
-.votarBTN {
+.votarBTN,
+.responderBTN {
     border-radius: 5px;
     border: none;
     background-color: #dd6e42;
@@ -187,11 +208,32 @@ body {
     transition: .20s;
 }
 
-.votarBTN:active {
+.votarBTN:active,
+.responderBTN:active {
     background-color: #c46c49;
 }
 
+.formResponder {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.respuestaArea {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    font-family: 'Roboto', Verdana, sans-serif;
+    width: 98.5%;
+    resize: none;
+}
+
+.responderBTN {
+    width: 30%;
+    margin-top: 1.5%;
+    font-size: 100%;
+}
 
 /* FIN subpágina de Temas y respuestas */
 

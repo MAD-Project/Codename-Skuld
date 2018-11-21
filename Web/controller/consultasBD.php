@@ -12,8 +12,18 @@ function cargarTemas()
     $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC  LIMIT ? ,5 ;");
     $select->bindParam(1, $inicioRowTemas, PDO::PARAM_INT);
     $select->execute();
-
     $temas = array();
+    $temas=recorrerTemas($select,$temas);
+
+    closeConexionDb($conexion);
+    if ($inicioRowTemas === 0) {
+        return $temas;
+    } else {
+        die(json_encode($temas));
+    }
+}
+
+function recorrerTemas($select,$temas){
     while ($fila = $select->fetchObject()) {
         $tema["id"] = $fila->id_tema;
         $tema["titulo"] = $fila->titulo;
@@ -23,12 +33,30 @@ function cargarTemas()
         $tema["valoracion"] = $fila->val;
         array_push($temas, $tema);
     }
-    closeConexionDb($conexion);
-    if ($inicioRowTemas === 0) {
-        return $temas;
-    } else {
-        die(json_encode($temas));
+    return $temas;
+}
+
+function verDatosBusqueda(){
+
+    $texto = array();
+
+    $busqueda = isset($_POST['search'])? "%".trim($_POST['search'])."%":"%";
+
+    $conexion = conexionDb();
+
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
+    $select->bindParam( 1 ,$busqueda);
+    $select->bindParam( 2 ,$busqueda);
+    $select->execute();
+
+    if ($select->rowCount() > 0){
+        $texto=recorrerTemas($select,$texto);
     }
+
+    closeConexionDb($conexion);
+
+    return $texto;
+
 }
 
 function annadirValoracion($nickname, $objetivo, $idObjetivo)
@@ -77,9 +105,9 @@ function cargarTopTemas()
     $select->execute();
 
     while ($fila = $select->fetchObject()) {
-        $topTema["id"] = $fila -> ID;
-        $topTema["titulo"] = $fila -> TITULO;
-        $topTema["valoracion"] = $fila -> VALORACIONES;
+        $topTema["id"] = $fila->ID;
+        $topTema["titulo"] = $fila->TITULO;
+        $topTema["valoracion"] = $fila->VALORACIONES;
         array_push($topTemas, $topTema);
         $id++;
     }
@@ -107,17 +135,17 @@ function detalleTema($idTema)
     $tema = array();
 
 
-    $select = $conexion -> prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
     $select->execute(array(
-            "idTema" => $idTema));
-    
+        "idTema" => $idTema));
+
     while ($fila = $select->fetchObject()) {
-        $tema["id"]=$fila -> id_tema;
-        $tema["titulo"]=$fila -> titulo;
-        $tema["texto"]=$fila -> texto;
-        $tema["fecha"]=$fila -> fecha;
-        $tema["autor"]=$fila -> nickname;
-        $tema["valoracion"]=$fila -> val;
+        $tema["id"] = $fila->id_tema;
+        $tema["titulo"] = $fila->titulo;
+        $tema["texto"] = $fila->texto;
+        $tema["fecha"] = $fila->fecha;
+        $tema["autor"] = $fila->nickname;
+        $tema["valoracion"] = $fila->val;
     }
 
     return $tema;
@@ -129,9 +157,9 @@ function respuestasTema($idTema)
     $respuestas = array();
 
 
-    $select = $conexion -> prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario AND r.id_tema = :idTema ORDER BY r.fecha DESC, r.id_respuesta DESC");
+    $select = $conexion->prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario AND r.id_tema = :idTema ORDER BY r.fecha DESC, r.id_respuesta DESC");
     $select->execute(array(
-            "idTema" => $idTema));
+        "idTema" => $idTema));
 
     while ($fila = $select->fetchObject()) {
         $respuesta["id"] = $fila->id_respuesta;
