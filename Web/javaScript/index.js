@@ -3,6 +3,7 @@ function mostrarCaja() {
     document.getElementById('box').classList.add("abrirlogin");
     document.getElementById("sidebar").classList.add("abrirlogin");
     document.getElementById("main").style.display = "none";
+    document.getElementById("topTemas").style.display = "none";
 }
 
 /* Recarga la página sin dejar rastro en el historial */
@@ -17,7 +18,7 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
     if (idOcultar2 != null) {
         document.getElementById(idOcultar2).style.display = "none";
     }
-    if (idMostrar2 != null) {
+    if (idMostrar2 != null && window.innerWidth > 1030) {
         document.getElementById(idMostrar2).style.display = "flex";
     }
 }
