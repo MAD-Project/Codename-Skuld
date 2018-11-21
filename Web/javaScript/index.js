@@ -22,15 +22,22 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
     }
 }
 
-/* jQuery */
-/* Envía el tema clickado y recarga la página para visualizar el detalle de ese tema */
+/* jQuery/AJAX */
+/* Envía el tema clickado y visualiza el detalle de ese tema sin recargar la página, en caso de haber hecho scroll te lleva arriba */
 function abrirDetalle(idTema) {
-    $.post("controller/detalle.php", {
-            idTema: idTema,
-            contenidoMain: 1
+    $.ajax({
+            type: "POST",
+            url: "pages/contenidoDetalle.php",
+            dataType: "html",
+            data: ({
+                idTema: idTema
+            })
         })
         .done(function (data) {
-            recargarPagina();
+            $("#mainContenido").html(data);
+            $('#mainContenido').animate({
+                scrollTop: 0
+            }, 'slow');
         });
 }
 
@@ -46,4 +53,4 @@ $(function () {
     comprobarLogin();
     ocultarElementosSidebar('registro', 'box', null, 'topTemas');
 });
-/*FIN jQuery */
+/*FIN jQuery/AJAX */

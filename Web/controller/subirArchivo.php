@@ -3,7 +3,9 @@
 include_once 'conexionDb.php';
 include_once 'selectsUtiles.php';
 
-$conexion = conexionDb();
+function subirArchivo($idTema){
+
+    $conexion = conexionDb();
 
     if(is_uploaded_file($_FILES['fichero']['tmp_name'])) {
 
@@ -30,16 +32,21 @@ $conexion = conexionDb();
 
         if(move_uploaded_file($_FILES['fichero']['tmp_name'], $upload)) { //movemos el archivo a su ubicacion
 
+            $src = 'archivos/'.$idUsuario.'/'.$nombrefinal;
+
             $insert = $conexion->prepare("INSERT INTO archivosadjuntos(src,id_tema,id_respuesta)
                                   VALUES(:isrc,:iidTema,:iidRespuesta)");
 
             $insert->execute(array(
-                "isrc" => $upload,
-                "iidTema" => null,
+                "isrc" => $src,
+                "iidTema" => $idTema,
                 "iidRespuesta" => null
             ));
 
             closeConexionDb($conexion);
         }
+    }
+
 }
+
 ?>
