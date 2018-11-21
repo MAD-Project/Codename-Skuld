@@ -31,7 +31,18 @@
             "aid_usuario" => $idUsuario
         ));
 
+        $select = $conexion->prepare("SELECT id_tema FROM temas WHERE titulo = ? ");
+        $select->bindParam( 1 ,$_POST['tituloTema']);
+
+        $select->execute();
+
+        $tema = $select->fetchObject();
+
+        $idTema = $tema->id_tema;
+
         include_once 'subirArchivo.php';
+
+        subirArchivo($idTema);
 
         closeConexionDb($conexion);
 
