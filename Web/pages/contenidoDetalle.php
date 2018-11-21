@@ -56,7 +56,7 @@
 
     <form class="formResponder" method="post" id="respuesta" action="javascript:void(0)">
         <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
-            rows="4"></textarea><br><br>
+            rows="4" required></textarea><br><br>
         <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
     </form>
 
