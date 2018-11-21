@@ -1,7 +1,6 @@
 <form class="contenido" method="POST" action="contenido.php">
     <?php
         include_once 'controller/consultasBD.php';
-        include_once 'controller/busquedas.php';
 
         if (isset($_SESSION['nombreUsuario'])){
             $temasVotados = temasVotadosUsuario();
