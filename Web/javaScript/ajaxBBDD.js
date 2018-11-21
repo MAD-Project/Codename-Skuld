@@ -63,23 +63,41 @@ function estructuraTema(data,temas) {
 
 function respuestas(url, idFormulario, method) {
 
-    let selectorjQformulario = "#"+idFormulario;
-    let valido = validarFormulario(selectorjQformulario);
-    let datos = $(selectorjQformulario).serialize();
+    function validarRespuesta() {
 
-    $.ajax({
+        if ($('#textareaRespuesta').val() == "") {
 
-        url: url,
-        method: method,
-        data: datos,
-        success: function (data) {
-            recargarPagina();
-        },
-        error: function (data) {
+            return false;
+        }
+        else {
 
-            alert("Error" + data);
+            return true;
         }
 
-    });
+    }
+
+    let valido = validarRespuesta();
+
+    if (valido){
+
+        let selectorjQformulario = "#"+idFormulario;
+        let datos = $(selectorjQformulario).serialize();
+
+        $.ajax({
+
+            url: url,
+            method: method,
+            data: datos,
+            success: function (data) {
+                recargarPagina();
+            },
+            error: function (data) {
+
+                alert("Error" + data);
+            }
+
+        });
+
+    }
 
 }
