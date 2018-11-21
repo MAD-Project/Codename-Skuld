@@ -5,22 +5,30 @@ function validarFormulario(idFormulario) {
 
     if ($(idFormulario + " input.require").val() == "") {
 
-        $('#nombreU').css('background','red');
-        $('#email').css('background','red');
-        $('#password').css('background','red');
+        $('#nombreU').css('background', 'red');
+        $('#email').css('background', 'red');
+        $('#password').css('background', 'red');
+        return false;
+    }
+    else if ($('#nombreU').val()==""){
+
+        $('#nombreU').css('background', 'red');
         return false;
     }
     else if ($(idFormulario+" input[type='email'].require").length
         && !expreEmail.test($(idFormulario+" input[type='email'].require").val())){
 
-        $('#password').css('background','red');
+        $('#email').css('background','red');
+        $('#nombreU').css('background','#faffbd');
+        $('#password').css('background','#faffbd');
         return false;
     }
     else if ($(idFormulario+" input[type='password'].require").length
         && !exprePassword.test($(idFormulario+" input[type='password'].require").val())){
 
-
-        $('#email').css('background','red');
+        $('#password').css('background','red');
+        $('#nombreU').css('background','#faffbd');
+        $('#email').css('background','#faffbd');
         return false;
     }
     else {
@@ -59,7 +67,7 @@ function eviarDatos(url, idFormulario, method) {
                     document.getElementById(idFormulario).reset();
                     $("#resultado").html("Usuario registrado con exito");
 
-                    recargarPágina();
+                    recargarPagina();
 
                 }
             },

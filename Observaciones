@@ -1,4 +1,4 @@
-
+﻿
 + Fecha a Tema/respuesta en BBDD;
 + Tabla archivos adjuntos (idArchivo, src, idTema, idRespuesta, idUsuario)
 + Pagina usuario o modal en la que se muestre informacion sobre un usuario (al hacer click en el autor de un tema/respuesta...)
@@ -7,3 +7,6 @@
 
 +Mejor respuesta de momento la que mas valoracion tenga, luego si hay tiempo que la elija el usuario(añadir campo BBDD)
 +Tabla favoritos aun no implementada.
+
+
+añadir en la base de datos a titulo que sea unico

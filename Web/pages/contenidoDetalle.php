@@ -29,6 +29,8 @@
             </p>
             <h4><?= $tema["texto"] ?>
             </h4>
+            <h4><a href="<?= $tema["src"] ?>">Archivo</a>
+            </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
