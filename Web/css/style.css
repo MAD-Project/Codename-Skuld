@@ -4,6 +4,27 @@
     -Todo está ordenado por orden de aparición-
     -------------------------------------------
 */
+
+/* Core Theme Colors */
+:root {
+    /* Fondo  */
+    --generalBG: #f3f3f3;
+    /* Fondo header de la página */
+    --header: #10a066;
+    /* Elementos de la zona main. Default: #edeec9 */
+    --elementosMain: #edeec9;
+    /* Elementos en la barra lateral. Default: #6c756b */
+    --fondoSidebar: #6c756b;
+    /* Botones elementos main. Defaul: #98c9a3 */
+    --elementosBTN: #98c9a3;
+    /* Boton activado de elementos del main. Defaul: #bfd8bd */
+    --elementosBTNActivado: #bfd8bd;
+    /* Botones barra lateral. Default: #dd6e42 */
+    --sidebarBTN: #dd6e42;
+    /* Fondo de las cajas input. Default: #c3baba */
+    --input: #c3baba;
+}
+
 *:focus {
     outline: none;
 }
@@ -33,20 +54,12 @@ body {
     grid-gap: 10px;
     grid-template-columns: 60% 20%;
     grid-template-rows: 11% 79% auto;
-    background-color: white;
+    background-color: var(--generalBG);
 }
-
-/* Ayuda visual de la separacion 
-.grid-container>div,
-.footer {
-    border: 1px solid black;
-}
-
-  FIN de Ayuda visual de la separacion */
 
 .header {
     grid-area: header;
-    background-color: #10a066;
+    background-color: var(--header);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -123,7 +136,7 @@ body {
 .respBox,
 .responderBox {
     display: flex;
-    background-color: lightgrey;
+    background-color: var(--elementosMain);
     border-radius: 5px;
     padding: 10px;
     width: 94%;
@@ -203,7 +216,7 @@ body {
 .responderBTN {
     border-radius: 5px;
     border: none;
-    background-color: #dd6e42;
+    background-color: var(--elementosBTN);
     height: 20px;
     width: 100%;
     transition: .20s;
@@ -211,7 +224,7 @@ body {
 
 .votarBTN:active,
 .responderBTN:active {
-    background-color: #c46c49;
+    background-color: var(--elementosBTNActivado);
 }
 
 #mensajeEnviadoRespuesta {
@@ -260,7 +273,7 @@ body {
 .topTemas {
     flex-direction: column;
     width: 97%;
-    background-color: #46494c;
+    background-color: var(--fondoSidebar);
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -281,12 +294,11 @@ body {
 
 .inp {
     box-shadow: 0;
-    background-color: grey;
+    background-color: var(--input);
     width: 95%;
     height: 40px;
     border: solid 2px darkgrey;
     font-size: 20px;
-    color: white;
     border-radius: 5px;
     text-align: center;
     transition: all 250ms ease;
@@ -312,7 +324,7 @@ body {
 
 .inputRegistro {
     box-shadow: 0;
-    background-color: grey;
+    background-color: var(--input);
     width: 75%;
     height: 40px;
     border: solid 2px darkgrey;
@@ -332,7 +344,7 @@ body {
 .registroBTN {
     border-radius: 5px;
     border: none;
-    background-color: #dd6e42;
+    background-color: var(--sidebarBTN);
     height: 40px;
     margin-left: 1.6%;
     width: 96.5%;
@@ -580,10 +592,6 @@ body {
 
     .logout a {
         padding: 4%;
-    }
-
-    .topTemas {
-        display: none;
     }
 
     .footer {
