@@ -27,7 +27,7 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
 function abrirDetalle(idTema) {
     $.ajax({
             type: "POST",
-            url: "../pages/contenidoDetalle.php",
+            url: "pages/contenidoDetalle.php",
             dataType: "html",
             data: ({
                 idTema: idTema

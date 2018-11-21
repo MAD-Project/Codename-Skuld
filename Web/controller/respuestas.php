@@ -22,15 +22,19 @@ session_start();
                 "aid_tema" => $_SESSION['idTema']
             ));
 
-            die($_SESSION["contenidoMain"]=1);
+            $_SESSION['mensajeEnviadoRespuesta'] = 1;
+
+            closeConexionDb($conexion);
 
         }
         catch (PDOException $e){
             die($e);
         }
 
-        closeConexionDb($conexion);
+    }
+    else {
 
+        $_SESSION['mensajeEnviadoRespuesta'] = 0;
     }
 
 ?>
