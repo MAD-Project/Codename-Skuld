@@ -14,6 +14,7 @@ CREATE TABLE TEMAS(
   titulo varchar(35) COLLATE utf8_spanish_ci NOT NULL,
   texto varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
   fecha date NOT NULL,
+  etiqueta varchar(25) COLLATE utf8_spanish_ci,
   id_usuario INT NOT NULL,
   PRIMARY KEY (id_tema),
   FOREIGN KEY (id_usuario)
@@ -36,6 +37,9 @@ CREATE TABLE RESPUESTAS (
         ON DELETE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+ALTER TABLE TEMAS ADD id_respuesta_elegida INT;
+ALTER TABLE TEMAS ADD CONSTRAINT FOREIGN KEY (id_respuesta_elegida) REFERENCES RESPUESTAS(id_respuesta);
 
 CREATE TABLE VALORACIONES (
   id_valoracion INT AUTO_INCREMENT,
