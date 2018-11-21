@@ -23,7 +23,7 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
 }
 
 /* jQuery/AJAX */
-/* Envía el tema clickado y visualiza el detalle de ese tema sin recargar la página */
+/* Envía el tema clickado y visualiza el detalle de ese tema sin recargar la página, en caso de haber hecho scroll te lleva arriba */
 function abrirDetalle(idTema) {
     $.ajax({
             type: "POST",
@@ -35,6 +35,9 @@ function abrirDetalle(idTema) {
         })
         .done(function (data) {
             $("#mainContenido").html(data);
+            $('#mainContenido').animate({
+                scrollTop: 0
+            }, 'slow');
         });
 }
 
