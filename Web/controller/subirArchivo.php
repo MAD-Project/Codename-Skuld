@@ -32,11 +32,13 @@ function subirArchivo($idTema){
 
         if(move_uploaded_file($_FILES['fichero']['tmp_name'], $upload)) { //movemos el archivo a su ubicacion
 
+            $src = 'archivos/'.$idUsuario.'/'.$nombrefinal;
+
             $insert = $conexion->prepare("INSERT INTO archivosadjuntos(src,id_tema,id_respuesta)
                                   VALUES(:isrc,:iidTema,:iidRespuesta)");
 
             $insert->execute(array(
-                "isrc" => $upload,
+                "isrc" => $src,
                 "iidTema" => $idTema,
                 "iidRespuesta" => null
             ));
