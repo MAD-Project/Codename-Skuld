@@ -89,7 +89,7 @@ function respuestas(url, idFormulario, method) {
             method: method,
             data: datos,
             success: function (data) {
-                recargarPagina();
+                abrirDetalle(null);
             },
             error: function (data) {
 
