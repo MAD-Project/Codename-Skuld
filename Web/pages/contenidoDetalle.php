@@ -1,9 +1,11 @@
 <form class="contenido" method="POST" action="content.php">
     <?php
-        include_once 'controller/consultasBD.php';
+        include_once '../controller/consultasBD.php';
 
-        include_once 'controller/cargarRespuestas.php';
+        include_once '../controller/cargarRespuestas.php';
 
+        session_start();
+        $_SESSION["idTema"] = $_POST["idTema"];
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
@@ -40,9 +42,7 @@
             </h4>
         </div>
     </div>
-    <?php endforeach;
-            $_SESSION["contenidoMain"] = 0;
-        ?>
+    <?php endforeach; ?>
 
 
 </form>
