@@ -3,7 +3,9 @@
 include_once 'conexionDb.php';
 include_once 'selectsUtiles.php';
 
-$conexion = conexionDb();
+function subirArchivo($idTema){
+
+    $conexion = conexionDb();
 
     if(is_uploaded_file($_FILES['fichero']['tmp_name'])) {
 
@@ -35,11 +37,14 @@ $conexion = conexionDb();
 
             $insert->execute(array(
                 "isrc" => $upload,
-                "iidTema" => null,
+                "iidTema" => $idTema,
                 "iidRespuesta" => null
             ));
 
             closeConexionDb($conexion);
         }
+    }
+
 }
+
 ?>
