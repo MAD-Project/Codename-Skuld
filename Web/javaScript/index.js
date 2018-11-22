@@ -4,6 +4,14 @@ function mostrarCaja() {
     document.getElementById("sidebar").classList.add("abrirlogin");
     document.getElementById("main").style.display = "none";
     document.getElementById("topTemas").style.display = "none";
+    document.getElementById("link").onclick = ocultarCaja;
+}
+
+function ocultarCaja() {
+    document.getElementById('box').classList.remove("abrirlogin");
+    document.getElementById("sidebar").classList.remove("abrirlogin");
+    document.getElementById("main").style.display = "block";
+    document.getElementById("link").onclick = mostrarCaja;
 }
 
 /* Recarga la página sin dejar rastro en el historial */
@@ -32,7 +40,7 @@ function abrirDetalle(idTema) {
             dataType: "html",
             data: ({
                 idTema: idTema,
-                votado: $("#votar"+idTema).prop("disabled")
+                votado: $("#votar" + idTema).prop("disabled")
             })
         })
         .done(function (data) {
@@ -49,6 +57,9 @@ function crearEntrada() {
             $("#mainContenido").html(result);
         }
     });
+    if (screen.width < 1030) {
+        ocultarCaja();
+    }
 }
 
 /* Comprueba si hay login para mostrar "mi perfil" en vez de login. Solo en version movil. */
@@ -65,7 +76,7 @@ $(function () {
 });
 /*FIN jQuery/AJAX */
 
-function irTop(){
+function irTop() {
     $('#mainContenido').animate({
         scrollTop: 0
     }, "slow");
