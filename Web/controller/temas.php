@@ -7,13 +7,12 @@
 
     $fecha = date('Y-m-d');
 
-    if (isset($_POST['tituloTema'])){
-
+    if (isset($_POST['tituloTema'])) {
         $conexion = conexionDb();
 
         $nombreUsuario = $_SESSION['nombreUsuario'];
 
-        $select = idUsuario_nickname($conexion,$nombreUsuario);
+        $select = idUsuario_nickname($conexion, $nombreUsuario);
 
         $select->execute();
 
@@ -32,7 +31,7 @@
         ));
 
         $select = $conexion->prepare("SELECT id_tema FROM temas WHERE titulo = ? ");
-        $select->bindParam( 1 ,$_POST['tituloTema']);
+        $select->bindParam(1, $_POST['tituloTema']);
 
         $select->execute();
 
@@ -45,7 +44,6 @@
         subirArchivo($idTema);
 
         closeConexionDb($conexion);
-
     }
 
-?>
+    header("Location: ../index.php");

@@ -41,6 +41,16 @@ function abrirDetalle(idTema) {
         });
 }
 
+/* Carga la página de crear tema */
+function crearEntrada() {
+    $.ajax({
+        url: "pages/crearTema.php",
+        success: function (result) {
+            $("#mainContenido").html(result);
+        }
+    });
+}
+
 /* Comprueba si hay login para mostrar "mi perfil" en vez de login. Solo en version movil. */
 function comprobarLogin() {
     if ($('#verLogin').val() == 1) {
