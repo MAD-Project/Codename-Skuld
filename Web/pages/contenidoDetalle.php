@@ -19,28 +19,30 @@
         if (isset($_SESSION['nombreUsuario'])){
             $respVotadas = respuestasVotadasUsuario();
         }
+
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
-        <div id=<?= "puntuacion",$tema['id'] ?>>
+        <div>
             <p class="votos" id=<?="puntuacion",$tema['id'] ?>>
                 <?= $tema["valoracion"] ?>
             </p>
             <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id="<?="votar",$tema['id'] ?>"
-                <?= $temaVotado?'disabled':'';?>>
+                <?= $temaVotado=='true'?'disabled':'';?>>
             <!-- $temaVotado devuelve true tanto si el usuario ha votado o no esta logueado y añade el atributo disabled-->
         </div>
         <div>
             <h2>
-                <?= $tema["titulo"] ?>
+                <?= htmlspecialchars($tema["titulo"]) ?>
             </h2>
             <p>
                 <?= $tema["fecha"] ?>
             </p>
             <h4>
-                <?= $tema["texto"] ?>
+                <?= htmlspecialchars($tema["texto"]) ?>
             </h4>
-            <h4><a href="<?= $tema["src"] ?>"><?= $tema['nombreArchivo'] ?></a>
+            <h4>
+                <a href="<?= $tema["src"] ?>"><?= $tema['nombreArchivo'] ?></a>
             </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
@@ -61,7 +63,7 @@
             <a src="#"><?= $resp["autor"],":" ?></a>
             <p><?= $resp["fecha"] ?>
             </p>
-            <h4><?= $resp["texto"] ?>
+            <h4><?= htmlspecialchars($resp["texto"]) ?>
             </h4>
         </div>
     </div>
