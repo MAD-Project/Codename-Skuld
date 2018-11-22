@@ -61,6 +61,7 @@ CREATE TABLE VALORACIONES (
 
 CREATE TABLE ARCHIVOSADJUNTOS (
   id_archivo INT AUTO_INCREMENT,
+  nombre VARCHAR(100),
   src VARCHAR(100),
   id_tema INT,
   id_respuesta INT,

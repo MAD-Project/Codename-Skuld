@@ -21,10 +21,9 @@ $(document).ready(function() {
             let etiquetas= $(".etiqueta");
             let stringEtiquetas="";
             etiquetas.each(function (){
-                stringEtiquetas+= this.innerHTML.slice(1)+", ";
-                alert(stringEtiquetas);
+                stringEtiquetas+= this.innerHTML.slice(1)+",";
             });
-            stringEtiquetas = stringEtiquetas.slice(0, -2);
+            stringEtiquetas = stringEtiquetas.slice(0, -1);
             $("#search").before('<input type="hidden" name="etiquetas" value="'+stringEtiquetas+'">');
             return true;
         }
