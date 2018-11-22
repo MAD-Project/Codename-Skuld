@@ -1,4 +1,4 @@
-<form class="contenido" method="POST" action="content.php">
+<form class="contenido" method="POST">
     <?php
         include_once '../controller/consultasBD.php';
 
@@ -17,10 +17,10 @@
         if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
-
+        $nickname="";
         if (isset($_SESSION['nombreUsuario'])){
             $respVotadas = respuestasVotadasUsuario();
-
+            $nickname=$_SESSION['nombreUsuario'];
         }
 
 
@@ -66,11 +66,9 @@
         </div>
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
-            <?php
-                if($_SESSION['nombreUsuario']===$tema["autor"] && $tema["respElegida"]==null){
-                    echo '<input type="button" value="Elegir Respuesta" onclick="elegirRespuesta(',$resp['id'],',',$tema["id"],')">';
-                }
-            ?>
+            <?php if($nickname===$tema["autor"] && $tema["respElegida"]==null){?>
+                    <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuesta(<?=$resp['id'],',',$tema["id"]?>)">
+               <?php }?>
             <p><?= $resp["fecha"] ?>
             </p>
             <h4><?= htmlspecialchars($resp["texto"]) ?>
