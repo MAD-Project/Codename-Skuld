@@ -31,14 +31,13 @@ function abrirDetalle(idTema) {
             url: "pages/contenidoDetalle.php",
             dataType: "html",
             data: ({
-                idTema: idTema
+                idTema: idTema,
+                votado: $("#votar"+idTema).prop("disabled")
             })
         })
         .done(function (data) {
             $("#mainContenido").html(data);
-            $('#mainContenido').animate({
-                scrollTop: 0
-            }, 'slow');
+            irTop();
         });
 }
 
@@ -55,3 +54,9 @@ $(function () {
     ocultarElementosSidebar('registro', 'box', null, 'topTemas');
 });
 /*FIN jQuery/AJAX */
+
+function irTop(){
+    $('#mainContenido').animate({
+        scrollTop: 0
+    }, "slow");
+}
