@@ -47,9 +47,9 @@ function verDatosBusqueda(){
     
     $conexion = conexionDb();
     if($etiquetas===''){
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
     }else{
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) ORDER BY fecha DESC, id_tema DESC;");
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) ORDER BY fecha DESC, id_tema DESC;");
         $select->bindParam( 3 ,$etiquetas);
     }
     $select->bindParam( 1 ,$busqueda);

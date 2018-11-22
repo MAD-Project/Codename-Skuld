@@ -4,6 +4,13 @@
     <input type="text" id="tituloTema" name="tituloTema" class="require" required autofocus />
     <textarea id="textareaTema" name="textareaTema" class="" placeholder="Descripción" required rows="8"></textarea>
 
+    <select name="etiquetas[]">
+        <option value="Duda">#Duda</option>
+        <option value="Sugerencia">#Sugerencia</option>
+        <option value="Problema">#Problema</option>
+        <option value="Urgente">#Urgente</option>
+    </select>
+
     <label for="fichero">Seleccionar archivo: (opcional)</label>
     <input class="fichero" id="fichero" name="fichero" type="file" size="150" maxlength="150">
 
