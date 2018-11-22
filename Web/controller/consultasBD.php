@@ -176,7 +176,7 @@ function detalleTema($idTema)
         $tema["valoracion"] = $fila->val;
     }
 
-    return $tema[0];
+    return $tema;
 }
 
 function respuestasTema($idTema)

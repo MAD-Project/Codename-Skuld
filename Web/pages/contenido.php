@@ -25,7 +25,7 @@
         </div>
         <div onclick="abrirDetalle(<?= $tema['id'] ?>)">
             <h2>
-                <?= $tema["titulo"] ?>
+                <?= htmlspecialchars($tema["titulo"]) ?>
             </h2>
 
             <p>
@@ -33,7 +33,7 @@
             </p>
 
             <h4>
-                <?= $tema["texto"] ?>
+                <?= htmlspecialchars($tema["texto"]) ?>
             </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
