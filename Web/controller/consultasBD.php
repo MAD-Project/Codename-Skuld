@@ -206,7 +206,13 @@ function annadirRespElegida($idResp,$idTema){
     $conexion = conexionDb();
 
     $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp WHERE id_tema=:idTema");
+    try{
     $update->execute(array(
         "idTema" => $idTema,
         "idResp" => $idResp));
+    }catch (PDOException $e){
+        $update->rollBack();
+        return false;
+    }
+    return true;
 }

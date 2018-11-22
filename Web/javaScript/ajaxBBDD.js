@@ -98,7 +98,7 @@ function respuestas(url, idFormulario, method) {
             url: url,
             method: method,
             data: datos,
-            success: function (data) {
+            success: function () {
                 abrirDetalle(null);
             },
             error: function (data) {
@@ -111,8 +111,10 @@ function respuestas(url, idFormulario, method) {
     }
 
 }
+
 function elegirRespuesta(idRespuesta,idTema) {
     event.preventDefault();
+    alert("aaa");
     $.ajax({
         url: "controller/valorar.php",
         method: "POST",
@@ -121,12 +123,11 @@ function elegirRespuesta(idRespuesta,idTema) {
             idTema: idTema
         },
         success: function (data) {
-            if(JSON.parse(data).length===0){
-                alert("Has alcanzado el final... ¿enhorabuena?");
-                $("#btnCargarMas").attr("onclick","irTop()");
-                $("#btnCargarMas").html("Subir");
+            if(data){
+                $("#elegirRespuesta").prop('disabled', true);
+                $("#resp"+idRespuesta).addClass("seleccionada")
             }else{
-                estructuraTema(JSON.parse(data),temas);
+                alert("Ha ocurrido un error inesperado");
             }
 
         },
