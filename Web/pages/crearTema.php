@@ -6,6 +6,7 @@
 
     <span>Etiqueta</span>
     <select name="etiquetas[]">
+        <option value="">Seleccionar una Etiqueta</option>
         <option value="Duda">#Duda</option>
         <option value="Sugerencia">#Sugerencia</option>
         <option value="Problema">#Problema</option>
