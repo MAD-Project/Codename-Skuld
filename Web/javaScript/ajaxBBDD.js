@@ -71,7 +71,7 @@ function estructuraTema(data,temas) {
                 '<p class="votos" id="puntuacion' + e['id'] + '">' + e['valoracion'] + '</p>' +
                 '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(\'' + e['id'] + '\')" id="votar' + e['id'] + '">' +
             '</div>' +
-                '<div onclick="alert(\'link\')">' +
+                '<div onclick="abrirDetalle('+e['id']+')">' +
                 '<h2>' + e['titulo'] + '</h2>' +
                 '<p>' + e['fecha'] + '</p>' +
                 '<h4>' + e['texto'] + '</h4>' +
@@ -125,7 +125,7 @@ function elegirRespuesta(idRespuesta,idTema) {
         success: function (data) {
             if(data){
                 $("#elegirRespuesta").prop('disabled', true);
-                $("#resp"+idRespuesta).addClass("seleccionada")
+                $("#resp"+idRespuesta).addClass("seleccionada");
             }else{
                 alert("Ha ocurrido un error inesperado");
             }

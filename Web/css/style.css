@@ -208,7 +208,9 @@ body {
     color: #dd6e42;
     text-decoration: none;
 }
-
+#btnCargarMas{
+    margin-bottom:2em;
+}
 .votos {
     border-radius: 2px;
     margin-bottom: 5px;
