@@ -10,6 +10,15 @@
     if (isset($_POST['tituloTema'])) {
         $conexion = conexionDb();
 
+        $etiquetas=$_POST["etiquetas"];
+
+        $etiquetaSeleccionada = "";
+
+        for ($i=0;$i<count($etiquetas);$i++) {
+
+            $etiquetaSeleccionada = $etiquetas[$i];
+        }
+
         $nombreUsuario = $_SESSION['nombreUsuario'];
 
         $select = idUsuario_nickname($conexion, $nombreUsuario);
@@ -20,13 +29,14 @@
 
         $idUsuario = $usuario->id_usuario;
 
-        $insert = $conexion->prepare("INSERT INTO temas(titulo,texto,fecha,id_usuario)
-                                  VALUES(:atitulo,:atexto,:afecha,:aid_usuario)");
+        $insert = $conexion->prepare("INSERT INTO temas(titulo,texto,fecha,etiqueta,id_usuario)
+                                  VALUES(:atitulo,:atexto,:afecha,:aetiqueta,:aid_usuario)");
 
         $insert->execute(array(
             "atitulo" => $_POST['tituloTema'],
             "atexto" => $_POST['textareaTema'],
             "afecha" => $fecha,
+            "aetiqueta" => $etiquetaSeleccionada,
             "aid_usuario" => $idUsuario
         ));
 
