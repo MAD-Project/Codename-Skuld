@@ -1,4 +1,4 @@
-<form class="contenido" method="POST" action="contenido.php">
+<form class="contenido" method="POST">
     <?php
         include_once 'controller/consultasBD.php';
 
@@ -15,7 +15,9 @@
         foreach ($temas as $tema):?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
         <div>
-            <p class="votos" id=<?="puntuacion",$tema['id'] ?>> <?= $tema["valoracion"] ?></p>
+            <p class="votos" id=<?="puntuacion",$tema['id'] ?>>
+                <?= $tema["valoracion"] ?>
+            </p>
             <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id="<?="votar",$tema['id'] ?>"
                 <?= isset($temasVotados)? in_array($tema['id'],$temasVotados)?'disabled':'':'disabled';?>>
                    <!-- si temasVotados no se ha iniciado, el usuario no esta logueado, ergo no puede votar. Y si el id del tema se encuentra en el array quiere decir que ya ha votado ese tema-->
@@ -23,7 +25,7 @@
         </div>
         <div onclick="abrirDetalle(<?= $tema['id'] ?>)">
             <h2>
-                <?= $tema["titulo"] ?>
+                <?= htmlspecialchars($tema["titulo"]) ?>
             </h2>
 
             <p>
@@ -31,7 +33,7 @@
             </p>
 
             <h4>
-                <?= $tema["texto"] ?>
+                <?= htmlspecialchars($tema["texto"]) ?>
             </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>

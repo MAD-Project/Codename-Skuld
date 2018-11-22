@@ -7,13 +7,21 @@
 
     $fecha = date('Y-m-d');
 
-    if (isset($_POST['tituloTema'])){
-
+    if (isset($_POST['tituloTema'])) {
         $conexion = conexionDb();
+
+        $etiquetas=$_POST["etiquetas"];
+
+        $etiquetaSeleccionada = "";
+
+        for ($i=0;$i<count($etiquetas);$i++) {
+
+            $etiquetaSeleccionada = $etiquetas[$i];
+        }
 
         $nombreUsuario = $_SESSION['nombreUsuario'];
 
-        $select = idUsuario_nickname($conexion,$nombreUsuario);
+        $select = idUsuario_nickname($conexion, $nombreUsuario);
 
         $select->execute();
 
@@ -21,18 +29,19 @@
 
         $idUsuario = $usuario->id_usuario;
 
-        $insert = $conexion->prepare("INSERT INTO temas(titulo,texto,fecha,id_usuario)
-                                  VALUES(:atitulo,:atexto,:afecha,:aid_usuario)");
+        $insert = $conexion->prepare("INSERT INTO temas(titulo,texto,fecha,etiqueta,id_usuario)
+                                  VALUES(:atitulo,:atexto,:afecha,:aetiqueta,:aid_usuario)");
 
         $insert->execute(array(
             "atitulo" => $_POST['tituloTema'],
             "atexto" => $_POST['textareaTema'],
             "afecha" => $fecha,
+            "aetiqueta" => $etiquetaSeleccionada,
             "aid_usuario" => $idUsuario
         ));
 
         $select = $conexion->prepare("SELECT id_tema FROM temas WHERE titulo = ? ");
-        $select->bindParam( 1 ,$_POST['tituloTema']);
+        $select->bindParam(1, $_POST['tituloTema']);
 
         $select->execute();
 
@@ -45,7 +54,6 @@
         subirArchivo($idTema);
 
         closeConexionDb($conexion);
-
     }
 
-?>
+    header("Location: ../index.php");

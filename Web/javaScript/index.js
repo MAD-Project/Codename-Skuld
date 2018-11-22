@@ -3,6 +3,15 @@ function mostrarCaja() {
     document.getElementById('box').classList.add("abrirlogin");
     document.getElementById("sidebar").classList.add("abrirlogin");
     document.getElementById("main").style.display = "none";
+    document.getElementById("topTemas").style.display = "none";
+    document.getElementById("link").onclick = ocultarCaja;
+}
+
+function ocultarCaja() {
+    document.getElementById('box').classList.remove("abrirlogin");
+    document.getElementById("sidebar").classList.remove("abrirlogin");
+    document.getElementById("main").style.display = "block";
+    document.getElementById("link").onclick = mostrarCaja;
 }
 
 /* Recarga la página sin dejar rastro en el historial */
@@ -17,7 +26,7 @@ function ocultarElementosSidebar(idOcultar, idMostrar, idOcultar2, idMostrar2) {
     if (idOcultar2 != null) {
         document.getElementById(idOcultar2).style.display = "none";
     }
-    if (idMostrar2 != null) {
+    if (idMostrar2 != null && window.innerWidth > 1030) {
         document.getElementById(idMostrar2).style.display = "flex";
     }
 }
@@ -30,15 +39,27 @@ function abrirDetalle(idTema) {
             url: "pages/contenidoDetalle.php",
             dataType: "html",
             data: ({
-                idTema: idTema
+                idTema: idTema,
+                votado: $("#votar" + idTema).prop("disabled")
             })
         })
         .done(function (data) {
             $("#mainContenido").html(data);
-            $('#mainContenido').animate({
-                scrollTop: 0
-            }, 'slow');
+            irTop();
         });
+}
+
+/* Carga la página de crear tema */
+function crearEntrada() {
+    $.ajax({
+        url: "pages/crearTema.php",
+        success: function (result) {
+            $("#mainContenido").html(result);
+        }
+    });
+    if (screen.width < 1030) {
+        ocultarCaja();
+    }
 }
 
 /* Comprueba si hay login para mostrar "mi perfil" en vez de login. Solo en version movil. */
@@ -54,3 +75,9 @@ $(function () {
     ocultarElementosSidebar('registro', 'box', null, 'topTemas');
 });
 /*FIN jQuery/AJAX */
+
+function irTop() {
+    $('#mainContenido').animate({
+        scrollTop: 0
+    }, "slow");
+}

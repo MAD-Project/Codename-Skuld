@@ -5,8 +5,8 @@ function votarPuntuacion(idTema) {
             method: "POST",
             data: {idTema: idTema},
             success: function (data) {
-                if(data==-1){
-                    alert("Ha ocurrido un error");
+                if(data===-1){
+                    alert("Ha ocurrido un error inesperado");
                 }else {
                     $("#puntuacion" + idTema).html(data);
                     $("#votar" + idTema).prop('disabled', true);
@@ -19,6 +19,27 @@ function votarPuntuacion(idTema) {
         });
 }
 
+function votarPuntuacionResp(idResp) {
+    event.preventDefault();
+    $.ajax({
+        url: "controller/valorar.php",
+        method: "POST",
+        data: {idResp: idResp},
+        success: function (data) {
+            if(data===-1){
+                alert("Ha ocurrido un error inesperado");
+            }else {
+                $("#puntuacionResp" + idResp).html(data);
+                $("#votarResp" + idResp).prop('disabled', true);
+            }
+        },
+        error: function (data) {
+            alert("Error"+data);
+        }
+
+    });
+}
+
 function cargarMasTemas(temas) {
     event.preventDefault();
     $.ajax({
@@ -28,6 +49,8 @@ function cargarMasTemas(temas) {
         success: function (data) {
             if(JSON.parse(data).length===0){
                 alert("Has alcanzado el final... ¿enhorabuena?");
+                $("#btnCargarMas").attr("onclick","irTop()");
+                $("#btnCargarMas").html("Subir");
             }else{
                 estructuraTema(JSON.parse(data),temas);
             }
@@ -63,24 +86,11 @@ function estructuraTema(data,temas) {
 
 function respuestas(url, idFormulario, method) {
 
-    function validarRespuesta() {
+    let valido = $('#textareaRespuesta').val() == ""?false:true;
 
-        if ($('#textareaRespuesta').val() == "") {
+    if (valido) {
 
-            return false;
-        }
-        else {
-
-            return true;
-        }
-
-    }
-
-    let valido = validarRespuesta();
-
-    if (valido){
-
-        let selectorjQformulario = "#"+idFormulario;
+        let selectorjQformulario = "#" + idFormulario;
         let datos = $(selectorjQformulario).serialize();
 
         $.ajax({
@@ -100,4 +110,29 @@ function respuestas(url, idFormulario, method) {
 
     }
 
+}
+function elegirRespuesta(idRespuesta,idTema) {
+    event.preventDefault();
+    $.ajax({
+        url: "controller/valorar.php",
+        method: "POST",
+        data: {
+            idRespuesta: idRespuesta,
+            idTema: idTema
+        },
+        success: function (data) {
+            if(JSON.parse(data).length===0){
+                alert("Has alcanzado el final... ¿enhorabuena?");
+                $("#btnCargarMas").attr("onclick","irTop()");
+                $("#btnCargarMas").html("Subir");
+            }else{
+                estructuraTema(JSON.parse(data),temas);
+            }
+
+        },
+        error: function (data) {
+            alert("Error"+data);
+        }
+
+    });
 }

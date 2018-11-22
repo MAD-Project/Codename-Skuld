@@ -9,7 +9,7 @@ function cargarTemas()
     $inicioRowTemas = $_POST['inicioRowTemas'] ?? 0;
     $inicioRowTemas = (int)$inicioRowTemas;
     //falta order by date
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
     $select->bindParam(1, $inicioRowTemas, PDO::PARAM_INT);
     $select->execute();
     $temas = array();
@@ -31,6 +31,7 @@ function recorrerTemas($select,$temas){
         $tema["fecha"] = $fila->fecha;
         $tema["autor"] = $fila->nickname;
         $tema["src"] = $fila->src;
+        $tema['nombreArchivo'] = $fila->nombreArchivo;
         $tema["valoracion"] = $fila->val;
         array_push($temas, $tema);
     }
@@ -46,9 +47,9 @@ function verDatosBusqueda(){
     
     $conexion = conexionDb();
     if($etiquetas===''){
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
     }else{
-        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) ORDER BY fecha DESC, id_tema DESC;");
+        $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) ORDER BY fecha DESC, id_tema DESC;");
         $select->bindParam( 3 ,$etiquetas);
     }
     $select->bindParam( 1 ,$busqueda);
@@ -68,27 +69,30 @@ function verDatosBusqueda(){
 
 function annadirValoracion($nickname, $objetivo, $idObjetivo)
 {
-    $conexion = conexionDb();
-
     if ($objetivo === "id_tema" || $objetivo === "id_respuesta") {
+        $conexion = conexionDb();
         if ($objetivo === "id_tema") {
             $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_tema) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
         } else {
             $insert = $conexion->prepare("INSERT INTO VALORACIONES (id_usuario,id_respuesta) VALUES ((SELECT id_usuario FROM USUARIOS WHERE nickname = :nickname),:idObjetivo)");
         }
-    }
-    try {
-        $insert->execute(array(
-            "nickname" => $nickname,
-            "idObjetivo" => $idObjetivo
-        ));
-    } catch (PDOException $e) {
-        $insert->rollBack();
+
+        try {
+            $insert->execute(array(
+                "nickname" => $nickname,
+                "idObjetivo" => $idObjetivo
+            ));
+        } catch (PDOException $e) {
+            $insert->rollBack();
+            return -1;
+        }
+        $val = obtenerValoracion($objetivo, $idObjetivo, $conexion);
+
+        closeConexionDb($conexion);
+        return $val;
+    }else{
         return -1;
     }
-    $val = obtenerValoracion($objetivo, $idObjetivo, $conexion);
-    closeConexionDb($conexion);
-    return $val;
 }
 
 
@@ -125,7 +129,7 @@ function cargarTopTemas()
 function temasVotadosUsuario()
 {
     $conexion = conexionDb();
-    $select = $conexion->prepare("SELECT id_tema  FROM VALORACIONES WHERE id_usuario=(SELECT id_usuario FROM USUARIOS WHERE nickname = ?)");
+    $select = $conexion->prepare("SELECT id_tema  FROM VALORACIONES WHERE id_usuario=(SELECT id_usuario FROM USUARIOS WHERE nickname = ?) AND id_tema IS NOT NULL");
     $select->bindParam(1, $_SESSION['nombreUsuario']);
     $select->execute();
     $temasVotados = array();
@@ -136,13 +140,28 @@ function temasVotadosUsuario()
     return $temasVotados;
 }
 
+function respuestasVotadasUsuario()
+{
+    $conexion = conexionDb();
+    $select = $conexion->prepare("SELECT id_respuesta  FROM VALORACIONES WHERE id_usuario=(SELECT id_usuario FROM USUARIOS WHERE nickname = ?) AND id_respuesta IS NOT NULL");
+    $select->bindParam(1, $_SESSION['nombreUsuario']);
+    $select->execute();
+    $respVotadas = array();
+    while ($fila = $select->fetchObject()) {
+        array_push($respVotadas, $fila->id_respuesta);
+    }
+    closeConexionDb($conexion);
+    return $respVotadas;
+}
+
+
 function detalleTema($idTema)
 {
     $conexion = conexionDb();
     $tema = array();
 
 
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val, id_respuesta_elegida from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
     $select->execute(array(
         "idTema" => $idTema));
 
@@ -153,7 +172,9 @@ function detalleTema($idTema)
         $tema["fecha"] = $fila->fecha;
         $tema["autor"] = $fila->nickname;
         $tema["src"] = $fila->src;
+        $tema['nombreArchivo'] = $fila->nombreArchivo;
         $tema["valoracion"] = $fila->val;
+        $tema["respElegida"] = $fila->id_respuesta_elegida;
     }
 
     return $tema;
@@ -179,4 +200,13 @@ function respuestasTema($idTema)
     }
 
     return $respuestas;
+}
+
+function annadirRespElegida($idResp,$idTema){
+    $conexion = conexionDb();
+
+    $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp WHERE id_tema=:idTema");
+    $update->execute(array(
+        "idTema" => $idTema,
+        "idResp" => $idResp));
 }

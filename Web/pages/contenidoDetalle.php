@@ -5,50 +5,75 @@
         include_once '../controller/cargarRespuestas.php';
 
         session_start();
-        
+
+        $temaVotado= isset($_POST['votado'])?$_POST['votado']:true;
+
         if ($_POST["idTema"] != null) {
             $_SESSION["idTema"] = $_POST["idTema"];
         }
+
+        $tema = detalleTema($_SESSION["idTema"]);
 
         if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
 
-        $tema = detalleTema($_SESSION["idTema"]);
+        if (isset($_SESSION['nombreUsuario'])){
+            $respVotadas = respuestasVotadasUsuario();
+
+        }
+
+
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
-        <div id=<?= "puntuacion",$tema['id'] ?>>
-            <p class="votos"><?= $tema["valoracion"] ?>
+        <div>
+            <p class="votos" id=<?="puntuacion",$tema['id'] ?>>
+                <?= $tema["valoracion"] ?>
             </p>
-            <input type="button" value="Votar" class="votarBTN">
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id="<?="votar",$tema['id'] ?>"
+                <?= $temaVotado=='true'?'disabled':'';?>>
+            <!-- $temaVotado devuelve true tanto si el usuario ha votado o no esta logueado y añade el atributo disabled-->
         </div>
         <div>
-            <h2><?= $tema["titulo"] ?>
+            <h2>
+                <?= htmlspecialchars($tema["titulo"]) ?>
             </h2>
-            <p><?= $tema["fecha"] ?>
+            <p>
+                <?= $tema["fecha"] ?>
             </p>
-            <h4><?= $tema["texto"] ?>
+            <h4>
+                <?= htmlspecialchars($tema["texto"]) ?>
             </h4>
-            <h4><a href="<?= $tema["src"] ?>">Archivo</a>
+            <h4>
+                <a href="<?= $tema["src"] ?>"><?= $tema['nombreArchivo'] ?></a>
             </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
+
     <?php
         $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
     <?php foreach ($respuestas as $resp):?>
-    <div class="respBox" id=<?= $resp["id"] ?>>
+
+    <div class="respBox <?= $tema['respElegida']===$resp['id']?'seleccionada':'' ?>" id=<?= "resp",$resp["id"] ?>>
         <div id=<?= "puntuacion",$resp['id'] ?>>
-            <p class="votos"><?= $resp["valoracion"] ?>
+            <p class="votos" id=<?="puntuacionResp",$resp['id'] ?>>
+                <?= $resp["valoracion"] ?>
             </p>
-            <button class="votarBTN">Votar</button>
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacionResp('<?=$resp['id']?>')" id="<?="votarResp",$resp['id'] ?>"
+                <?= isset($respVotadas)? in_array($resp['id'],$respVotadas)?'disabled':'':'disabled';?>>
         </div>
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
+            <?php
+                if($_SESSION['nombreUsuario']===$tema["autor"] && $tema["respElegida"]==null){
+                    echo '<input type="button" value="Elegir Respuesta" onclick="elegirRespuesta(',$resp['id'],',',$tema["id"],')">';
+                }
+            ?>
             <p><?= $resp["fecha"] ?>
             </p>
-            <h4><?= $resp["texto"] ?>
+            <h4><?= htmlspecialchars($resp["texto"]) ?>
             </h4>
         </div>
     </div>
