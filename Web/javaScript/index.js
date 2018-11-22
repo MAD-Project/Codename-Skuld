@@ -31,15 +31,24 @@ function abrirDetalle(idTema) {
             url: "pages/contenidoDetalle.php",
             dataType: "html",
             data: ({
-                idTema: idTema
+                idTema: idTema,
+                votado: $("#votar"+idTema).prop("disabled")
             })
         })
         .done(function (data) {
             $("#mainContenido").html(data);
-            $('#mainContenido').animate({
-                scrollTop: 0
-            }, 'slow');
+            irTop();
         });
+}
+
+/* Carga la página de crear tema */
+function crearEntrada() {
+    $.ajax({
+        url: "pages/crearTema.php",
+        success: function (result) {
+            $("#mainContenido").html(result);
+        }
+    });
 }
 
 /* Comprueba si hay login para mostrar "mi perfil" en vez de login. Solo en version movil. */
@@ -55,3 +64,9 @@ $(function () {
     ocultarElementosSidebar('registro', 'box', null, 'topTemas');
 });
 /*FIN jQuery/AJAX */
+
+function irTop(){
+    $('#mainContenido').animate({
+        scrollTop: 0
+    }, "slow");
+}
