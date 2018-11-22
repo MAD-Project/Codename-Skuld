@@ -1,4 +1,4 @@
-<form class="crearTema" id="tema" name="ftema" method="post" enctype="multipart/form-data" action="../controller/temas.php">
+<form class="crearTema" id="tema" name="ftema" method="post" enctype="multipart/form-data" action="controller/temas.php">
     <h1>Crear nuevo tema</h1>
     <label class="tituloTema">Título</label>
     <input type="text" id="tituloTema" name="tituloTema" class="require" required autofocus />
