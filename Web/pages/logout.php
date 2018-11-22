@@ -3,7 +3,7 @@
 function logout()
 {
     ?>
-<script src="../javaScript/index.js"></script>
+<script src="javaScript/index.js"></script>
 <div class="logout" id="box">
 
     <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?>
