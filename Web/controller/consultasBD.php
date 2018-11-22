@@ -9,7 +9,7 @@ function cargarTemas()
     $inicioRowTemas = $_POST['inicioRowTemas'] ?? 0;
     $inicioRowTemas = (int)$inicioRowTemas;
     //falta order by date
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
     $select->bindParam(1, $inicioRowTemas, PDO::PARAM_INT);
     $select->execute();
     $temas = array();
@@ -31,6 +31,7 @@ function recorrerTemas($select,$temas){
         $tema["fecha"] = $fila->fecha;
         $tema["autor"] = $fila->nickname;
         $tema["src"] = $fila->src;
+        $tema['nombreArchivo'] = $fila->nombreArchivo;
         $tema["valoracion"] = $fila->val;
         array_push($temas, $tema);
     }
@@ -142,7 +143,7 @@ function detalleTema($idTema)
     $tema = array();
 
 
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
     $select->execute(array(
         "idTema" => $idTema));
 
@@ -153,6 +154,7 @@ function detalleTema($idTema)
         $tema["fecha"] = $fila->fecha;
         $tema["autor"] = $fila->nickname;
         $tema["src"] = $fila->src;
+        $tema['nombreArchivo'] = $fila->nombreArchivo;
         $tema["valoracion"] = $fila->val;
     }
 

@@ -34,13 +34,14 @@ function subirArchivo($idTema){
 
             $src = 'archivos/'.$idUsuario.'/'.$nombrefinal;
 
-            $insert = $conexion->prepare("INSERT INTO archivosadjuntos(src,id_tema,id_respuesta)
-                                  VALUES(:isrc,:iidTema,:iidRespuesta)");
+            $insert = $conexion->prepare("INSERT INTO archivosadjuntos(src,id_tema,id_respuesta,nombre)
+                                  VALUES(:isrc,:iidTema,:iidRespuesta,:inombre)");
 
             $insert->execute(array(
                 "isrc" => $src,
                 "iidTema" => $idTema,
-                "iidRespuesta" => null
+                "iidRespuesta" => null,
+                "inombre" => $nombrefinal
             ));
 
             closeConexionDb($conexion);
