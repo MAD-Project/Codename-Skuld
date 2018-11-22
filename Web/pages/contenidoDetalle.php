@@ -10,8 +10,7 @@
             $_SESSION["idTema"] = $_POST["idTema"];
         }
 
-        if (!isset($_SESSION['mensajeEnviadoRespuesta'])){
-
+        if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
 
@@ -67,10 +66,9 @@
     <form class="formResponder" method="post" id="respuesta" action="javascript:void(0)">
         <?php
             if ($_SESSION["mensajeEnviadoRespuesta"] == 1) {
-                echo "<span id='mensajeEnviadoRespuesta'> Mensaje enviado</span>";
+                echo "<span id='mensajeEnviadoRespuesta'>Respuesta publicada</span>";
                 $_SESSION["mensajeEnviadoRespuesta"] = 0;
-            }
-        ?>
+            } ?>
         <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
             rows="4" required></textarea>
         <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
