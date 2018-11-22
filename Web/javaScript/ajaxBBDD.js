@@ -60,3 +60,44 @@ function estructuraTema(data,temas) {
         }
     });
 }
+
+function respuestas(url, idFormulario, method) {
+
+    function validarRespuesta() {
+
+        if ($('#textareaRespuesta').val() == "") {
+
+            return false;
+        }
+        else {
+
+            return true;
+        }
+
+    }
+
+    let valido = validarRespuesta();
+
+    if (valido){
+
+        let selectorjQformulario = "#"+idFormulario;
+        let datos = $(selectorjQformulario).serialize();
+
+        $.ajax({
+
+            url: url,
+            method: method,
+            data: datos,
+            success: function (data) {
+                abrirDetalle(null);
+            },
+            error: function (data) {
+
+                alert("Error" + data);
+            }
+
+        });
+
+    }
+
+}

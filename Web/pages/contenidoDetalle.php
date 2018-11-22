@@ -1,6 +1,18 @@
 <form class="contenido" method="POST" action="content.php">
     <?php
-        include_once 'controller/consultasBD.php';
+        include_once '../controller/consultasBD.php';
+
+        include_once '../controller/cargarRespuestas.php';
+
+        session_start();
+        
+        if ($_POST["idTema"] != null) {
+            $_SESSION["idTema"] = $_POST["idTema"];
+        }
+
+        if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
+            $_SESSION['mensajeEnviadoRespuesta'] = 0;
+        }
 
         $tema = detalleTema($_SESSION["idTema"]);
     ?>
@@ -17,63 +29,52 @@
             </p>
             <h4><?= $tema["texto"] ?>
             </h4>
+            <h4><a href="<?= $tema["src"] ?>">Archivo</a>
+            </h4>
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
     <?php
-        $respuestas =[
-            ["id"=> "2",
-            "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "valoracion" => 47,
-            "fecha"=> "12/11/2018",
-            "autor"=>"Mikel"],
-
-            ["id"=> "3",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "4",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "5",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"],
-
-            ["id"=> "6",
-                "texto" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                "valoracion" => 4,
-                "fecha"=> "12/11/2018",
-                "autor"=>"Mikel"]
-
-        ];
+        $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
-    <div id="respuestas">
-        <?php foreach ($respuestas as $resp):?>
-        <div class="respBox" id=<?= $resp["id"] ?>>
-            <div id=<?= "puntuacion",$resp['id'] ?>>
-                <p class="votos"><?= $resp["valoracion"] ?>
-                </p>
-                <button class="votarBTN">Votar</button>
-            </div>
-            <div>
-                <a src="#"><?= $resp["autor"],":" ?></a>
-                <p><?= $resp["fecha"] ?>
-                </p>
-                <h4><?= $resp["texto"] ?>
-                </h4>
-            </div>
+    <?php foreach ($respuestas as $resp):?>
+    <div class="respBox" id=<?= $resp["id"] ?>>
+        <div id=<?= "puntuacion",$resp['id'] ?>>
+            <p class="votos"><?= $resp["valoracion"] ?>
+            </p>
+            <button class="votarBTN">Votar</button>
         </div>
-        <?php endforeach; 
-            $_SESSION["contenidoMain"] = 0;
-        ?>
+        <div>
+            <a src="#"><?= $resp["autor"],":" ?></a>
+            <p><?= $resp["fecha"] ?>
+            </p>
+            <h4><?= $resp["texto"] ?>
+            </h4>
+        </div>
     </div>
+    <?php endforeach; ?>
 
 
 </form>
+
+<?php
+
+    if ($_SESSION['login']) {
+        ?>
+
+<div class="responderBox" id="responderTemaDiv">
+    <form class="formResponder" method="post" id="respuesta" action="javascript:void(0)">
+        <?php
+            if ($_SESSION["mensajeEnviadoRespuesta"] == 1) {
+                echo "<span id='mensajeEnviadoRespuesta'>Respuesta publicada</span>";
+                $_SESSION["mensajeEnviadoRespuesta"] = 0;
+            } ?>
+        <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
+            rows="4" required></textarea>
+        <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
+    </form>
+
+</div>
+
+<?php
+    }

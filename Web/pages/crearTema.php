@@ -14,8 +14,8 @@
 <form id="tema" name="ftema" method="post" enctype="multipart/form-data">
 
     <label for="tituloTema">Título *</label>
-    <input type="text" id="tituloTema" name="tituloTema" class="require" placeholder="Título" autofocus /><br><br>
-    <textarea id="textareaTema" name="textareaTema" class="" placeholder="texto" ></textarea><br><br>
+    <input type="text" id="tituloTema" name="tituloTema" class="require" placeholder="Título" required autofocus /><br><br>
+    <textarea id="textareaTema" name="textareaTema" class="" placeholder="texto" required ></textarea><br><br>
 
     <label for="fichero">Seleccione archivo:</label>
     <input id="fichero" name="fichero" type="file" size="150" maxlength="150"><br><br>
