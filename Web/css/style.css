@@ -7,20 +7,20 @@
 
 /* Core Theme Colors */
 :root {
-    /* Fondo  */
-    --generalBG: #f3f3f3;
+    /* Fondo de la página. Default: #f3f3f3 */
+    --generalbg: #f3f3f3;
     /* Fondo header de la página */
     --header: #10a066;
     /* Elementos de la zona main. Default: #edeec9 */
-    --elementosMain: #edeec9;
+    --elementosmain: #edeec9;
     /* Elementos en la barra lateral. Default: #6c756b */
-    --fondoSidebar: #6c756b;
+    --fondosidebar: #6c756b;
     /* Botones elementos main. Defaul: #98c9a3 */
-    --elementosBTN: #98c9a3;
+    --elementosbtn: #98c9a3;
     /* Boton activado de elementos del main. Defaul: #bfd8bd */
-    --elementosBTNActivado: #bfd8bd;
+    --elementosbtnactivado: #bfd8bd;
     /* Botones barra lateral. Default: #dd6e42 */
-    --sidebarBTN: #dd6e42;
+    --sidebarbtn: #dd6e42;
     /* Fondo de las cajas input. Default: #c3baba */
     --input: #c3baba;
 }
@@ -54,7 +54,7 @@ body {
     grid-gap: 10px;
     grid-template-columns: 60% 20%;
     grid-template-rows: 11% 79% auto;
-    background-color: var(--generalBG);
+    background-color: var(--generalbg);
 }
 
 .header {
@@ -94,10 +94,10 @@ body {
 
 .etiqueta {
     margin-right: 1em;
-    border: 1px solid #46494c;
-    background-color: #46494c;
+    border: 1px solid black;
+    background-color: var(--elementosmain);
     border-radius: 5px;
-    color: #dd6e42;
+    color: black;
     padding: 0.5em;
 }
 
@@ -134,9 +134,10 @@ body {
 /* Subpágina de Temas y respuestas */
 .temaBox,
 .respBox,
-.responderBox {
+.responderBox,
+.crearTema {
     display: flex;
-    background-color: var(--elementosMain);
+    background-color: var(--elementosmain);
     border-radius: 5px;
     padding: 10px;
     width: 94%;
@@ -195,7 +196,10 @@ body {
 .temaBox div:nth-child(2):hover,
 .respBox:nth-child(2):hover,
 .votarBTN:hover,
-.responderBTN:hover {
+.responderBTN:hover,
+.logout a:hover,
+.crearTemaBTN:hover,
+.fichero:hover {
     cursor: pointer;
 }
 
@@ -213,18 +217,20 @@ body {
 }
 
 .votarBTN,
-.responderBTN {
+.responderBTN,
+.crearTemaBTN {
     border-radius: 5px;
     border: none;
-    background-color: var(--elementosBTN);
+    background-color: var(--elementosbtn);
     height: 20px;
     width: 100%;
     transition: .20s;
 }
 
 .votarBTN:active,
-.responderBTN:active {
-    background-color: var(--elementosBTNActivado);
+.responderBTN:active,
+.crearTemaBTN:active {
+    background-color: var(--elementosbtnactivado);
 }
 
 #mensajeEnviadoRespuesta {
@@ -253,14 +259,60 @@ body {
     resize: none;
 }
 
-.responderBTN {
+.responderBTN,
+.crearTemaBTN {
     width: 30%;
     margin-top: 1.5%;
     font-size: 110%;
+    padding: .5%;
+    height: auto;
 }
 
+.seleccionada{
+    border:2px dashed var(--sidebarbtn);
+}
 /* FIN subpágina de Temas y respuestas */
 
+/* Subpágina crear tema */
+.crearTema {
+    flex-direction: column;
+    margin-left: 5%;
+    width: 86%;
+    padding: 1.5%;
+}
+
+.tituloTema {
+    font-size: 130%;
+}
+
+.crearTema input {
+    width: 40%;
+    margin-bottom: 2.5%;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 2.5px;
+}
+
+.fichero {
+    padding: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.crearTema textarea {
+    padding: 5px;
+    font-family: 'Roboto', Verdana, sans-serif;
+    resize: none;
+    margin-bottom: 2.5%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.crearTemaBTN {
+    align-self: center;
+}
+
+/* FIN subpágina crear tema */
 
 /* Barra lateral */
 .sidebar {
@@ -273,7 +325,7 @@ body {
 .topTemas {
     flex-direction: column;
     width: 97%;
-    background-color: var(--fondoSidebar);
+    background-color: var(--fondosidebar);
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -293,7 +345,6 @@ body {
 }
 
 .inp {
-    box-shadow: 0;
     background-color: var(--input);
     width: 95%;
     height: 40px;
@@ -322,8 +373,58 @@ body {
     color: white;
 }
 
+
+/*Dani cambia esto hastaaaaaaa*/
+
+#pswd_info {
+    position:absolute;
+    bottom: -115px\9; /* IE Specific */
+    width:250px;
+    padding:15px;
+    background:#fefefe;
+    font-size:.875em;
+    border-radius:5px;
+    box-shadow:0 1px 3px #ccc;
+    border:1px solid #ddd;
+}
+
+#pswd_info h4 {
+    margin:0 0 10px 0;
+    padding:0;
+    font-weight:normal;
+}
+
+#pswd_info::before {
+    content: "\25B6";
+    position:absolute;
+    top:90px;
+    left:100%;
+    font-size:14px;
+    line-height:14px;
+    color:#ddd;
+    text-shadow:none;
+    display:block;
+}
+
+.invalid {
+    padding-left:22px;
+    line-height:24px;
+    color:#ec3f41;
+}
+.valid {
+    padding-left:22px;
+    line-height:24px;
+    color:#3a7d34;
+}
+
+#pswd_info {
+    display: none;
+}
+
+/*Aquiiiiiiiiiiiiiiiiiii*/
+
+
 .inputRegistro {
-    box-shadow: 0;
     background-color: var(--input);
     width: 75%;
     height: 40px;
@@ -344,7 +445,7 @@ body {
 .registroBTN {
     border-radius: 5px;
     border: none;
-    background-color: var(--sidebarBTN);
+    background-color: var(--sidebarbtn);
     height: 40px;
     margin-left: 1.6%;
     width: 96.5%;

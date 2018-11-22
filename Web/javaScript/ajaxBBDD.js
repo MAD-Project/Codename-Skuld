@@ -86,24 +86,11 @@ function estructuraTema(data,temas) {
 
 function respuestas(url, idFormulario, method) {
 
-    function validarRespuesta() {
+    let valido = $('#textareaRespuesta').val() == ""?false:true;
 
-        if ($('#textareaRespuesta').val() == "") {
+    if (valido) {
 
-            return false;
-        }
-        else {
-
-            return true;
-        }
-
-    }
-
-    let valido = validarRespuesta();
-
-    if (valido){
-
-        let selectorjQformulario = "#"+idFormulario;
+        let selectorjQformulario = "#" + idFormulario;
         let datos = $(selectorjQformulario).serialize();
 
         $.ajax({
@@ -123,4 +110,29 @@ function respuestas(url, idFormulario, method) {
 
     }
 
+}
+function elegirRespuesta(idRespuesta,idTema) {
+    event.preventDefault();
+    $.ajax({
+        url: "controller/valorar.php",
+        method: "POST",
+        data: {
+            idRespuesta: idRespuesta,
+            idTema: idTema
+        },
+        success: function (data) {
+            if(JSON.parse(data).length===0){
+                alert("Has alcanzado el final... ¿enhorabuena?");
+                $("#btnCargarMas").attr("onclick","irTop()");
+                $("#btnCargarMas").html("Subir");
+            }else{
+                estructuraTema(JSON.parse(data),temas);
+            }
+
+        },
+        error: function (data) {
+            alert("Error"+data);
+        }
+
+    });
 }

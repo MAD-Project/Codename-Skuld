@@ -3,13 +3,13 @@
 function logout()
 {
     ?>
-
+<script src="javaScript/index.js"></script>
 <div class="logout" id="box">
 
     <h3><?php echo "Bienvenido, ".$_SESSION['nombreUsuario']; ?>
     </h3>
 
-    <a href="pages/crearTema.php">Crear Tema</a>
+    <a onclick="crearEntrada()">Crear tema</a>
 
     <form method="post">
         <input class="logoutBTN" type="submit" value="Cerrar sesion">
