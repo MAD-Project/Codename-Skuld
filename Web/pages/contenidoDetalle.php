@@ -12,15 +12,18 @@
             $_SESSION["idTema"] = $_POST["idTema"];
         }
 
+        $tema = detalleTema($_SESSION["idTema"]);
+
         if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
 
         if (isset($_SESSION['nombreUsuario'])){
             $respVotadas = respuestasVotadasUsuario();
+
         }
 
-        $tema = detalleTema($_SESSION["idTema"]);
+
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
         <div>
@@ -47,11 +50,13 @@
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
+
     <?php
         $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
     <?php foreach ($respuestas as $resp):?>
-    <div class="respBox" id=<?= "resp",$resp["id"] ?>>
+
+    <div class="respBox <?= $tema['respElegida']===$resp['id']?'seleccionada':'' ?>" id=<?= "resp",$resp["id"] ?>>
         <div id=<?= "puntuacion",$resp['id'] ?>>
             <p class="votos" id=<?="puntuacionResp",$resp['id'] ?>>
                 <?= $resp["valoracion"] ?>
@@ -61,6 +66,11 @@
         </div>
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
+            <?php
+                if($_SESSION['nombreUsuario']===$tema["autor"] && $tema["respElegida"]==null){
+                    echo '<input type="button" value="Elegir Respuesta" onclick="elegirRespuesta(',$resp['id'],',',$tema["id"],')">';
+                }
+            ?>
             <p><?= $resp["fecha"] ?>
             </p>
             <h4><?= htmlspecialchars($resp["texto"]) ?>

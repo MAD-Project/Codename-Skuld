@@ -161,7 +161,7 @@ function detalleTema($idTema)
     $tema = array();
 
 
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val, id_respuesta_elegida from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario AND t.id_tema = :idTema");
     $select->execute(array(
         "idTema" => $idTema));
 
@@ -174,6 +174,7 @@ function detalleTema($idTema)
         $tema["src"] = $fila->src;
         $tema['nombreArchivo'] = $fila->nombreArchivo;
         $tema["valoracion"] = $fila->val;
+        $tema["respElegida"] = $fila->id_respuesta_elegida;
     }
 
     return $tema;
@@ -199,4 +200,13 @@ function respuestasTema($idTema)
     }
 
     return $respuestas;
+}
+
+function annadirRespElegida($idResp,$idTema){
+    $conexion = conexionDb();
+
+    $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp WHERE id_tema=:idTema");
+    $update->execute(array(
+        "idTema" => $idTema,
+        "idResp" => $idResp));
 }
