@@ -4,6 +4,7 @@
     <input type="text" id="tituloTema" name="tituloTema" class="require" required autofocus />
     <textarea id="textareaTema" name="textareaTema" class="" placeholder="Descripción" required rows="8"></textarea>
 
+    <span>Etiqueta</span>
     <select name="etiquetas[]">
         <option value="Duda">#Duda</option>
         <option value="Sugerencia">#Sugerencia</option>
