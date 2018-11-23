@@ -12,7 +12,7 @@
         <form class="registro" id="registro" name="fregistro" method="post" action="javascript:void(0)">
 
             <label for="nombre">Nombre</label>
-            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="nombre" autofocus />
+            <input class="inputRegistro" type="text" id="nombre" name="nombre" placeholder="nombre" />
             <label for="apellido">Apellido</label>
             <input class="inputRegistro" type="text" id="apellido" name="apellido" placeholder="apellido" />
             <label for="nombreU">Nombre Usuario *</label>
