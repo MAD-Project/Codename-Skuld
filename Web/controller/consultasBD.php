@@ -231,7 +231,7 @@ function annadirRespElegida($idResp, $idTema)
 {
     $conexion = conexionDb();
 
-    $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp WHERE id_tema=:idTema");
+    $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp,etiqueta = 'Solucionado' WHERE id_tema=:idTema");
     try {
         $update->execute(array(
         "idTema" => $idTema,
