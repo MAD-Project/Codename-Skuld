@@ -380,7 +380,6 @@ body {
 
 #pswd_info {
     position:absolute;
-    bottom: -115px\9; /* IE Specific */
     width:250px;
     padding:15px;
     background:#fefefe;
@@ -388,6 +387,8 @@ body {
     border-radius:5px;
     box-shadow:0 1px 3px #ccc;
     border:1px solid #ddd;
+    top: 51.9%;
+    left: 63.6%;
 }
 
 #pswd_info h4 {
