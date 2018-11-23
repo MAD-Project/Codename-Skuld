@@ -28,7 +28,6 @@
             <h2>
                 <?= htmlspecialchars($tema["titulo"]) ?>
                 <?php
-                echo $tema["etiqueta"],"aqui";
                 if ($tema["etiqueta"] != null) {
                     ?>
                 <span class="etiquetaTema" id="<?= $tema["etiqueta"] ?>">
