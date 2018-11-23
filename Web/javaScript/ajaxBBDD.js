@@ -71,7 +71,7 @@ function estructuraTema(data,temas) {
                 '<p class="votos" id="puntuacion' + e['id'] + '">' + e['valoracion'] + '</p>' +
                 '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(\'' + e['id'] + '\')" id="votar' + e['id'] + '">' +
             '</div>' +
-                '<div onclick="alert(\'link\')">' +
+                '<div onclick="abrirDetalle('+e['id']+')">' +
                 '<h2>' + e['titulo'] + '</h2>' +
                 '<p>' + e['fecha'] + '</p>' +
                 '<h4>' + e['texto'] + '</h4>' +
@@ -86,24 +86,11 @@ function estructuraTema(data,temas) {
 
 function respuestas(url, idFormulario, method) {
 
-    function validarRespuesta() {
+    let valido = $('#textareaRespuesta').val() == ""?false:true;
 
-        if ($('#textareaRespuesta').val() == "") {
+    if (valido) {
 
-            return false;
-        }
-        else {
-
-            return true;
-        }
-
-    }
-
-    let valido = validarRespuesta();
-
-    if (valido){
-
-        let selectorjQformulario = "#"+idFormulario;
+        let selectorjQformulario = "#" + idFormulario;
         let datos = $(selectorjQformulario).serialize();
 
         $.ajax({
@@ -111,7 +98,7 @@ function respuestas(url, idFormulario, method) {
             url: url,
             method: method,
             data: datos,
-            success: function (data) {
+            success: function () {
                 abrirDetalle(null);
             },
             error: function (data) {
@@ -123,4 +110,30 @@ function respuestas(url, idFormulario, method) {
 
     }
 
+}
+
+function elegirRespuesta(idRespuesta,idTema) {
+    event.preventDefault();
+    alert("aaa");
+    $.ajax({
+        url: "controller/valorar.php",
+        method: "POST",
+        data: {
+            idRespuesta: idRespuesta,
+            idTema: idTema
+        },
+        success: function (data) {
+            if(data){
+                $("#elegirRespuesta").prop('disabled', true);
+                $("#resp"+idRespuesta).addClass("seleccionada");
+            }else{
+                alert("Ha ocurrido un error inesperado");
+            }
+
+        },
+        error: function (data) {
+            alert("Error"+data);
+        }
+
+    });
 }

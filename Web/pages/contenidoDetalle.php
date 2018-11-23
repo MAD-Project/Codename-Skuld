@@ -1,4 +1,4 @@
-<form class="contenido" method="POST" action="content.php">
+<form class="contenido" method="POST">
     <?php
         include_once '../controller/consultasBD.php';
 
@@ -12,15 +12,18 @@
             $_SESSION["idTema"] = $_POST["idTema"];
         }
 
+        $tema = detalleTema($_SESSION["idTema"]);
+
         if (!isset($_SESSION['mensajeEnviadoRespuesta'])) {
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
-
+        $nickname="";
         if (isset($_SESSION['nombreUsuario'])){
             $respVotadas = respuestasVotadasUsuario();
+            $nickname=$_SESSION['nombreUsuario'];
         }
 
-        $tema = detalleTema($_SESSION["idTema"]);
+
     ?>
     <div class="temaBox" id=<?= $tema["id"] ?>>
         <div>
@@ -47,11 +50,13 @@
             <a href="#"><?= $tema["autor"] ?></a>
         </div>
     </div>
+
     <?php
         $respuestas = respuestasTema($_SESSION["idTema"]);
         ?>
     <?php foreach ($respuestas as $resp):?>
-    <div class="respBox" id=<?= "resp",$resp["id"] ?>>
+
+    <div class="respBox <?= $tema['respElegida']===$resp['id']?'seleccionada':'' ?>" id=<?= "resp",$resp["id"] ?>>
         <div id=<?= "puntuacion",$resp['id'] ?>>
             <p class="votos" id=<?="puntuacionResp",$resp['id'] ?>>
                 <?= $resp["valoracion"] ?>
@@ -61,6 +66,9 @@
         </div>
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
+            <?php if($nickname===$tema["autor"] && $tema["respElegida"]==null){?>
+                    <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuesta(<?=$resp['id'],',',$tema["id"]?>)">
+               <?php }?>
             <p><?= $resp["fecha"] ?>
             </p>
             <h4><?= htmlspecialchars($resp["texto"]) ?>
