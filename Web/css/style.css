@@ -231,7 +231,8 @@ body {
 .fichero:hover,
 .login a:hover,
 .registro a:hover,
-#btnCargarMas:hover {
+#btnCargarMas:hover,
+#elegirRespuesta:hover {
     cursor: pointer;
 }
 
@@ -463,7 +464,8 @@ body {
 .loginBTN,
 .logoutBTN,
 .registroBTN,
-#btnCargarMas {
+#btnCargarMas,
+#elegirRespuesta {
     border-radius: 5px;
     border: none;
     background-color: var(--sidebarbtn);
@@ -474,6 +476,12 @@ body {
     font-size: 20px;
 }
 
+#elegirRespuesta {
+    margin-left: 0;
+    width: 20%;
+    font-size: 100%;
+    height: auto;
+}
 
 #btnCargarMas {
     margin-bottom: 2em;
@@ -658,7 +666,19 @@ body {
     }
 
     #btnCargarMas {
-        width: 30%;
+        width: 35%;
+    }
+
+    #elegirRespuesta {
+        display: none;
+    }
+
+    #mensajeEnviadoRespuesta {
+        width: 35%;
+    }
+
+    .responderBTN {
+        width: 65%;
     }
 
     .login,
@@ -700,6 +720,10 @@ body {
     .link {
         margin-left: 10%;
         font-size: 190%;
+    }
+
+    #elegirRespuesta {
+        width: 30%;
     }
 
     .login,
