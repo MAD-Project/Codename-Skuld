@@ -125,6 +125,7 @@ function elegirRespuestaFavorita(idRespuesta,idTema) {
             if(data){
                 $("#elegirRespuesta").prop('disabled', true);
                 $("#resp"+idRespuesta).addClass("seleccionada");
+                abrirDetalle("noSubas");
             }else{
                 alert("Ha ocurrido un error inesperado");
             }
