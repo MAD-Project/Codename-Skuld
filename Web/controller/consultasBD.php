@@ -137,7 +137,7 @@ function cargarTopTemas()
     $topTema = array();
     $id = 0;
 
-    $select = $conexion->prepare("SELECT DISTINCT T.id_tema AS ID, T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY titulo ORDER BY VALORACIONES DESC LIMIT 5");
+    $select = $conexion->prepare("SELECT DISTINCT T.id_tema AS ID, T.titulo AS TITULO, COUNT(V.id_tema) AS VALORACIONES FROM TEMAS T, VALORACIONES V WHERE T.id_tema = V.id_tema GROUP BY T.id_tema ORDER BY VALORACIONES DESC LIMIT 5");
     $select->execute();
 
     while ($fila = $select->fetchObject()) {
