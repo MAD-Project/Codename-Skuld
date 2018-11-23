@@ -72,12 +72,13 @@ function estructuraTema(data,temas) {
                 '<input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion(\'' + e['id'] + '\')" id="votar' + e['id'] + '">' +
             '</div>' +
                 '<div onclick="abrirDetalle('+e['id']+')">' +
-                '<h2>' + e['titulo'] + '</h2>' +
+                '<h2>' + e['titulo'] + '<span class="etiquetaTema" id="' + e['etiqueta'] +'">' + e['etiqueta'] + '</span>' + '</h2>' +
                 '<p>' + e['fecha'] + '</p>' +
                 '<h4>' + e['texto'] + '</h4>' +
                 '<a href="#">' + e["autor"] + '</a>' +
             '</div> </div>'
         );
+        $(".etiquetaTema:empty").remove();
         if(temas === "" || temas.indexOf(e['id']) !== -1){
          $("#votar" + e["id"]).prop('disabled', true);
         }
