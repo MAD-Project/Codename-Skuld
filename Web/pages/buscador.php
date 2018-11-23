@@ -1,7 +1,7 @@
 
 <form id="buscador" name="buscador" method="POST" >
     <input class="search" id="search" name="search" type="search" list="listaEtiquetas"
-           placeholder="Buscar aquí..." aria-label="Buscar contenido del sitio" autofocus>
+           placeholder="Buscar aquí..." aria-label="Buscar contenido del sitio">
 </form>
 
 <datalist id="listaEtiquetas">
