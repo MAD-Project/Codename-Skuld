@@ -208,9 +208,11 @@ body {
     color: #dd6e42;
     text-decoration: none;
 }
-#btnCargarMas{
-    margin-bottom:2em;
+
+#btnCargarMas {
+    margin-bottom: 2em;
 }
+
 .votos {
     border-radius: 2px;
     margin-bottom: 5px;
@@ -270,9 +272,10 @@ body {
     height: auto;
 }
 
-.seleccionada{
-    border:2px dashed var(--sidebarbtn);
+.seleccionada {
+    border: 2px dashed var(--sidebarbtn);
 }
+
 /* FIN subpágina de Temas y respuestas */
 
 /* Subpágina crear tema */
@@ -375,57 +378,43 @@ body {
     color: white;
 }
 
-
-/*Dani cambia esto hastaaaaaaa*/
-
+/* Comprobador de contraseñas */
 #pswd_info {
-    position:absolute;
-    width:250px;
-    padding:15px;
-    background:#fefefe;
-    font-size:.875em;
-    border-radius:5px;
-    box-shadow:0 1px 3px #ccc;
-    border:1px solid #ddd;
-    top: 51.9%;
-    left: 63.6%;
+    position: absolute;
+    width: 250px;
+    padding: 15px;
+    background: #fefefe;
+    font-size: .875em;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #ccc;
+    border: 1px solid #ddd;
+    top: 44%;
+    left: 62%;
 }
 
 #pswd_info h4 {
-    margin:0 0 10px 0;
-    padding:0;
-    font-weight:normal;
-}
-
-#pswd_info::before {
-    content: "\25B6";
-    position:absolute;
-    top:90px;
-    left:100%;
-    font-size:14px;
-    line-height:14px;
-    color:#ddd;
-    text-shadow:none;
-    display:block;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-weight: normal;
 }
 
 .invalid {
-    padding-left:22px;
-    line-height:24px;
-    color:#ec3f41;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #ec3f41;
 }
+
 .valid {
-    padding-left:22px;
-    line-height:24px;
-    color:#3a7d34;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #3a7d34;
 }
 
 #pswd_info {
     display: none;
 }
 
-/*Aquiiiiiiiiiiiiiiiiiii*/
-
+/* FIN Comprobador de contraseñas */
 
 .inputRegistro {
     background-color: var(--input);
