@@ -228,7 +228,10 @@ body {
 .responderBTN:hover,
 .logout a:hover,
 .crearTemaBTN:hover,
-.fichero:hover {
+.fichero:hover,
+.login a:hover,
+.registro a:hover,
+#btnCargarMas:hover {
     cursor: pointer;
 }
 
@@ -236,10 +239,6 @@ body {
 .respBox a {
     color: #dd6e42;
     text-decoration: none;
-}
-
-#btnCargarMas {
-    margin-bottom: 2em;
 }
 
 .votos {
@@ -463,7 +462,8 @@ body {
 
 .loginBTN,
 .logoutBTN,
-.registroBTN {
+.registroBTN,
+#btnCargarMas {
     border-radius: 5px;
     border: none;
     background-color: var(--sidebarbtn);
@@ -472,6 +472,12 @@ body {
     width: 96.5%;
     transition: .20s;
     font-size: 20px;
+}
+
+
+#btnCargarMas {
+    margin-bottom: 2em;
+    width: 20%;
 }
 
 .registroBTN {
@@ -511,11 +517,6 @@ body {
     color: white;
     margin-bottom: 10%;
     text-decoration: underline;
-}
-
-.login a:hover,
-.registro a:hover {
-    cursor: pointer;
 }
 
 .topTemas {
@@ -654,6 +655,10 @@ body {
     .link {
         margin-right: 20%;
         font-size: 140%;
+    }
+
+    #btnCargarMas {
+        width: 30%;
     }
 
     .login,
