@@ -27,13 +27,15 @@
         <div onclick="abrirDetalle(<?= $tema['id'] ?>)">
             <h2>
                 <?= htmlspecialchars($tema["titulo"]) ?>
-                <?php if ($tema["etiqueta"] != null) {
-            ?>
+                <?php
+                echo $tema["etiqueta"],"aqui";
+                if ($tema["etiqueta"] != null) {
+                    ?>
                 <span class="etiquetaTema" id="<?= $tema["etiqueta"] ?>">
                     <?= $tema["etiqueta"] ?>
                 </span>
                 <?php
-        } ?>
+                } ?>
             </h2>
 
             <p>
