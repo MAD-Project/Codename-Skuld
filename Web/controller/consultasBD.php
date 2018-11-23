@@ -9,11 +9,11 @@ function cargarTemas()
     $inicioRowTemas = $_POST['inicioRowTemas'] ?? 0;
     $inicioRowTemas = (int)$inicioRowTemas;
     //falta order by date
-    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
+    $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,etiqueta,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u WHERE t.id_usuario=u.id_usuario ORDER BY fecha DESC, id_tema DESC LIMIT ? ,5;");
     $select->bindParam(1, $inicioRowTemas, PDO::PARAM_INT);
     $select->execute();
     $temas = array();
-    $temas=recorrerTemas($select,$temas);
+    $temas=recorrerTemas($select, $temas);
 
     closeConexionDb($conexion);
     if ($inicioRowTemas === 0) {
@@ -23,12 +23,14 @@ function cargarTemas()
     }
 }
 
-function recorrerTemas($select,$temas){
+function recorrerTemas($select, $temas)
+{
     while ($fila = $select->fetchObject()) {
         $tema["id"] = $fila->id_tema;
         $tema["titulo"] = $fila->titulo;
         $tema["texto"] = $fila->texto;
         $tema["fecha"] = $fila->fecha;
+        $tema["etiqueta"] = $fila->etiqueta;
         $tema["autor"] = $fila->nickname;
         $tema["src"] = $fila->src;
         $tema['nombreArchivo'] = $fila->nombreArchivo;
@@ -38,53 +40,51 @@ function recorrerTemas($select,$temas){
     return $temas;
 }
 
-function verDatosBusqueda(){
-
+function verDatosBusqueda()
+{
     $texto = array();
 
     $busqueda = isset($_POST['search'])? "%".trim($_POST['search'])."%":"%";
     $etiquetas= isset($_POST['etiquetas'])?$_POST['etiquetas']:'';
     
     $conexion = conexionDb();
-    if($etiquetas===''){
+    if ($etiquetas==='') {
         $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema)as src,
                     (SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,
                     (SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u 
                 WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) ORDER BY fecha DESC, id_tema DESC;");
-    }else{
-        if($etiquetas=== "Solucionado"){
+    } else {
+        if ($etiquetas=== "Solucionado") {
             $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,
                       (SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,
                       (SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u 
                   WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND id_respuesta_elegida IS NOT NULL ORDER BY fecha DESC, id_tema DESC;");
-        }else if(strpos($etiquetas, "Solucionado") !== false){
+        } elseif (strpos($etiquetas, "Solucionado") !== false) {
             $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,
                       (SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,
                       (SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u 
                   WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) AND id_respuesta_elegida IS NOT NULL ORDER BY fecha DESC, id_tema DESC;");
-            $select->bindParam( 3 ,$etiquetas);
-        }else{
+            $select->bindParam(3, $etiquetas);
+        } else {
             $select = $conexion->prepare("SELECT t.id_tema as id_tema,titulo,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as src,
                       (SELECT nombre FROM archivosadjuntos aj WHERE aj.id_tema = t.id_tema) as nombreArchivo,
                       (SELECT count(id_valoracion) FROM VALORACIONES v WHERE t.id_tema=v.id_tema) as val from TEMAS t, USUARIOS u 
                   WHERE t.id_usuario=u.id_usuario AND (t.titulo LIKE ? OR t.texto LIKE ?) AND FIND_IN_SET(etiqueta,?) ORDER BY fecha DESC, id_tema DESC;");
-            $select->bindParam( 3 ,$etiquetas);
+            $select->bindParam(3, $etiquetas);
         }
-
     }
-    $select->bindParam( 1 ,$busqueda);
-    $select->bindParam( 2 ,$busqueda);
+    $select->bindParam(1, $busqueda);
+    $select->bindParam(2, $busqueda);
 
     $select->execute();
 
-    if ($select->rowCount() > 0){
-        $texto=recorrerTemas($select,$texto);
+    if ($select->rowCount() > 0) {
+        $texto=recorrerTemas($select, $texto);
     }
 
     closeConexionDb($conexion);
 
     return $texto;
-
 }
 
 function annadirValoracion($nickname, $objetivo, $idObjetivo)
@@ -110,7 +110,7 @@ function annadirValoracion($nickname, $objetivo, $idObjetivo)
 
         closeConexionDb($conexion);
         return $val;
-    }else{
+    } else {
         return -1;
     }
 }
@@ -120,7 +120,7 @@ function obtenerValoracion($objetivo, $idObjetivo, $conexion)
 {
     if ($objetivo === "id_tema") {
         $select = $conexion->prepare("SELECT count(id_valoracion) as val FROM VALORACIONES WHERE id_tema = :idObjetivo");
-    }else{
+    } else {
         $select = $conexion->prepare("SELECT count(id_valoracion) as val FROM VALORACIONES WHERE id_respuesta = :idObjetivo");
     }
 
@@ -227,15 +227,16 @@ function respuestasTema($idTema)
     return $respuestas;
 }
 
-function annadirRespElegida($idResp,$idTema){
+function annadirRespElegida($idResp, $idTema)
+{
     $conexion = conexionDb();
 
     $update = $conexion->prepare("UPDATE TEMAS SET id_respuesta_elegida =:idResp WHERE id_tema=:idTema");
-    try{
-    $update->execute(array(
+    try {
+        $update->execute(array(
         "idTema" => $idTema,
         "idResp" => $idResp));
-    }catch (PDOException $e){
+    } catch (PDOException $e) {
         $update->rollBack();
         return false;
     }
