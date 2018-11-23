@@ -1,3 +1,4 @@
+
 <form class="contenido" method="POST">
     <?php
         include_once '../controller/consultasBD.php';
@@ -67,7 +68,7 @@
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
             <?php if($nickname===$tema["autor"] && $tema["respElegida"]==null){?>
-                    <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuesta(<?=$resp['id'],',',$tema["id"]?>)">
+                    <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuestaFavorita(<?=$resp['id'],',',$tema['id']?>)">
                <?php }?>
             <p><?= $resp["fecha"] ?>
             </p>
