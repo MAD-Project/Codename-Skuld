@@ -8,7 +8,7 @@
 
         $temaVotado= isset($_POST['votado'])?$_POST['votado']:true;
 
-        if ($_POST["idTema"] != null) {
+        if ($_POST["idTema"] != null && $_POST["idTema"] != "noSubas") {
             $_SESSION["idTema"] = $_POST["idTema"];
         }
 
@@ -18,7 +18,7 @@
             $_SESSION['mensajeEnviadoRespuesta'] = 0;
         }
         $nickname="";
-        if (isset($_SESSION['nombreUsuario'])){
+        if (isset($_SESSION['nombreUsuario'])) {
             $respVotadas = respuestasVotadasUsuario();
             $nickname=$_SESSION['nombreUsuario'];
         }
@@ -30,7 +30,8 @@
             <p class="votos" id=<?="puntuacion",$tema['id'] ?>>
                 <?= $tema["valoracion"] ?>
             </p>
-            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')" id="<?="votar",$tema['id'] ?>"
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacion('<?=$tema['id']?>')"
+                id="<?="votar",$tema['id'] ?>"
                 <?= $temaVotado=='true'?'disabled':'';?>>
             <!-- $temaVotado devuelve true tanto si el usuario ha votado o no esta logueado y añade el atributo disabled-->
         </div>
@@ -56,19 +57,23 @@
         ?>
     <?php foreach ($respuestas as $resp):?>
 
-    <div class="respBox <?= $tema['respElegida']===$resp['id']?'seleccionada':'' ?>" id=<?= "resp",$resp["id"] ?>>
+    <div class="respBox <?= $tema['respElegida']===$resp['id']?'seleccionada':'' ?>"
+        id=<?= "resp",$resp["id"] ?>>
         <div id=<?= "puntuacion",$resp['id'] ?>>
             <p class="votos" id=<?="puntuacionResp",$resp['id'] ?>>
                 <?= $resp["valoracion"] ?>
             </p>
-            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacionResp('<?=$resp['id']?>')" id="<?="votarResp",$resp['id'] ?>"
-                <?= isset($respVotadas)? in_array($resp['id'],$respVotadas)?'disabled':'':'disabled';?>>
+            <input type="button" value="Votar" class="votarBTN" onclick="votarPuntuacionResp('<?=$resp['id']?>')"
+                id="<?="votarResp",$resp['id'] ?>"
+                <?= isset($respVotadas)? in_array($resp['id'], $respVotadas)?'disabled':'':'disabled';?>>
         </div>
         <div>
             <a src="#"><?= $resp["autor"],":" ?></a>
-            <?php if($nickname===$tema["autor"] && $tema["respElegida"]==null){?>
-                    <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuesta(<?=$resp['id'],',',$tema["id"]?>)">
-               <?php }?>
+            <?php if ($nickname===$tema["autor"] && $tema["respElegida"]==null) {
+            ?>
+            <input type="button" id="elegirRespuesta" value="Elegir Respuesta" onclick="elegirRespuesta(<?=$resp['id'],',',$tema['id']?>)">
+            <?php
+        }?>
             <p><?= $resp["fecha"] ?>
             </p>
             <h4><?= htmlspecialchars($resp["texto"]) ?>

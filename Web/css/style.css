@@ -92,9 +92,10 @@ body {
     border: none;
 }
 
-.etiqueta {
+.etiqueta, 
+.etiquetaTema {
     margin-right: 1em;
-    border: 1px solid black;
+    border: 1px solid grey;
     background-color: var(--elementosmain);
     border-radius: 5px;
     color: black;
@@ -142,6 +143,12 @@ body {
     padding: 10px;
     width: 94%;
     margin-bottom: 2%;
+}
+
+.etiquetaTema {
+    margin-left: 5%;
+    padding: 1px;
+    font-size: 80%;
 }
 
 .respBox,
@@ -380,16 +387,16 @@ body {
 
 /* Comprobador de contraseñas */
 #pswd_info {
-    position:relative;
-    width:250px;
-    padding:15px;
-    background:#fefefe;
-    font-size:.875em;
-    border-radius:5px;
-    box-shadow:0 1px 3px #ccc;
-    border:1px solid #ddd;
-    top: -35%;
-    left: -66%;
+    position: absolute;
+    width: 250px;
+    padding: 15px;
+    background: #fefefe;
+    font-size: .875em;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #ccc;
+    border: 1px solid #ddd;
+    top: 43%;
+    left: 62%;
 }
 
 #pswd_info h4 {
