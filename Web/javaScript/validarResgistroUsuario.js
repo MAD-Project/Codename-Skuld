@@ -1,41 +1,42 @@
-
 function validarFormulario(idFormulario) {
 
-    $('input[type=password]').keyup(function() {
+    $('input[type=password]').keyup(function () {
 
         var pswd = $(this).val();
 
         //validate the length
-        if ( pswd.length < 8 ) {
+        if (pswd.length < 8) {
             $('#length').removeClass('valid').addClass('invalid');
         } else {
             $('#length').removeClass('invalid').addClass('valid');
         }
 
         //validate letter
-        if ( pswd.match(/[A-z]/) ) {
+        if (pswd.match(/[A-z]/)) {
             $('#letter').removeClass('invalid').addClass('valid');
         } else {
             $('#letter').removeClass('valid').addClass('invalid');
         }
 
         //validate capital letter
-        if ( pswd.match(/[A-Z]/) ) {
+        if (pswd.match(/[A-Z]/)) {
             $('#capital').removeClass('invalid').addClass('valid');
         } else {
             $('#capital').removeClass('valid').addClass('invalid');
         }
 
         //validate number
-        if ( pswd.match(/\d/) ) {
+        if (pswd.match(/\d/)) {
             $('#number').removeClass('invalid').addClass('valid');
         } else {
             $('#number').removeClass('valid').addClass('invalid');
         }
 
-    }).focus(function() {
-        $('#pswd_info').show();
-    }).blur(function() {
+    }).focus(function () {
+        if (window.innerWidth > 1030) {
+            $('#pswd_info').show();
+        }
+    }).blur(function () {
         $('#pswd_info').hide();
     });
 
@@ -48,32 +49,28 @@ function validarFormulario(idFormulario) {
         $('#email').css('background', 'red');
         $('#password').css('background', 'red');
         return false;
-    }
-    else if ($('#nombreU').val()==""){
+    } else if ($('#nombreU').val() == "") {
 
         $('#nombreU').css('background', 'red');
         return false;
-    }
-    else if ($(idFormulario+" input[type='email'].require").length
-        && !expreEmail.test($(idFormulario+" input[type='email'].require").val())){
+    } else if ($(idFormulario + " input[type='email'].require").length &&
+        !expreEmail.test($(idFormulario + " input[type='email'].require").val())) {
 
-        $('#email').css('background','red');
-        $('#nombreU').css('background','#faffbd');
-        $('#password').css('background','#faffbd');
+        $('#email').css('background', 'red');
+        $('#nombreU').css('background', '#faffbd');
+        $('#password').css('background', '#faffbd');
         return false;
-    }
-    else if ($(idFormulario+" input[type='password'].require").length
-        && !exprePassword.test($(idFormulario+" input[type='password'].require").val())){
+    } else if ($(idFormulario + " input[type='password'].require").length &&
+        !exprePassword.test($(idFormulario + " input[type='password'].require").val())) {
 
-        $('#password').css('background','red');
-        $('#nombreU').css('background','#faffbd');
-        $('#email').css('background','#faffbd');
+        $('#password').css('background', 'red');
+        $('#nombreU').css('background', '#faffbd');
+        $('#email').css('background', '#faffbd');
         return false;
-    }
-    else {
-        $('#nombreU').css('background','#faffbd');
-        $('#email').css('background','#faffbd');
-        $('#password').css('background','#faffbd');
+    } else {
+        $('#nombreU').css('background', '#faffbd');
+        $('#email').css('background', '#faffbd');
+        $('#password').css('background', '#faffbd');
         return true;
     }
 
@@ -81,7 +78,7 @@ function validarFormulario(idFormulario) {
 
 function eviarDatos(url, idFormulario, method) {
 
-    let selectorjQformulario = "#"+idFormulario;
+    let selectorjQformulario = "#" + idFormulario;
     let valido = validarFormulario(selectorjQformulario);
 
     if (valido) {
@@ -95,7 +92,7 @@ function eviarDatos(url, idFormulario, method) {
             data: datos,
             success: function (data) {
 
-                if (data === "nombreUsuario"){
+                if (data === "nombreUsuario") {
 
                     $("#resultado").html("Este nombre de usuario ya existe");
                 } else if (data === "email") {
