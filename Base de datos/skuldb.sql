@@ -12,7 +12,7 @@ CREATE TABLE USUARIOS (
 CREATE TABLE TEMAS(
   id_tema INT AUTO_INCREMENT,
   titulo varchar(35) COLLATE utf8_spanish_ci NOT NULL,
-  texto varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
+  texto varchar(5000) COLLATE utf8_spanish_ci NOT NULL,
   fecha date NOT NULL,
   etiqueta varchar(25) COLLATE utf8_spanish_ci,
   id_usuario INT NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE TEMAS(
 
 CREATE TABLE RESPUESTAS (
   id_respuesta INT AUTO_INCREMENT,
-  texto varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
+  texto varchar(3000) COLLATE utf8_spanish_ci NOT NULL,
   fecha date NOT NULL,
   id_usuario INT NOT NULL,
   id_tema INT NOT NULL,

@@ -4,6 +4,7 @@ session_start();
 
     include_once '../controller/conexionDb.php';
     include_once '../controller/selectsUtiles.php';
+    include_once '../controller/subirArchivo.php';
 
     if (isset($_POST['textareaRespuesta'])){
 

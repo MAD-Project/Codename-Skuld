@@ -1,13 +1,14 @@
 INSERT INTO usuarios (nickname,password,email,nombre,apellidos) VALUES ("admin","$2y$10$/Uek6FjoVUSylwNMY/bwvOheMtdZEJIu.R.eNnzn4YR7FQVOZaDZa","admin@gmail.com","admin","administrador");
 INSERT INTO usuarios (nickname,password,email,nombre,apellidos) VALUES ("alex","$2y$10$orv6UXGOJGbP/.CbRsEOb.F3pTaz4TwG/.UN8KquLOYDS45BnpOsO","alex@gmail.com","psalexps","luis");
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is AJAX?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is AJAX?",
 "AJAX = Asynchronous JavaScript and XML.
 AJAX is a technique for creating fast and dynamic web pages.
 AJAX allows web pages to be updated asynchronously by exchanging small amounts of data with the server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
 Classic web pages, (which do not use AJAX) must reload the entire page if the content should change.
 Examples of applications using AJAX: Google Maps, Gmail, Youtube, and Facebook tabs.",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("AJAX is Based on Internet Standards
@@ -46,7 +47,7 @@ null);
 INSERT INTO valoraciones (id_usuario,id_respuesta) VALUES (2,
 1);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is HTML?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is HTML?",
 "HTML is the standard markup language for creating Web pages.
 HTML stands for Hyper Text Markup Language
 HTML describes the structure of Web pages using markup
@@ -55,6 +56,7 @@ HTML elements are represented by tags
 HTML tags label pieces of content such as 'heading', 'paragraph', 'table', and so on
 Browsers do not display the HTML tags, but use them to render the content of the page",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("Example Explained :
@@ -69,11 +71,12 @@ The '<'p'>' element defines a paragraph.",
 2,
 2);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is CSS?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is CSS?",
 "CSS is a language that describes the style of an HTML document.
 CSS describes how HTML elements should be displayed.
 This tutorial will teach you CSS from basic to advanced.",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("CSS stands for Cascading Style Sheets.
@@ -84,11 +87,12 @@ External stylesheets are stored in CSS files.",
 2,
 3);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is JavaScript?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is JavaScript?",
 "JavaScript is the programming language of HTML and the Web.
 JavaScript is easy to learn.
 This tutorial will teach you JavaScript from basic to advanced.",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("JavaScript Can Change HTML Content
@@ -98,11 +102,12 @@ This example uses the method to 'find' an HTML element (with id='demo') and chan
 2,
 4);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is SQL?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is SQL?",
 "SQL is a standard language for storing, manipulating and retrieving data in databases.
 Our SQL tutorial will teach you how to use SQL in: 
 MySQL, SQL Server, MS Access, Oracle, Sybase, Informix, Postgres, and other database systems.",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("What Can SQL do? :
@@ -120,10 +125,11 @@ SQL can set permissions on tables, procedures, and views.",
 2,
 5);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is Bootstrap?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is Bootstrap?",
 "Bootstrap is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile-first websites.
 Bootstrap is completely free to download and use!",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("What is Bootstrap? :
@@ -135,11 +141,12 @@ Bootstrap also gives you the ability to easily create responsive designs",
 2,
 6);
 
-INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is jQuery?",
+INSERT INTO temas (titulo,texto,fecha,etiqueta,id_usuario) VALUES ("What is jQuery?",
 "jQuery is a JavaScript Library.
 jQuery greatly simplifies JavaScript programming.
 jQuery is easy to learn.",
 "2018-10-10",
+"Problema",
 1);
 
 INSERT INTO respuestas (texto,fecha,id_usuario,id_tema) VALUES ("What is jQuery? :

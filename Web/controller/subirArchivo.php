@@ -3,7 +3,7 @@
 include_once 'conexionDb.php';
 include_once 'selectsUtiles.php';
 
-function subirArchivo($idTema){
+function subirArchivo($idTema,$idRespuesta){
 
     $conexion = conexionDb();
 
@@ -40,7 +40,7 @@ function subirArchivo($idTema){
             $insert->execute(array(
                 "isrc" => $src,
                 "iidTema" => $idTema,
-                "iidRespuesta" => null,
+                "iidRespuesta" => $idRespuesta,
                 "inombre" => $nombrefinal
             ));
 

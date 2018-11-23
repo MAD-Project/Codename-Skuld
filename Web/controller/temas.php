@@ -51,7 +51,7 @@
 
         include_once 'subirArchivo.php';
 
-        subirArchivo($idTema);
+        subirArchivo($idTema,null);
 
         closeConexionDb($conexion);
     }
