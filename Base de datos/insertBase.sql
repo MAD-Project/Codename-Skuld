@@ -43,8 +43,7 @@ INSERT INTO valoraciones (id_usuario,id_tema,id_respuesta) VALUES (1,
 1,
 null);
 
-INSERT INTO valoraciones (id_usuario,id_tema,id_respuesta) VALUES (2,
-1,
+INSERT INTO valoraciones (id_usuario,id_respuesta) VALUES (2,
 1);
 
 INSERT INTO temas (titulo,texto,fecha,id_usuario) VALUES ("What is HTML?",
