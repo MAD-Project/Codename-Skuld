@@ -29,7 +29,7 @@
                 <?= htmlspecialchars($tema["titulo"]) ?>
                 <?php if ($tema["etiqueta"] != null) {
             ?>
-                <span class="etiquetaTema">
+                <span class="etiquetaTema" id="<?= $tema["etiqueta"] ?>">
                     <?= $tema["etiqueta"] ?>
                 </span>
                 <?php

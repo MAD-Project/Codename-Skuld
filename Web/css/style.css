@@ -92,7 +92,7 @@ body {
     border: none;
 }
 
-.etiqueta, 
+.etiqueta,
 .etiquetaTema {
     margin-right: 1em;
     border: 1px solid grey;
@@ -146,10 +146,31 @@ body {
 }
 
 .etiquetaTema {
-    margin-left: 5%;
+    margin-left: 1%;
     padding: 1px;
     font-size: 80%;
+    font-weight: normal;
+    background-color: var(--elementosbtn);
 }
+
+/* Colores etiquetas */
+#Duda {
+    background-color: #df6738;
+}
+
+#Problema {
+    background-color: #ec3f41;
+}
+
+#Urgente {
+    background-color: orangered;
+}
+
+#Solucionado {
+    background-color: #3a7d34;
+}
+
+/* FIN Colores etiquetas */
 
 .respBox,
 .responderBox {
@@ -186,6 +207,7 @@ body {
 
 .temaBox div:nth-child(2) h2 {
     margin-right: auto;
+    width: 90%;
 }
 
 .temaBox div:nth-child(2) h4,
