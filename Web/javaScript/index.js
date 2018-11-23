@@ -45,7 +45,9 @@ function abrirDetalle(idTema) {
         })
         .done(function (data) {
             $("#mainContenido").html(data);
-            irTop();
+            if (idTema == "noSubas") {
+                irTop();
+            }
         });
 }
 
