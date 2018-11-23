@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+function validarFormulario(idFormulario) {
 
     $('input[type=password]').keyup(function() {
 
@@ -38,11 +38,6 @@ $(document).ready(function() {
     }).blur(function() {
         $('#pswd_info').hide();
     });
-
-
-});
-
-function validarFormulario(idFormulario) {
 
     let exprePassword = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
     let expreEmail = new RegExp("^[A-z0-9]{3,}@[A-z0-9]{2,}.[A-z0-9]{2,4}$");

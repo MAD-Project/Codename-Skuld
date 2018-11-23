@@ -112,9 +112,8 @@ function respuestas(url, idFormulario, method) {
 
 }
 
-function elegirRespuesta(idRespuesta,idTema) {
+function elegirRespuestaFavorita(idRespuesta,idTema) {
     event.preventDefault();
-    alert("aaa");
     $.ajax({
         url: "controller/valorar.php",
         method: "POST",
