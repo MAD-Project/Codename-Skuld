@@ -48,9 +48,8 @@ function cargarMasTemas(temas) {
         data: {inicioRowTemas: $(".temaBox").length},
         success: function (data) {
             if(JSON.parse(data).length===0){
-                alert("Has alcanzado el final... ¿enhorabuena?");
                 $("#btnCargarMas").attr("onclick","irTop()");
-                $("#btnCargarMas").html("Subir");
+                $("#btnCargarMas").html("Final. ¿Subir?");
             }else{
                 estructuraTema(JSON.parse(data),temas);
             }
@@ -100,6 +99,7 @@ function respuestas(url, idFormulario, method) {
             method: method,
             data: datos,
             success: function () {
+                debugger;
                 abrirDetalle(null);
             },
             error: function (data) {

@@ -211,7 +211,7 @@ function respuestasTema($idTema)
     $respuestas = array();
 
 
-    $select = $conexion->prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,nickname,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario AND r.id_tema = :idTema ORDER BY r.fecha DESC, r.id_respuesta DESC");
+    $select = $conexion->prepare("SELECT r.id_respuesta as id_respuesta,texto,fecha,nickname,(SELECT src FROM archivosadjuntos aj WHERE aj.id_respuesta = r.id_respuesta) as src,(SELECT nombre FROM archivosadjuntos aj WHERE aj.id_respuesta = r.id_respuesta) as nombreArchivo,(SELECT count(id_valoracion) FROM VALORACIONES v WHERE r.id_respuesta=v.id_respuesta) as val from respuestas r, USUARIOS u WHERE r.id_usuario=u.id_usuario AND r.id_tema = :idTema ORDER BY r.fecha DESC, r.id_respuesta DESC");
     $select->execute(array(
         "idTema" => $idTema));
 
@@ -221,6 +221,8 @@ function respuestasTema($idTema)
         $respuesta["valoracion"] = $fila->val;
         $respuesta["fecha"] = $fila->fecha;
         $respuesta["autor"] = $fila->nickname;
+        $respuesta["src"] = $fila->src;
+        $respuesta["nombreArchivo"] = $fila->nombreArchivo;
         array_push($respuestas, $respuesta);
     }
 

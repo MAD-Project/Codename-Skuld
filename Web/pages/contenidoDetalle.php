@@ -98,6 +98,7 @@
             } ?>
         <textarea id="textareaRespuesta" name="textareaRespuesta" class="respuestaArea" placeholder="Escribe tu respuesta"
             rows="4" required></textarea>
+
         <input class="responderBTN" type="submit" value="Publicar respuesta" onclick="respuestas('controller/respuestas.php','respuesta','post')" />
     </form>
 
