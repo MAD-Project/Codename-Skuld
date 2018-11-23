@@ -380,16 +380,16 @@ body {
 
 /* Comprobador de contraseñas */
 #pswd_info {
-    position: absolute;
-    width: 250px;
-    padding: 15px;
-    background: #fefefe;
-    font-size: .875em;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px #ccc;
-    border: 1px solid #ddd;
-    top: 44%;
-    left: 62%;
+    position:relative;
+    width:250px;
+    padding:15px;
+    background:#fefefe;
+    font-size:.875em;
+    border-radius:5px;
+    box-shadow:0 1px 3px #ccc;
+    border:1px solid #ddd;
+    top: -35%;
+    left: -66%;
 }
 
 #pswd_info h4 {
