@@ -6,9 +6,6 @@
 ## ¿Qué es?
 Un canal privado de preguntas y respuestas para empresas, con facil despliegue y customización que permitirá a tu empresa ir un paso más alla incrementando la colaboración entre equipos y la resolución de problemas.
 
-## Instalación
-Disponemos de un tutorial para usuarios (**[vídeo](Documentacion/Manual%20de%20usuario.mp4?raw=true)**) que muestra como instalar y usar la aplicación desde una cuenta existente o nueva de usuario. Se puede descargar el ejecutable .jar comprimido desde **[aquí.](/App/UDA_App.zip?raw=true)**
-
 ## Cómo desplegar la aplicación para su desarrollo
 Necesitaremos XAMPP para su despliegue.
 <br/>
